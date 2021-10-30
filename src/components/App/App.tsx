@@ -2,7 +2,7 @@ import React from 'react';
 import Feed from '../Feed/Feed';
 import './App.css';
 
-interface Multimedia = {
+interface Multimedia {
     url: string
     caption: string
 }
@@ -17,8 +17,7 @@ interface State {
   articles: Article[]
 }
 
-interface Props {
-}
+interface Props {}
 
 const articles: Article[] = [
   {
