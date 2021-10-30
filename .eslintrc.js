@@ -13,4 +13,7 @@ module.exports = {
     "amd": true,
     "node": true
   },
+  rules: {
+  '@typescript-eslint/no-empty-interface': 0,
+  }
 };
