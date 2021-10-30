@@ -30,7 +30,7 @@ interface Article {
   abstract: string
   short_url: string
   multimedia: Multimedia[]
-};
+}
 
 const cleanNewsData = (articles: Article[]) => {
   return articles.map(({ section, title, abstract, short_url, multimedia } : Article) => {
