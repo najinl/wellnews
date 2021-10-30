@@ -1,0 +1,65 @@
+.questionnaire {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #4B658B;
+  color: white;
+}
+
+h2 {
+  height:80px;
+  margin-top: 15%;
+}
+
+article {
+  height: 350px;
+}
+
+.sentiment-selection {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #42C7E4;
+  height:120px;
+  width: 100%;
+}
+
+.happy-btn, .neutral-btn, .sad-btn {
+  border-radius: 50px;
+  height: 75px;
+  width: 75px;
+  border: none;
+  background-image: url('../../assets/happy-face.svg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.neutral-btn {
+  background-image: url('../../assets/neutral-face.svg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.happy-btn {
+  background-image: url('../../assets/happy-face.svg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.wellnews-synopsis {
+  display: flex;
+  height: 350px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.go-to-news {
+  height: 40px;
+  width: 60%;
+  margin-bottom: 80px;
+  color: white;
+  background-color: #44BCFF;
+  border: none;
+  font-size: 1.25em;
+}
