@@ -1,14 +1,13 @@
 import React from 'react';
-import logo from '../../logo.svg';
 import './App.css';
 
 interface Article {
   abstract: string,
-};
+}
 
 interface Articles {
   articles: Article[]
-};
+}
 
 
 class App extends React.Component{
@@ -16,11 +15,10 @@ class App extends React.Component{
     articles: [{abstract: 'Nalle'}]
   };
 
-  render() {
+  render(): JSX.Element {
     return (
       <div className="App">
         <header className="App-header"> {this.state.articles[0].abstract}
-          <img src={logo} className="App-logo" alt="logo" />
           <p>
             Edit <code>src/App.tsx</code> and save to reload.
           </p>
