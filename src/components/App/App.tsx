@@ -2,7 +2,7 @@ import React from 'react';
 import Feed from '../Feed/Feed';
 import './App.css';
 
-type Multimedia = {
+interface Multimedia = {
     url: string
     caption: string
 }
@@ -61,7 +61,7 @@ class App extends React.Component<Props, State> {
     }
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <div className="App">
         <header className="App-header">
