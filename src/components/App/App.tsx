@@ -14,13 +14,13 @@ export interface Article {
   multimedia: Multimedia[]
 }
 
-interface State {
+interface AppState {
   articles: Article[],
   userSentiment: number | string,
   initialSentimentSet: boolean
 }
 
-interface Props {}
+interface AppProps {}
 
 const articles: Article[] = [
   {
@@ -55,8 +55,8 @@ const articles: Article[] = [
   }
 ]
 
-class App extends React.Component<Props, State> {
-  constructor(props: Props) {
+class App extends React.Component<AppProps, AppState> {
+  constructor(props: AppProps) {
     super(props)
     this.state = {
       articles: articles,
@@ -71,7 +71,7 @@ class App extends React.Component<Props, State> {
   render(): JSX.Element {
     return (
       <div className="App">
-        <header className="App-header"> {this.state.userSentiment}
+        <header className="App-header">
           <h1>WellNews</h1>
         </header>
         {this.state.initialSentimentSet ? <Feed articles={this.state.articles} /> : <Form changeUserSentiment={this.changeUserSentiment}/>}
