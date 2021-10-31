@@ -1,0 +1,16 @@
+.articles-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.articles-display {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+  border: 2px solid white;
+  background-color: #112941;
+  padding: 1rem;
+}

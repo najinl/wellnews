@@ -1,10 +1,27 @@
+html {
+  background-color: #4B658B;
+  height: 100%;
+  font-family: 'Comfortaa';
+}
+
 .App {
   text-align: center;
 }
 
+.header-text {
+  font-size: 3rem;
+  cursor: default;
+}
+
+.header-text-2 {
+  color: #9eeeff;
+}
+
 .App-header {
-  background-color: #282c34;
-  min-height: 20vh;
+  /* background-color: #282c34; */
+  /* min-height: 20vh; */
+  height: 5rem;
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;

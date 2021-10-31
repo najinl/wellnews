@@ -18,9 +18,11 @@ const Form: React.FC<userSentimentProps> = props => {
       <section className="questionnaire">
         <h2>how are you feeling today?</h2>
         <article className="sentiment-selection">
-          <button className="happy-btn" name="1" onClick={assignSentiment}></button>
-          <button className="neutral-btn" name="0" onClick={assignSentiment}></button>
-          <button className="sad-btn" name="-1" onClick={assignSentiment}></button>
+          <div className="sentiments-container">
+            <button className="happy-btn" name="1" onClick={assignSentiment}></button>
+            <button className="neutral-btn" name="0" onClick={assignSentiment}></button>
+            <button className="sad-btn" name="-1" onClick={assignSentiment}></button>
+          </div>
         </article>
         <article className="wellnews-synopsis">
           <p>WellNews uses your mood to curate a list of articles with your mental health in mind.</p>

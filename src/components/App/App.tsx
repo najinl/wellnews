@@ -73,7 +73,7 @@ class App extends React.Component<Props, State> {
       <div className="App">
         <div className="app-container">
           <header className="App-header">
-            <h1 className="header-text">WellNews</h1>
+            <h1 className="header-text">Well<span className="header-text-2">News</span></h1>
           </header>
           {this.state.initialSentimentSet ? <Feed articles={this.state.articles} /> : <Form userSentiment={this.changeUserSentiment}/>}
         </div>

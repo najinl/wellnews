@@ -1,3 +1,8 @@
+.form-container {
+  background-color: #4B658B;
+  height: 100%;
+}
+
 .questionnaire {
   display: flex;
   flex-direction: column;
@@ -9,7 +14,8 @@
 
 h2 {
   height:80px;
-  margin-top: 15%;
+  margin-top: 4%;
+  font-size: 1.5rem;
 }
 
 article {
@@ -18,11 +24,20 @@ article {
 
 .sentiment-selection {
   display: flex;
-  align-items: center;
-  justify-content: space-evenly;
+  flex-direction: row;
+  justify-content: center;
   background-color: #42C7E4;
   height:120px;
   width: 100%;
+}
+
+.sentiments-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height:120px;
+  width: 50%;
+  background-color: #42C7E4;
 }
 
 .happy-btn, .neutral-btn, .sad-btn {
@@ -30,9 +45,19 @@ article {
   height: 75px;
   width: 75px;
   border: none;
-  background-image: url('../../assets/happy-face.svg');
   background-repeat: no-repeat;
   background-size: 100%;
+  background-color: #FFE76B;
+  margin: 5px;
+}
+
+.happy-btn:hover,
+.neutral-btn:hover,
+.sad-btn:hover {
+  height: 85px;
+  width: 85px;
+  margin: 0px;
+  border: 5px solid white;
 }
 
 .neutral-btn {
@@ -47,13 +72,21 @@ article {
   background-size: 100%;
 }
 
+.sad-btn {
+  background-image: url('../../assets/sad-face.svg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
 .wellnews-synopsis {
   display: flex;
   height: 350px;
+  width: 50%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
+
 .go-to-news {
   height: 40px;
   width: 60%;
