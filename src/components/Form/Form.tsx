@@ -2,15 +2,15 @@ import React from 'react';
 import './Form.css';
 
 
-interface userSentimentProps {
-  userSentiment: (newSentiment: number) => void
+interface FormProps {
+  changeUserSentiment: (newSentiment: number | string) => void
 }
 
-const Form: React.FC<userSentimentProps> = props => {
+const Form = ({ changeUserSentiment } : FormProps) : JSX.Element => {
   const assignSentiment = (event: React.MouseEvent<HTMLButtonElement>) => {
       event.preventDefault();
       const button: HTMLButtonElement = event.currentTarget;
-      props.userSentiment(Number(button.name));
+      changeUserSentiment(Number(button.name));
   }
 
   return(
