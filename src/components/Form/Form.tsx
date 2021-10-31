@@ -6,14 +6,14 @@ interface FormProps {
   changeUserSentiment: (newSentiment: number | string) => void
 }
 
-const Form = ({ changeUserSentiment } : FormProps) => {
+const Form = ({ changeUserSentiment } : FormProps) : JSX.Element => {
   const assignSentiment = (event: React.MouseEvent<HTMLButtonElement>) => {
       event.preventDefault();
       const button: HTMLButtonElement = event.currentTarget;
       changeUserSentiment(Number(button.name));
   }
 
-  return(
+  return (
     <div className="form-container">
       <section className="questionnaire">
         <h2>how are you feeling today?</h2>
