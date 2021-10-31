@@ -16,7 +16,7 @@ export interface Article {
 
 interface State {
   articles: Article[],
-  userSentiment: number,
+  userSentiment: number | string,
   initialSentimentSet: boolean
 }
 
@@ -61,20 +61,20 @@ class App extends React.Component<Props, State> {
     this.state = {
       articles: articles,
       initialSentimentSet: false,
-      userSentiment: 0
+      userSentiment: 'undetermined'
     }
   }
-  changeUserSentiment = (newSentiment: number) => {
+  changeUserSentiment = (newSentiment: number | string) => {
   this.setState({userSentiment: newSentiment, initialSentimentSet: true})
   }
 
   render(): JSX.Element {
     return (
       <div className="App">
-        <header className="App-header">
+        <header className="App-header"> {this.state.userSentiment}
           <h1>WellNews</h1>
         </header>
-        {this.state.initialSentimentSet ? <Feed articles={this.state.articles} /> : <Form userSentiment={this.changeUserSentiment}/>}
+        {this.state.initialSentimentSet ? <Feed articles={this.state.articles} /> : <Form changeUserSentiment={this.changeUserSentiment}/>}
       </div>
     )
   }
