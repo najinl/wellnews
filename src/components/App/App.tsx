@@ -1,5 +1,6 @@
 import React from 'react';
 import Feed from '../Feed/Feed';
+import Form from '../Form/Form';
 import './App.css';
 
 interface Multimedia {
@@ -13,11 +14,12 @@ export interface Article {
   multimedia: Multimedia[]
 }
 
-interface State {
-  articles: Article[]
+interface AppState {
+  articles: Article[],
+  userSentiment: number | string,
 }
 
-interface Props {}
+interface AppProps {}
 
 const articles: Article[] = [
   {
@@ -52,21 +54,27 @@ const articles: Article[] = [
   }
 ]
 
-class App extends React.Component<Props, State> {
-  constructor(props: Props) {
+class App extends React.Component<AppProps, AppState> {
+  constructor(props: AppProps) {
     super(props)
     this.state = {
-      articles: articles
+      articles: articles,
+      userSentiment: ''
     }
+  }
+  changeUserSentiment = (newSentiment: number | string) => {
+  this.setState({userSentiment: newSentiment})
   }
 
   render(): JSX.Element {
     return (
       <div className="App">
-        <header className="App-header">
-          <h1>WellNews</h1>
-        </header>
-        <Feed articles={this.state.articles} />
+        <div className="app-container">
+          <header className="App-header">
+            <h1 className="header-text">WellNews</h1>
+          </header>
+          {this.state.userSentiment ? <Feed articles={this.state.articles} /> : <Form changeUserSentiment={this.changeUserSentiment}/>}
+        </div>
       </div>
     )
   }
