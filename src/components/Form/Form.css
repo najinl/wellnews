@@ -1,7 +1,4 @@
-.form-container {
-  background-color: #4B658B;
-  height: 100%;
-}
+/* After some testing, the form container didn't seem necessary. It was removed in this commit. */
 
 .questionnaire {
   display: flex;
@@ -33,12 +30,28 @@ article {
 
 .sentiments-container {
   display: flex;
+  justify-content: center;
   align-items: center;
   justify-content: space-around;
   height:120px;
   width: 50%;
   background-color: #42C7E4;
 }
+
+/*
+  Here, .sentiments-container holds the buttons while .sentiment-selection serves
+  to display the light blue stripe and keep .sentiments-container centered.
+
+  To make this work, .sentiment-selection and .sentiments-container both have
+  flex applied independently. This is to avoid spacing the buttons via margins
+  or padding, which would cause them to shift position when the hover state
+  is activated.
+
+  To summarize, .sentiment-selection has a width of 100% to hold the blue stripe and
+  to center the container holding the buttons, and .sentiments-container is set to
+  50% width + space-around to match the other page elements and enable non-
+  intrusive hover states.
+*/
 
 .happy-btn, .neutral-btn, .sad-btn {
   border-radius: 50px;

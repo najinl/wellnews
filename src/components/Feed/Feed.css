@@ -4,9 +4,21 @@
   justify-content: center;
 }
 
+/*
+
+The article container is set to flex-row to keep the feed centered on the page.
+This means that flex-column can be applied to the articles display while
+keeping the row-centered orientation.
+
+React natively has some center orientation applied, but it can cause issues when
+orienting individual elements. Applying flex-center to a container overrides the
+native centering in the cascade and makes it easier to troubleshoot styling
+issues.
+
+*/
+
 .articles-display {
   margin-top: 1rem;
-  display: flex;
   flex-direction: column;
   justify-content: center;
   width: 50%;

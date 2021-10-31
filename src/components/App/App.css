@@ -4,6 +4,8 @@ html {
   font-family: 'Comfortaa';
 }
 
+/* Here, HTML rules are applied to ensure there is no white space when components are re-sized. */
+
 .App {
   text-align: center;
 }
