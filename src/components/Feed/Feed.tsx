@@ -9,15 +9,17 @@ interface PropsFeed {
 
 const Feed: React.FC<PropsFeed> = ({ articles }) => {
   return (
-    <section>
-      {articles.map(article =>
-        <Card
-        title={article.title}
-        image={article.multimedia[0].url}
-        key={article.title}
-        />
-      )}
-    </section>
+    <div className="articles-container">
+      <section className="articles-display">
+        {articles.map(article =>
+          <Card
+          title={article.title}
+          image={article.multimedia[0].url}
+          key={article.title}
+          />
+        )}
+      </section>
+    </div>
   )
 }
 

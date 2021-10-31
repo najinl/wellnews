@@ -8,10 +8,12 @@ interface PropsCard {
 
 const Card: React.FC<PropsCard> = ({ title, image }) => {
   return (
-    <article>
-      <img className="article-image" src={image} alt={title} />
-      <h2>{title}</h2>
-    </article>
+    <div className="card-container">
+      <article className="news-card">
+        <img className="article-image" src={image} alt={title} />
+        <h2 className="article-title">{title}</h2>
+      </article>
+    </div>
   )
 }
 
