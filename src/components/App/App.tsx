@@ -71,10 +71,12 @@ class App extends React.Component<AppProps, AppState> {
   render(): JSX.Element {
     return (
       <div className="App">
-        <header className="App-header">
-          <h1>WellNews</h1>
-        </header>
-        {this.state.initialSentimentSet ? <Feed articles={this.state.articles} /> : <Form changeUserSentiment={this.changeUserSentiment}/>}
+        <div className="app-container">
+          <header className="App-header">
+            <h1 className="header-text">WellNews</h1>
+          </header>
+          {this.state.initialSentimentSet ? <Feed articles={this.state.articles} /> : <Form changeUserSentiment={this.changeUserSentiment}/>}
+        </div>
       </div>
     )
   }
