@@ -2,3 +2,32 @@
   height: 30vh;
   width: auto;
 }
+
+.card-container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.news-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+  color: white;
+  align-items: center;
+  width: 80%;
+  border-bottom: 1px solid white;
+}
+
+.article-image {
+  border: 1px solid white;
+  margin-top: 2rem;
+}
+
+.article-title {
+  margin-bottom: 2rem;
+  width: 80%;
+}

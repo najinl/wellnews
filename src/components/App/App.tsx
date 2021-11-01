@@ -1,6 +1,7 @@
 import React from 'react';
 import Feed from '../Feed/Feed';
 import Form from '../Form/Form';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import './App.css';
 
 interface Multimedia {
@@ -16,7 +17,7 @@ export interface Article {
 
 interface AppState {
   articles: Article[],
-  userSentiment: number | string,
+  userSentiment: number | null,
 }
 
 interface AppProps {}
@@ -59,10 +60,10 @@ class App extends React.Component<AppProps, AppState> {
     super(props)
     this.state = {
       articles: articles,
-      userSentiment: ''
+      userSentiment: null
     }
   }
-  changeUserSentiment = (newSentiment: number | string) => {
+  changeUserSentiment = (newSentiment: number | null) => {
   this.setState({userSentiment: newSentiment})
   }
 
@@ -71,13 +72,26 @@ class App extends React.Component<AppProps, AppState> {
       <div className="App">
         <div className="app-container">
           <header className="App-header">
-            <h1 className="header-text">WellNews</h1>
+            <h1 className="header-text">Well<span className="header-text-2">News</span></h1>
           </header>
-          {this.state.userSentiment ? <Feed articles={this.state.articles} /> : <Form changeUserSentiment={this.changeUserSentiment}/>}
+          <Router>
+            <Switch>
+              <Route exact path="/">
+                <Form changeUserSentiment={this.changeUserSentiment}/>
+              </Route>
+              <Route path="/WellNewsFeed/">
+                <Feed articles={this.state.articles}/>
+              </Route>
+            </Switch>
+          </Router>
         </div>
       </div>
+
     )
   }
 }
+
+// <Route exact path="/" render={() => {return (<Form changeUserSentiment={this.changeUserSentiment}/>)}}/>}
+// </Router>
 
 export default App;
