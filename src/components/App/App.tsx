@@ -2,68 +2,61 @@ import React from 'react';
 import Feed from '../Feed/Feed';
 import Form from '../Form/Form';
 import './App.css';
-
-interface Multimedia {
-    url: string
-    caption: string
-}
-
-export interface Article {
-  title: string
-  abstract: string
-  multimedia: Multimedia[]
-}
+import { CleanArticle, fetchNewsData, getSentiment } from '../../apiCalls'
 
 interface AppState {
-  articles: Article[],
+  articles: CleanArticle[],
   userSentiment: number | string,
 }
 
 interface AppProps {}
 
-const articles: Article[] = [
-  {
-    title: "Sean Penn the Focus of N.L.R.B. Amid Comments on Hours and Food at Vaccine Site",
-    abstract: "Two online commenters complained of working 18-hour days and not getting food from Krispy Kreme or Subway. Penn saw “narcissism” and “betrayal.”",
-    multimedia: [
-      {
-        url: "https://static01.nyt.com/images/2021/10/28/arts/28penn-item-option-3/merlin_182386914_d104bcd8-d7d9-4268-a037-9d1e34332e64-superJumbo.jpg",
-        caption: "From left, Sean Penn, Mayor Eric Garcetti and Gov. Gavin Newsom at the vaccination site at Dodger Stadium in Los Angeles, that Penn and his group CORE helped run. Penn faces an N.L.R.B. complaint."
-      }
-    ]
-  },
-  {
-    title: "A Gold Star Spouse Finds Love Again",
-    abstract: "Curtis Owen offered Navy cryptologist Emily Feeks a fresh start after she lost her husband of 18 months, a Navy SEAL, in a helicopter crash.",
-    multimedia: [
-      {
-        url: "https://static01.nyt.com/images/2021/10/31/fashion/00MINI-FeeksOwen/00MINI-FeeksOwen-superJumbo.jpg",
-        caption: "asdf"
-      }
-    ]
-  },
-  {
-    title: "‘Speer Goes to Hollywood’ Review: Expert Rebranding",
-    abstract: "A high-ranking Nazi leader attempts to whitewash his legacy in this disturbing, if single-note, documentary by Vanessa Lapa.",
-    multimedia: [
-      {
-        url: "https://static01.nyt.com/images/2021/10/28/arts/28speer-goes-to-hollywood/merlin_196604673_8b18c65b-46a0-4400-a147-86096b59cefd-superJumbo.jpg",
-        caption: "Albert Speer, in 1940, in a scene from the documentary “Speer Goes to Hollywood.”"
-      }
-    ]
-  }
-]
-
 class App extends React.Component<AppProps, AppState> {
   constructor(props: AppProps) {
     super(props)
     this.state = {
-      articles: articles,
+      articles: [],
       userSentiment: ''
     }
   }
+
+  componentDidMount = (): void => {
+    fetchNewsData()
+      .then((cleanArticles): CleanArticle[] => {
+        return (Promise as any).all(cleanArticles.forEach((article: any) => {
+          getSentiment(article.short_url)
+            .then((sentiment) => {
+              article.sentiment = sentiment
+            })
+        }))
+      })
+      .then(scoredArticles => {
+        console.log(scoredArticles);
+        this.setState({ articles: scoredArticles })
+      })
+  }
+
   changeUserSentiment = (newSentiment: number | string) => {
-  this.setState({userSentiment: newSentiment})
+    this.setState({ userSentiment: newSentiment })
+    console.log('you can do things after setState!')
+    this.sortBySentiment();
+  }
+
+  sortBySentiment = (): void => {
+    const { userSentiment, articles } = this.state;
+    const articlesCopy = articles.slice();
+    let sortedArticles;
+    if (userSentiment === -1) {
+      sortedArticles = articlesCopy.sort((articleA, articleB) => {
+        return articleB.score - articleA.score;
+      })
+      this.setState({ articles: sortedArticles })
+    } else if (userSentiment === 1) {
+      sortedArticles = articlesCopy.sort((articleA, articleB) => {
+        return articleA.score - articleB.score;
+      })
+      this.setState({ articles: sortedArticles })
+    }
   }
 
   render(): JSX.Element {
@@ -73,7 +66,12 @@ class App extends React.Component<AppProps, AppState> {
           <header className="App-header">
             <h1 className="header-text">WellNews</h1>
           </header>
-          {this.state.userSentiment ? <Feed articles={this.state.articles} /> : <Form changeUserSentiment={this.changeUserSentiment}/>}
+          {this.state.userSentiment ?
+            <Feed
+              handleSort={ this.handleSort }
+              articles={this.state.articles}
+            /> :
+            <Form changeUserSentiment={this.changeUserSentiment}/>}
         </div>
       </div>
     )

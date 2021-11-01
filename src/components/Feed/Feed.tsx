@@ -1,10 +1,10 @@
 import React from 'react';
 import Card from '../Card/Card';
-import { Article } from '../App/App';
 import './Feed.css';
+import { CleanArticle } from '../../apiCalls'
 
 interface PropsFeed {
-  articles: Article[]
+  articles: CleanArticle[]
 }
 
 const Feed: React.FC<PropsFeed> = ({ articles }) => {
