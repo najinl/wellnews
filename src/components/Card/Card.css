@@ -10,14 +10,6 @@
   justify-content: center;
 }
 
-/*
-
-  The card container has no direct styling and only serves to orient the contents
-  of each card. As explained in Feed.css, applying flex-row to the container
-  prevents any context issues caused by the native centering in React.
-
- */
-
 .news-card {
   display: flex;
   flex-direction: column;
