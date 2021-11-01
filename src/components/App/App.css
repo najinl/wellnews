@@ -1,9 +1,3 @@
-html {
-  background-color: #4B658B;
-  height: 100%;
-  font-family: 'Comfortaa';
-}
-
 .App {
   text-align: center;
 }
@@ -18,16 +12,15 @@ html {
 }
 
 .App-header {
-  /* background-color: #282c34; */
-  /* min-height: 20vh; */
-  height: 5rem;
-  margin-top: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+@media (max-width: 870px) {
+
+  .header-text {
+    font-size: 1.5rem;
+  }
 }
 
 .App-link {

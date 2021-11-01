@@ -1,3 +1,9 @@
+html {
+  background-color: #4B658B;
+  height: 100%;
+  font-family: 'Comfortaa';
+}
+
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
@@ -7,4 +13,10 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+@media (max-width: 600px) {
+  body {
+    overflow-x: hidden;
+  }
 }
