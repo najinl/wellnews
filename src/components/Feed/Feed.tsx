@@ -1,10 +1,10 @@
 import React from 'react';
 import Card from '../Card/Card';
-import { Article } from '../App/App';
 import './Feed.css';
+import { CleanArticle } from '../../apiCalls'
 
 interface PropsFeed {
-  articles: Article[]
+  articles: CleanArticle[]
 }
 
 const Feed: React.FC<PropsFeed> = ({ articles }) => {
@@ -14,7 +14,7 @@ const Feed: React.FC<PropsFeed> = ({ articles }) => {
         {articles.map(article =>
           <Card
           title={article.title}
-          image={article.multimedia[0].url}
+          image={article.multimedia.url}
           key={article.title}
           />
         )}

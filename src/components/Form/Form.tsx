@@ -3,7 +3,7 @@ import './Form.css';
 
 
 interface FormProps {
-  changeUserSentiment: (newSentiment: number | string) => void
+  changeUserSentiment: (newSentiment: number) => void
 }
 
 const Form = ({ changeUserSentiment } : FormProps) : JSX.Element => {
