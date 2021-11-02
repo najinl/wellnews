@@ -39,7 +39,7 @@ class App extends React.Component<AppProps, AppState> {
   getSentimentScores = (cleanArticles: CleanArticle[]): Promise<any> => {
     return (Promise as any).all(
       cleanArticles.map((article: CleanArticle, i: number) => {
-        return getSentiment(article.short_url)
+        return getSentiment(article.abstract)
       })
     )
   }

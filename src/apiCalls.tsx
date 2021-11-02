@@ -47,9 +47,11 @@ const checkResponse = (response: Response) => {
   return response.json()
 }
 
-export const getSentiment = (url: string) => {
-  return fetch(`https://api.dandelion.eu/datatxt/sent/v1/?lang=en&url=${url}&token=295d5b1d94bb4af5a2d229cf261a449e`)
-    .then(res => res.json())
+export const getSentiment = (abstract: string) => {
+  return fetch(`https://api.dandelion.eu/datatxt/sent/v1/?lang=en&text=${abstract}&token=${
+    //Add your token here, without the template literal}
+  `)
+    .then(response => checkResponse(response))
     .then(data => data.sentiment.score)
     .catch(err => console.log('error: ', err))
 }
