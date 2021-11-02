@@ -6,7 +6,7 @@ import { CleanArticle, fetchNewsData, getSentiment } from '../../apiCalls'
 
 interface AppState {
   articles: CleanArticle[],
-  userSentiment: number | string,
+  userSentiment: number | string
 }
 
 interface AppProps {}
@@ -22,39 +22,50 @@ class App extends React.Component<AppProps, AppState> {
 
   componentDidMount = (): void => {
     fetchNewsData()
-      .then((cleanArticles): CleanArticle[] => {
-        return (Promise as any).all(cleanArticles.forEach((article: any) => {
-          getSentiment(article.short_url)
-            .then((sentiment) => {
-              article.sentiment = sentiment
+      .then((cleanArticles): any => {
+        this.getSentimentScores(cleanArticles)
+          .then(response => {
+
+            const scoredArticles = cleanArticles.map((article, i) => {
+               article.sentiment = response[i] || 0
+               return article;
             })
-        }))
-      })
-      .then(scoredArticles => {
-        console.log(scoredArticles);
-        this.setState({ articles: scoredArticles })
+
+            this.setState({ articles: scoredArticles })
+          })
       })
   }
 
-  changeUserSentiment = (newSentiment: number | string) => {
+  getSentimentScores = (cleanArticles: CleanArticle[]): Promise<any> => {
+    return (Promise as any).all(
+      cleanArticles.map((article: CleanArticle, i: number) => {
+        return getSentiment(article.short_url)
+      })
+    )
+  }
+
+  changeUserSentiment = (newSentiment: number) => {
     this.setState({ userSentiment: newSentiment })
-    console.log('you can do things after setState!')
-    this.sortBySentiment();
+    this.sortBySentiment(newSentiment)
   }
 
-  sortBySentiment = (): void => {
-    const { userSentiment, articles } = this.state;
+  sortBySentiment = (newSentiment: number): void => {
+    const { articles } = this.state;
     const articlesCopy = articles.slice();
-    let sortedArticles;
-    if (userSentiment === -1) {
+    let sortedArticles: CleanArticle[];
+
+    if (newSentiment === -1) {
       sortedArticles = articlesCopy.sort((articleA, articleB) => {
-        return articleB.score - articleA.score;
+        return articleB.sentiment - articleA.sentiment;
       })
+
       this.setState({ articles: sortedArticles })
-    } else if (userSentiment === 1) {
+
+    } else if (newSentiment === 1) {
       sortedArticles = articlesCopy.sort((articleA, articleB) => {
-        return articleA.score - articleB.score;
+        return articleA.sentiment - articleB.sentiment;
       })
+
       this.setState({ articles: sortedArticles })
     }
   }
@@ -68,7 +79,6 @@ class App extends React.Component<AppProps, AppState> {
           </header>
           {this.state.userSentiment ?
             <Feed
-              handleSort={ this.handleSort }
               articles={this.state.articles}
             /> :
             <Form changeUserSentiment={this.changeUserSentiment}/>}
