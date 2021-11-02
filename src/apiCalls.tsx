@@ -23,7 +23,7 @@ export interface CleanArticle {
   abstract: string
   short_url: string
   multimedia: Multimedia
-  sentiment?: string | number
+  sentiment: number
 }
 
 interface Response {
@@ -48,10 +48,9 @@ const checkResponse = (response: Response) => {
 }
 
 export const getSentiment = (url: string) => {
-  return fetch(`https://api.dandelion.eu/datatxt/sent/v1/?lang=en&url=${url}&token=8e05e6c7e8c24d05bb09b53e7f472df2`)
+  return fetch(`https://api.dandelion.eu/datatxt/sent/v1/?lang=en&url=${url}&token=295d5b1d94bb4af5a2d229cf261a449e`)
     .then(res => res.json())
     .then(data => data.sentiment.score)
-    .then(sentiment => console.log(sentiment))
     .catch(err => console.log('error: ', err))
 }
 
@@ -62,7 +61,7 @@ const cleanNewsData = (articles: OriginalArticle[]): CleanArticle[] => {
       title,
       abstract,
       short_url,
-      sentiment: '',
+      sentiment: 0,
       multimedia: multimedia[0]
     })
   })
