@@ -17,12 +17,13 @@ interface OriginalArticle {
   multimedia: Multimedia[]
 }
 
-interface CleanArticle {
+export interface CleanArticle {
   section: string
   title: string
   abstract: string
   short_url: string
   multimedia: Multimedia
+  sentiment: number
 }
 
 interface Response {
@@ -46,6 +47,15 @@ const checkResponse = (response: Response) => {
   return response.json()
 }
 
+export const getSentiment = (abstract: string) => {
+  return fetch(`https://api.dandelion.eu/datatxt/sent/v1/?lang=en&text=${abstract}&token=${
+    //Add your token here, without the template literal}
+  `)
+    .then(response => checkResponse(response))
+    .then(data => data.sentiment.score)
+    .catch(err => console.log('error: ', err))
+}
+
 const cleanNewsData = (articles: OriginalArticle[]): CleanArticle[] => {
   return articles.map(({ section, title, abstract, short_url, multimedia } : OriginalArticle) => {
     return ({
@@ -53,6 +63,7 @@ const cleanNewsData = (articles: OriginalArticle[]): CleanArticle[] => {
       title,
       abstract,
       short_url,
+      sentiment: 0,
       multimedia: multimedia[0]
     })
   })
