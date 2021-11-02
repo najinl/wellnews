@@ -14,7 +14,7 @@ const Feed: React.FC<PropsFeed> = ({ articles }) => {
         {articles.map(article =>
           <Card
           title={article.title}
-          image={article.multimedia[0].url}
+          image={article.multimedia.url}
           key={article.title}
           />
         )}
