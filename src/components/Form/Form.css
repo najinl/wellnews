@@ -18,6 +18,7 @@ article {
 }
 
 .sentiment-selection {
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -27,6 +28,7 @@ article {
 }
 
 .sentiments-container {
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -91,4 +93,42 @@ article {
   background-color: #44BCFF;
   border: none;
   font-size: 1.25em;
+}
+
+@media (max-width: 870px) {
+
+  h2 {
+    margin-top: 6%;
+    height: 50px;
+  }
+
+  .sentiment-selection {
+    height: 90px;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+  }
+
+  .sentiments-container {
+    height: 90px;
+    width: auto;
+  }
+
+  .happy-btn, .neutral-btn, .sad-btn {
+    height: 60px;
+    width: 60px;
+    margin: 15px;
+  }
+
+  .happy-btn:hover,
+  .neutral-btn:hover,
+  .sad-btn:hover {
+    height: 63px;
+    width: 63px;
+    margin: 13px;
+    border: 3px solid white;
+  }
+
+  .wellnews-synopsis {
+    width: 80%;
+  }
 }

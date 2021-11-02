@@ -11,5 +11,29 @@
   width: 50%;
   border: 2px solid white;
   background-color: #112941;
-  padding: 1rem;
+  padding-top: 2rem;
+}
+
+@media (max-width: 1000px) {
+  .articles-display {
+    width: 70%;
+    margin-top: 0rem;
+  }
+}
+
+@media (max-width: 870px) {
+  .articles-display {
+    margin-top: 0rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .articles-display {
+    width: 80%;
+  }
+ }
+@media (max-width: 600px) {
+  .articles-display {
+    padding-top: 0rem;
+  }
 }
