@@ -76,7 +76,15 @@ article {
   background-size: 100%;
 }
 
+.view-synopsis-button {
+  margin-top: 2.5rem;
+  
+}
+
 .wellnews-synopsis {
+  margin-top: -1rem;
+  transition-duration: .5s;
+  opacity: 0%;
   display: flex;
   height: 350px;
   width: 50%;
@@ -93,6 +101,10 @@ article {
   background-color: #44BCFF;
   border: none;
   font-size: 1.25em;
+}
+
+.hidden {
+  opacity: 100%;
 }
 
 @media (max-width: 870px) {
