@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import './Form.css';
 
 
@@ -10,22 +10,17 @@ interface FormProps {
 const Form = ({ changeUserSentiment } : FormProps) : JSX.Element => {
   const assignSentiment = (sentiment:number) => {
       changeUserSentiment(sentiment);
+      history.push("/feed/")
   }
-
+  const history= useHistory();
   return(
     <section className="questionnaire">
       <h2>how are you feeling today?</h2>
       <form className="sentiment-selection">
         <div className="sentiments-container">
-          <Link to="/WellNewsFeed/FeelingGood" title="happy" onClick={() => assignSentiment(1)}>
-            <button className="happy-btn" aria-label="happy" title="happy"></button>
-          </Link>
-          <Link to="/WellNewsFeed/FeelingNeutral" title="neutral" onClick={() => assignSentiment(0)}>
-            <button className="neutral-btn" aria-label="neutral" title="neutral"></button>
-          </Link>
-          <Link to="/WellNewsFeed/FeelingSad" title="sad" onClick={() => assignSentiment(-1)}>
-            <button className="sad-btn" aria-label="sad" title="sad"></button>
-          </Link>
+          <button className="happy-btn" aria-label="happy" title="happy" onClick={() => assignSentiment(1)}></button>
+        <button className="neutral-btn" aria-label="neutral" title="neutral" onClick={() => assignSentiment(0)}></button>
+        <button className="sad-btn" aria-label="sad" title="sad" onClick={() => assignSentiment(-1)}></button>
         </div>
         </form>
       <article className="wellnews-synopsis">

@@ -79,7 +79,7 @@ class App extends React.Component<AppProps, AppState> {
               <Route exact path="/">
                 <Form changeUserSentiment={this.changeUserSentiment}/>
               </Route>
-              <Route path="/WellNewsFeed/">
+              <Route path="/feed/">
                 <Feed articles={this.state.articles}/>
               </Route>
             </Switch>
@@ -90,8 +90,5 @@ class App extends React.Component<AppProps, AppState> {
     )
   }
 }
-
-// <Route exact path="/" render={() => {return (<Form changeUserSentiment={this.changeUserSentiment}/>)}}/>}
-// </Router>
 
 export default App;
