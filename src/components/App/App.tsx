@@ -43,7 +43,7 @@ const App = (): JSX.Element => {
   }
 
   const sortBySentiment = (newSentiment: number): void => {
-    let sortedArticles = articles.slice();
+    let sortedArticles : CleanArticle[] = [];
 
     if (newSentiment === -1) {
       sortedArticles = sortedArticles.sort((articleA, articleB) => {
