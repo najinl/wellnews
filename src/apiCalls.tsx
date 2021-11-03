@@ -32,7 +32,7 @@ interface Response {
   json: any
 }
 
-export const fetchNewsData = () => {
+export const fetchNewsData = (): Promise<CleanArticle[]> => {
   return (
     fetch('https://api.nytimes.com/svc/topstories/v2/home.json?api-key=GKUzDD1VY9ssjZ1AGusX3ci6AeoXCaSr')
     .then(response => checkResponse(response))
@@ -47,17 +47,15 @@ const checkResponse = (response: Response) => {
   return response.json()
 }
 
-export const getSentiment = (abstract: string) => {
-  return fetch(`https://api.dandelion.eu/datatxt/sent/v1/?lang=en&text=${abstract}&token=${
-    //Add your token here, without the template literal}
-  `)
+export const getSentiment = (abstract: string): Promise<number> => {
+  return fetch(`https://api.dandelion.eu/datatxt/sent/v1/?lang=en&text=${abstract}&token=91255d6d440f4c24a1b4a5ec443588d8`)
     .then(response => checkResponse(response))
     .then(data => data.sentiment.score)
     .catch(err => console.log('error: ', err))
 }
 
 const cleanNewsData = (articles: OriginalArticle[]): CleanArticle[] => {
-  return articles.map(({ section, title, abstract, short_url, multimedia } : OriginalArticle) => {
+  return articles.map(({ section, title, abstract, short_url, multimedia }: OriginalArticle) => {
     return ({
       section,
       title,

@@ -7,7 +7,7 @@ interface PropsFeed {
   articles: CleanArticle[]
 }
 
-const Feed: React.FC<PropsFeed> = ({ articles }) => {
+const Feed = ({ articles }: PropsFeed): JSX.Element => {
   return (
     <div className="articles-container">
       <section className="articles-display">

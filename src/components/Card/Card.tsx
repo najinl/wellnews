@@ -6,7 +6,7 @@ interface PropsCard {
   image: string
 }
 
-const Card: React.FC<PropsCard> = ({ title, image }) => {
+const Card = ({ title, image }: PropsCard): JSX.Element => {
   return (
     <div className="card-container">
       <article className="news-card">

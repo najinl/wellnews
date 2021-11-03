@@ -7,17 +7,17 @@ interface FormProps {
   changeUserSentiment: (newSentiment: number) => void
 }
 
-const Form = ({ changeUserSentiment } : FormProps) : JSX.Element => {
-  const history= useHistory();
-  const assignSentiment = (sentiment:number) => {
+const Form = ({ changeUserSentiment }: FormProps): JSX.Element => {
+  const history = useHistory();
+
+  const assignSentiment = (sentiment: number) => {
       changeUserSentiment(sentiment);
-      history.push("/feed/")
+      history.push("/feed")
   }
 
   const viewSynopsis = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    const synopsisButton: HTMLButtonElement = event.currentTarget;
-    const formSynopsis: any = document.getElementById('synopsisInfo');
+    const formSynopsis = document.getElementById('synopsisInfo') as HTMLElement;
     formSynopsis.classList.toggle('hidden');
   }
 
