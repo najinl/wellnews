@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from '../Card/Card';
 import './Feed.css';
 import { CleanArticle } from '../../apiCalls'
@@ -7,7 +7,10 @@ interface PropsFeed {
   articles: CleanArticle[]
 }
 
-const Feed = ({ articles }: PropsFeed): JSX.Element => {
+const Feed = (): JSX.Element => {
+
+  const [ articles, setArticles ] = useState<CleanArticle[]>([])
+
   return (
     <div className="articles-container">
       <section className="articles-display">

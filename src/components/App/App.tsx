@@ -8,7 +8,6 @@ import { CleanArticle, fetchNewsData, getSentiment } from '../../apiCalls'
 
 const App = (): JSX.Element => {
 
-  const [ articles, setArticles ] = useState<CleanArticle[]>([])
   const [ userSentiment, setUserSentiment ] = useState<number | null>(null)
   const [ error, setError ] = useState('')
 
