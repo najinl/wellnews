@@ -1,13 +1,4 @@
-interface Multimedia {
-  url: string
-  format: string
-  height: number
-  width: number
-  type: string
-  subtype: string
-  caption: string
-  copyright: string
-};
+import { CleanedArticle, Multimedia } from './Models'
 
 interface OriginalArticle {
   section: string
@@ -15,22 +6,13 @@ interface OriginalArticle {
   abstract: string
   short_url: string
   multimedia: Multimedia[]
-};
-
-export interface CleanedArticle {
-  section: string
-  title: string
-  abstract: string
-  short_url: string
-  multimedia: Multimedia
-  sentiment: number
-};
+}
 
 interface Response {
   ok: boolean
   status: number
   json: any
-};
+}
 
 export const getArticles = (): Promise<CleanedArticle[]> => {
   return (

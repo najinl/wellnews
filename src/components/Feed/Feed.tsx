@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { CleanedArticle, getArticles, getSentiment } from '../../apiCalls';
+import { getArticles, getSentiment } from '../../apiCalls';
+import { CleanedArticle } from '../../Models'
 import Card from '../Card/Card';
 import './Feed.css';
 
