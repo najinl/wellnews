@@ -50,7 +50,7 @@ const App = (): JSX.Element => {
         return articleB.sentiment - articleA.sentiment;
       })
     } else if (newSentiment === 1) {
-      sortedArticles = sortedArticles.sort((articleA, articleB) => {
+      sortedArticles = articles.sort((articleA, articleB) => {
         return articleA.sentiment - articleB.sentiment;
       })
     }
