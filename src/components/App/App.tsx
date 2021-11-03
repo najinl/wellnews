@@ -7,8 +7,8 @@ import './App.css';
 const App = (): JSX.Element => {
   const [ userSentiment, setUserSentiment ] = useState<number | null>(null);
 
-  const updateUserSentiment = (newSentiment: number) => {
-    setUserSentiment(newSentiment);
+  const updateUserSentiment = (userSentiment: number) => {
+    setUserSentiment(userSentiment);
   }
 
   return (

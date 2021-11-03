@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CleanedArticle, fetchNewsData, getSentiment } from '../../apiCalls';
+import { CleanedArticle, getArticles, getSentiment } from '../../apiCalls';
 import Card from '../Card/Card';
 import './Feed.css';
 
@@ -20,7 +20,7 @@ const Feed = ({ userSentiment }: FeedProps): JSX.Element => {
   };
 
   useEffect((): void => {
-    fetchNewsData()
+    getArticles()
       .then((cleanedArticles: CleanedArticle[]): void => {
         getSentimentScores(cleanedArticles)
           .then((response: number[]) => {

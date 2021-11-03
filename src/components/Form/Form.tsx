@@ -30,7 +30,7 @@ const Form = ({ updateUserSentiment }: FormProps): JSX.Element => {
           <button className="sad-btn" name='-1' aria-label="sad" title="sad" onClick={() => submitUserSentiment(-1)}></button>
         </div>
       </div>
-      <button className="view-synopsis-button" name="viewSynopsisButton" onClick={showSynopsis}>Why we ask? ▽</button>
+      <button className="view-synopsis-button" name="viewSynopsisButton" onClick={ showSynopsis }>Why we ask? ▽</button>
       <article className="wellnews-synopsis" id="synopsisInfo">
         <p>WellNews uses your mood to curate a list of articles with your mental health in mind.</p>
         <p>A negative mood will prioritize positive articles. <br/>A positive mood will result in a mix of positive, neutral, and negative news.</p>
