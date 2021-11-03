@@ -7,7 +7,7 @@ interface Multimedia {
   subtype: string
   caption: string
   copyright: string
-}
+};
 
 interface OriginalArticle {
   section: string
@@ -15,7 +15,7 @@ interface OriginalArticle {
   abstract: string
   short_url: string
   multimedia: Multimedia[]
-}
+};
 
 export interface CleanedArticle {
   section: string
@@ -24,35 +24,37 @@ export interface CleanedArticle {
   short_url: string
   multimedia: Multimedia
   sentiment: number
-}
+};
 
 interface Response {
   ok: boolean
   status: number
   json: any
-}
+};
 
 export const fetchNewsData = (): Promise<CleanedArticle[]> => {
   return (
     fetch('https://api.nytimes.com/svc/topstories/v2/home.json?api-key=GKUzDD1VY9ssjZ1AGusX3ci6AeoXCaSr')
     .then(response => checkResponse(response))
     .then(data => cleanNewsData(data.results))
-  )
-}
+  );
+};
 
 const checkResponse = (response: Response) => {
   if (!response.ok) {
     throw new Error(`${ response.status } Error`);
   }
   return response.json();
-}
+};
 
 export const getSentiment = (abstract: string): Promise<number> => {
-  return fetch(`https://api.dandelion.eu/datatxt/sent/v1/?lang=en&text=${abstract}&token=91255d6d440f4c24a1b4a5ec443588d8`)
+  // add your API token here; remove before merging to main
+  const token =
+  return fetch(`https://api.dandelion.eu/datatxt/sent/v1/?lang=en&text=${abstract}&token=${token}`)
     .then(response => checkResponse(response))
     .then(data => data.sentiment.score)
     .catch(err => console.log('error: ', err))
-}
+};
 
 const cleanNewsData = (articles: OriginalArticle[]): CleanedArticle[] => {
   return articles.map(({ section, title, abstract, short_url, multimedia }: OriginalArticle) => {
