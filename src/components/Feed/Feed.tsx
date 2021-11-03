@@ -1,49 +1,48 @@
 import React, { useState, useEffect } from 'react';
+import { CleanedArticle, fetchNewsData, getSentiment } from '../../apiCalls';
 import Card from '../Card/Card';
 import './Feed.css';
-import { CleanArticle, fetchNewsData, getSentiment } from '../../apiCalls'
 
-interface PropsFeed {
-  userSentiment: number | null
+interface FeedProps {
+  userSentiment: number | null;
 }
 
-const Feed = ({ userSentiment }: PropsFeed): JSX.Element => {
+const Feed = ({ userSentiment }: FeedProps): JSX.Element => {
+  const [articles, setArticles] = useState<CleanedArticle[]>([]);
+  const [error, setError] = useState('');
 
-  const [ articles, setArticles ] = useState<CleanArticle[]>([])
-  const [ error, setError ] = useState('')
-
-  const getSentimentScores = (cleanArticles: CleanArticle[]): Promise<number[]> => {
+  const getSentimentScores = (cleanedArticles: CleanedArticle[]): Promise<number[]> => {
     return Promise.all(
-      cleanArticles.map((article: CleanArticle) => {
+      cleanedArticles.map((article: CleanedArticle) => {
         return getSentiment(article.abstract)
       })
-    )
-  }
+    );
+  };
 
   useEffect((): void => {
     fetchNewsData()
-      .then((cleanArticles: CleanArticle[]): void => {
-        getSentimentScores(cleanArticles)
+      .then((cleanedArticles: CleanedArticle[]): void => {
+        getSentimentScores(cleanedArticles)
           .then((response: number[]) => {
 
-            const scoredArticles = cleanArticles.map((article, i) => {
-               article.sentiment = response[i] || 0
+            const scoredArticles = cleanedArticles.map((article, i) => {
+               article.sentiment = response[i] || 0;
                return article;
-            })
-            sortBySentiment(userSentiment, scoredArticles)
-          })
+            });
+            sortByUserSentiment(userSentiment, scoredArticles);
+          });
       })
-      .catch(error => setError(error.message))
-  }, [])
+      .catch(error => setError(error.message));
+  }, []);
 
-  const sortBySentiment = (newSentiment: number|null, scoredArticles: CleanArticle []): void => {
-    let sortedArticles : CleanArticle[] = [];
+  const sortByUserSentiment = (userSentiment: number|null, scoredArticles: CleanedArticle []): void => {
+    let sortedArticles : CleanedArticle[] = [];
 
-    if (newSentiment === -1) {
+    if (userSentiment === -1) {
       sortedArticles = scoredArticles.sort((articleA, articleB) => {
         return articleB.sentiment - articleA.sentiment;
       })
-    } else if (newSentiment === 1) {
+    } else if (userSentiment === 1) {
       sortedArticles = scoredArticles.sort((articleA, articleB) => {
         return articleA.sentiment - articleB.sentiment;
       })
@@ -57,18 +56,18 @@ const Feed = ({ userSentiment }: PropsFeed): JSX.Element => {
   return (
     <div className="articles-container">
       <section className="articles-display">
-      { !articles.length && <h1>Loading</h1> }
-        {articles.map(article =>
+        { error && <h2>{ error }</h2> }
+        { !articles.length && <h1>Loading...</h1> }
+        { articles.map(article =>
           <Card
-          title={article.title}
-          image={article.multimedia.url}
-          key={article.title}
+            title={ article.title }
+            image={ article.multimedia.url }
+            key={ article.title }
           />
         )}
-        {error && <h2>{error}</h2>}
       </section>
     </div>
-  )
-}
+  );
+};
 
 export default Feed;
