@@ -18,7 +18,7 @@ const App = (): JSX.Element => {
         getSentimentScores(cleanArticles)
           .then((response: number[]) => {
 
-            const scoredArticles = cleanArticles.map((article: CleanArticle, i: number) => {
+            const scoredArticles = cleanArticles.map((article, i) => {
                article.sentiment = response[i] || 0
                return article;
             })
