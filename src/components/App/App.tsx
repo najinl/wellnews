@@ -1,6 +1,7 @@
 import React from 'react';
 import Feed from '../Feed/Feed';
 import Form from '../Form/Form';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import './App.css';
 import { CleanArticle, fetchNewsData, getSentiment } from '../../apiCalls'
 
@@ -77,13 +78,19 @@ class App extends React.Component<AppProps, AppState> {
           <header className="App-header">
             <h1 className="header-text">Well<span className="header-text-2">News</span></h1>
           </header>
-          {this.state.userSentiment ?
-            <Feed
-              articles={this.state.articles}
-            /> :
-            <Form changeUserSentiment={this.changeUserSentiment}/>}
+          <Router>
+            <Switch>
+              <Route exact path="/">
+                <Form changeUserSentiment={this.changeUserSentiment}/>
+              </Route>
+              <Route path="/feed/">
+                <Feed articles={this.state.articles}/>
+              </Route>
+            </Switch>
+          </Router>
         </div>
       </div>
+
     )
   }
 }
