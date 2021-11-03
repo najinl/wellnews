@@ -8,11 +8,11 @@ interface FormProps {
 }
 
 const Form = ({ changeUserSentiment } : FormProps) : JSX.Element => {
+  const history= useHistory();
   const assignSentiment = (sentiment:number) => {
       changeUserSentiment(sentiment);
       history.push("/feed/")
   }
-  const history= useHistory();
   return(
     <section className="questionnaire">
       <h2>how are you feeling today?</h2>
