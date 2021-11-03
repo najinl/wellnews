@@ -3,6 +3,7 @@ import { getArticles, getSentiment } from '../../apiCalls';
 import { CleanedArticle } from '../../Models'
 import Card from '../Card/Card';
 import './Feed.css';
+import {BrowserRouter as Router, Route } from 'react-router-dom';
 
 interface FeedProps {
   userSentiment: number | null;
@@ -66,6 +67,13 @@ const Feed = ({ userSentiment }: FeedProps): JSX.Element => {
             key={ article.title }
           />
         )}
+        <Router>
+          <Route exact path="/feed/:title" render={({ match }) => {
+            const title = match.params.title;
+            const article = articles.find(article => article.title === title)
+            return <Article article={article} />
+          }}/>
+        </Router>
       </section>
     </div>
   );
