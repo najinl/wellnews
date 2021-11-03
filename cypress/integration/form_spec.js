@@ -2,10 +2,7 @@
 
 describe ('Form user flow', () => {
   beforeEach(() => {
-    cy.intercept("https://api.nytimes.com/svc/topstories/v2/home.json?api-key=GKUzDD1VY9ssjZ1AGusX3ci6AeoXCaSr", {fixture: 'nyt-article-fetch.json'})
-    cy.intercept('https://api.dandelion.eu/datatxt/sent/v1/?lang=en&text=A new biography by Debby Applegate recounts the story of Polly Adler, who arrived in America from Russia at 13 and became New York’s most successful brothel owner, befriending mobsters, policemen, politicians and writers.&token=beb0091844524790b7672a69bac06a2a', {fixture: 'manhattan-madam-sentiment.json'})
-
-    cy.intercept('https://api.dandelion.eu/datatxt/sent/v1/?lang=en&text=The magazine’s Ethicist columnist on responding to infidelity.&token=beb0091844524790b7672a69bac06a2a', {fixture: 'affair-sentiment.json'}).visit('http://localhost:3000')
+    cy.visit('http://localhost:3000')
   })
 
   it('should render the appropriate elements', () => {
@@ -30,5 +27,16 @@ describe ('Form user flow', () => {
   it('should take you to the news feed when the neutral sentiment button is chosen', () => {
     cy.get('.sad-btn').click()
     cy.url().should('include', '/feed')
+  })
+
+  it('should show a synopsis of why you should choose your sentiment when the "Why we ask?" button is clicked', () => {
+    cy.get('.view-synopsis-button').click()
+    cy.get('.wellnews-synopsis').should('be.visible')
+  })
+
+  it('should hide the synopsis when the "Why we ask?" button is clicked again', () => {
+    cy.get('.view-synopsis-button').click()
+    cy.get('.view-synopsis-button').click()
+    cy.get('.wellnews-synopsis').should('not.be.visible')
   })
 })
