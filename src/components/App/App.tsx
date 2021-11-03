@@ -37,12 +37,15 @@ const App = (): JSX.Element => {
     )
   }
 
+  useEffect((): void => {
+    sortBySentiment(userSentiment)
+  }, [ userSentiment ])
+
   const changeUserSentiment = (newSentiment: number) => {
     setUserSentiment(newSentiment)
-    sortBySentiment(newSentiment)
   }
 
-  const sortBySentiment = (newSentiment: number): void => {
+  const sortBySentiment = (newSentiment: number|null): void => {
     let sortedArticles : CleanArticle[] = [];
 
     if (newSentiment === -1) {
@@ -53,6 +56,8 @@ const App = (): JSX.Element => {
       sortedArticles = articles.sort((articleA, articleB) => {
         return articleA.sentiment - articleB.sentiment;
       })
+    } else {
+      sortedArticles = articles.sort((a, b) => 0.5 - Math.random());
     }
 
     setArticles(sortedArticles)
