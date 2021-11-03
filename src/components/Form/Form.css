@@ -76,7 +76,31 @@ article {
   background-size: 100%;
 }
 
+.view-synopsis-button {
+  font-family: 'Comfortaa';
+  font-style: italic;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  height: 2rem;
+  padding: .2rem;
+  padding-left: .5rem;
+  padding-right: .5rem;
+  background-color: #122941;
+  color: white;
+  border: 0px;
+  border-radius: .3rem;
+}
+
+.view-synopsis-button:hover {
+  box-shadow: 2px 2px 2px black;
+  background-color: white;
+  color: black;
+}
+
 .wellnews-synopsis {
+  margin-top: -0.5rem;
+  transition-duration: .5s;
+  opacity: 0%;
   display: flex;
   height: 350px;
   width: 50%;
@@ -93,6 +117,10 @@ article {
   background-color: #44BCFF;
   border: none;
   font-size: 1.25em;
+}
+
+.hidden {
+  opacity: 100%;
 }
 
 @media (max-width: 870px) {
@@ -130,5 +158,21 @@ article {
 
   .wellnews-synopsis {
     width: 80%;
+  }
+}
+
+@media (max-width: 300px) {
+  .view-synopsis-button {
+    margin-top: 0px;
+    margin-bottom: 1.2rem;
+  }
+
+  .wellnews-synopsis {
+    font-size: .9rem;
+    margin: 0px;
+  }
+
+  .sentiment-selection {
+    margin-top: 0px;
   }
 }
