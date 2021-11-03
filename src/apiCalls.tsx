@@ -17,7 +17,7 @@ interface OriginalArticle {
   multimedia: Multimedia[]
 }
 
-export interface CleanArticle {
+export interface CleanedArticle {
   section: string
   title: string
   abstract: string
@@ -32,7 +32,7 @@ interface Response {
   json: any
 }
 
-export const fetchNewsData = (): Promise<CleanArticle[]> => {
+export const fetchNewsData = (): Promise<CleanedArticle[]> => {
   return (
     fetch('https://api.nytimes.com/svc/topstories/v2/home.json?api-key=GKUzDD1VY9ssjZ1AGusX3ci6AeoXCaSr')
     .then(response => checkResponse(response))
@@ -42,9 +42,9 @@ export const fetchNewsData = (): Promise<CleanArticle[]> => {
 
 const checkResponse = (response: Response) => {
   if (!response.ok) {
-    throw new Error(`${response.status} Error`)
+    throw new Error(`${ response.status } Error`);
   }
-  return response.json()
+  return response.json();
 }
 
 export const getSentiment = (abstract: string): Promise<number> => {
@@ -54,7 +54,7 @@ export const getSentiment = (abstract: string): Promise<number> => {
     .catch(err => console.log('error: ', err))
 }
 
-const cleanNewsData = (articles: OriginalArticle[]): CleanArticle[] => {
+const cleanNewsData = (articles: OriginalArticle[]): CleanedArticle[] => {
   return articles.map(({ section, title, abstract, short_url, multimedia }: OriginalArticle) => {
     return ({
       section,
@@ -63,6 +63,6 @@ const cleanNewsData = (articles: OriginalArticle[]): CleanArticle[] => {
       short_url,
       sentiment: 0,
       multimedia: multimedia[0]
-    })
-  })
-}
+    });
+  });
+};
