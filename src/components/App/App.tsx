@@ -1,61 +1,45 @@
 import React, { useState, useEffect } from 'react';
-import Feed from '../Feed/Feed';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import { getArticles, getSentiment } from '../../apiCalls';
+import { CleanedArticle } from '../../Models';
 import Form from '../Form/Form';
-import {BrowserRouter as Router, Route, Switch, useHistory} from 'react-router-dom';
+import Feed from '../Feed/Feed';
+import Article from '../Article/Article';
 import './App.css';
-import { CleanArticle, fetchNewsData, getSentiment } from '../../apiCalls'
-
 
 const App = (): JSX.Element => {
-
-  const [ articles, setArticles ] = useState<CleanArticle[]>([])
-  const [ userSentiment, setUserSentiment ] = useState<number | null>(null)
-  const [ error, setError ] = useState('')
+  const [articles, setArticles] = useState<CleanedArticle[]>([]);
+  const [error, setError] = useState('');
+  const [ userSentiment, setUserSentiment ] = useState<number | null>(null);
 
   useEffect((): void => {
-    fetchNewsData()
-      .then((cleanArticles: CleanArticle[]): void => {
-        getSentimentScores(cleanArticles)
+    getArticles()
+      .then((cleanedArticles: CleanedArticle[]): void => {
+        getSentimentScores(cleanedArticles)
           .then((response: number[]) => {
 
-            const scoredArticles = cleanArticles.map((article, i) => {
-               article.sentiment = response[i] || 0;
+            const scoredArticles = cleanedArticles.map((article, i) => {
+               article.sentiment = response[i];
                return article;
-            })
+            });
 
-            setArticles(scoredArticles)
-          })
+            setArticles(scoredArticles);
+          });
       })
-      .catch(error => setError(error.message))
-  }, [])
+      .catch(error => setError(error.message));
+  }, []);
 
-  const getSentimentScores = (cleanArticles: CleanArticle[]): Promise<number[]> => {
+
+  const getSentimentScores = (cleanedArticles: CleanedArticle[]): Promise<number[]> => {
     return Promise.all(
-      cleanArticles.map((article: CleanArticle) => {
-        return getSentiment(article.abstract)
+      cleanedArticles.map((article: CleanedArticle) => {
+        return getSentiment(article.title, article.abstract)
       })
-    )
-  }
+    );
+  };
 
-  const changeUserSentiment = (newSentiment: number) => {
-    setUserSentiment(newSentiment)
-    sortBySentiment(newSentiment)
-  }
-
-  const sortBySentiment = (newSentiment: number): void => {
-    let sortedArticles = articles.slice();
-
-    if (newSentiment === -1) {
-      sortedArticles = sortedArticles.sort((articleA, articleB) => {
-        return articleB.sentiment - articleA.sentiment;
-      })
-    } else if (newSentiment === 1) {
-      sortedArticles = sortedArticles.sort((articleA, articleB) => {
-        return articleA.sentiment - articleB.sentiment;
-      })
-    }
-
-    setArticles(sortedArticles)
+  const updateUserSentiment = (userSentiment: number) => {
+    setUserSentiment(userSentiment);
   }
 
   // const returnToForm: any = () => {
@@ -67,19 +51,51 @@ const App = (): JSX.Element => {
     <div className="App">
       <div className="app-container">
         <header className="App-header">
-          <h1 className="header-text">Well<span className="header-text-2">News</span></h1>
+          <h1 className="header-text cy-header-text">
+            Well<span className="header-text-2">News</span>
+          </h1>
         </header>
         <Router>
           <Switch>
             <Route exact path="/">
-              <Form changeUserSentiment={changeUserSentiment}/>
+              <Form updateUserSentiment={ updateUserSentiment } />
             </Route>
-            <Route path="/feed/">
-              <Feed articles={articles} />
-            </Route>
+            <Route
+              exact path="/feed/"
+              render={() => {
+                return (
+                  <>
+                    <Feed
+                      userSentiment={ userSentiment }
+                      articles={ articles }/>
+                    { !articles.length && <h2>Loading.. </h2>}
+                    { error && <h2>{error}</h2> }
+                  </>
+                )
+              }}
+            />
+            <Route
+              path="/feed/:id"
+              render={({ match }) => {
+                const id = Number(match.params.id)
+                const singleArticle = articles.find(article => article.id === id)
+
+                if (singleArticle) {
+                  return (
+                    <Article
+                      title={ singleArticle.title }
+                      image={ singleArticle.multimedia.url }
+                      caption={ singleArticle.multimedia.caption }
+                      abstract={ singleArticle.abstract }
+                      key={ singleArticle.title }
+                    />
+                  )
+                }
+              }}
+            />
           </Switch>
         </Router>
-        {error && <h2>{error}</h2>}
+
       </div>
     </div>
   )

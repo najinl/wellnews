@@ -1,27 +1,45 @@
-import React from 'react';
+import { CleanedArticle } from '../../Models'
 import Card from '../Card/Card';
 import './Feed.css';
-import { CleanArticle } from '../../apiCalls'
 
-interface PropsFeed {
-  articles: CleanArticle[];
+interface FeedProps {
+  userSentiment: number | null;
+  articles: CleanedArticle[];
 }
 
-const Feed = ({ articles }: PropsFeed): JSX.Element => {
-  return (
-    <div className="articles-container">
-      <section className="articles-display">
-        {articles.map(article =>
-          <Card
-          title={article.title}
-          image={article.multimedia.url}
-          sentiment={article.sentiment}
-          key={article.title}
-          />
-        )}
-      </section>
-    </div>
-  )
-}
+const Feed = ({ userSentiment, articles }: FeedProps): JSX.Element => {
+
+  let sortedArticles : CleanedArticle[];
+
+  if (userSentiment === -1) {
+    sortedArticles = articles.sort((articleA, articleB) => {
+      return articleB.sentiment - articleA.sentiment;
+    })
+  } else if (userSentiment === 1) {
+    sortedArticles = articles.sort((articleA, articleB) => {
+      return articleA.sentiment - articleB.sentiment;
+    })
+  } else {
+    sortedArticles = articles.sort((articleA, articleB) => 0.5 - Math.random());
+  }
+
+
+   const articleCards = sortedArticles.map(article => {
+    return  <Card
+        title={ article.title }
+        image={ article.multimedia.url }
+        id={ article.id }
+        key={ article.title }
+      />
+    })
+
+    return (
+      <div className="articles-container">
+        <section className="articles-display">
+          {articleCards}
+        </section>
+      </div>
+    );
+};
 
 export default Feed;
