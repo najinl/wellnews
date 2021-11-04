@@ -12,9 +12,11 @@ const Article = ({ title, image, abstract, caption }: ArticleProps): JSX.Element
 
   return (
     <section className="single-article-container">
-      <Link to="/feed">
-        BACK
-      </Link>
+      <div className="back-button-container">
+        <Link to="/feed">
+          ⇦ BACK
+        </Link>
+      </div>
       <figure>
         <img src={image} alt={caption} className="single-article-image"/>
         <figcaption className="single-article-caption">{caption}</figcaption>
@@ -31,6 +33,11 @@ const Article = ({ title, image, abstract, caption }: ArticleProps): JSX.Element
       <p>{placeholderText}</p>
       <p>{placeholderText}</p>
       <p>{placeholderText}</p>
+      <div className="back-button-container">
+        <Link to="/feed">
+          ⇦ BACK
+        </Link>
+      </div>
     </section>
   )
 }
