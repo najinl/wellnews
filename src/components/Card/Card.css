@@ -6,6 +6,16 @@
   margin-top: 5%;
 }
 
+.article-sentiment {
+  position: absolute;
+  background-color: #0db6e5;
+  padding: .5rem .5rem .3rem .5rem;
+  border: 1px solid white;
+  border-radius: .5rem;
+  top: -5%;
+  left: 6%;
+}
+
 .card-container {
   position: relative;
   display: flex;

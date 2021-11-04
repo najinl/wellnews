@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Feed from '../Feed/Feed';
 import Form from '../Form/Form';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch, useHistory} from 'react-router-dom';
 import './App.css';
 import { CleanArticle, fetchNewsData, getSentiment } from '../../apiCalls'
 
@@ -19,7 +19,7 @@ const App = (): JSX.Element => {
           .then((response: number[]) => {
 
             const scoredArticles = cleanArticles.map((article, i) => {
-               article.sentiment = response[i] || 0
+               article.sentiment = response[i] || 0;
                return article;
             })
 
@@ -58,6 +58,11 @@ const App = (): JSX.Element => {
     setArticles(sortedArticles)
   }
 
+  // const returnToForm: any = () => {
+  //   const history = useHistory();
+  //   history.goBack();
+  // }
+
   return (
     <div className="App">
       <div className="app-container">
@@ -70,7 +75,7 @@ const App = (): JSX.Element => {
               <Form changeUserSentiment={changeUserSentiment}/>
             </Route>
             <Route path="/feed/">
-              <Feed articles={articles}/>
+              <Feed articles={articles} />
             </Route>
           </Switch>
         </Router>

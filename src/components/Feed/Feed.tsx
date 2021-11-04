@@ -4,7 +4,7 @@ import './Feed.css';
 import { CleanArticle } from '../../apiCalls'
 
 interface PropsFeed {
-  articles: CleanArticle[]
+  articles: CleanArticle[];
 }
 
 const Feed = ({ articles }: PropsFeed): JSX.Element => {
@@ -15,6 +15,7 @@ const Feed = ({ articles }: PropsFeed): JSX.Element => {
           <Card
           title={article.title}
           image={article.multimedia.url}
+          sentiment={article.sentiment}
           key={article.title}
           />
         )}
