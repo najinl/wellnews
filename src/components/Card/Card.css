@@ -16,6 +16,18 @@
   left: 6%;
 }
 
+.green {
+  background-color: green;
+}
+
+.red {
+  background-color: red;
+}
+
+.blue {
+  background-color: #0db6e5;
+}
+
 .card-container {
   position: relative;
   display: flex;

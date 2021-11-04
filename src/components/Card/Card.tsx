@@ -13,7 +13,9 @@ const Card = ({ title, image, sentiment }: PropsCard): JSX.Element => {
       <article className="news-card">
         <img className="article-image" src={image} alt={title} />
         <h2 className="article-title">{title}</h2>
-        <h3 className="article-sentiment">{(sentiment * 10).toFixed(1)}</h3>
+        {sentiment > 0 && <h3 className="article-sentiment green">{(sentiment * 10).toFixed(1)}</h3>}
+        {sentiment < 0 && <h3 className="article-sentiment red">{(sentiment * 10).toFixed(1)}</h3>}
+        {sentiment === 0 && <h3 className="article-sentiment blue">{(sentiment * 10).toFixed(1)}</h3>}
       </article>
     </div>
   )
