@@ -34,12 +34,17 @@ export const getSentiment = (title: string, abstract: string): Promise<number> =
   // add your API token here; remove before merging to main
   // the default token is for testing only
   const dandelionToken: string = '' ||
-  '488823ba0f914b1f8eddc319191cbc7a';
+  '488823ba0f914b1f8eddc31919crappytoken1cbc7a';
   if (dandelionToken) { console.log('token in use; remove before pushing')}
-  return fetch(`https://api.dandelion.eu/datatxt/sent/v1/?lang=en&text=${text}&token=${dandelionToken}`)
-    .then(response => checkResponse(response))
+  return (
+    fetch(`https://api.dandelion.eu/datatxt/sent/v1/?lang=en&text=${text}&token=${dandelionToken}`)
+    .then(response => {
+      return checkResponse(response)
+    })
+
     .then(data => data.sentiment.score)
-    .catch(err => console.log('error: ', err))
+    .catch(err => console.log(err.message))
+  )
 };
 
 const cleanArticles = (articles: OriginalArticle[]): CleanedArticle[] => {

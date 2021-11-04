@@ -1,0 +1,8 @@
+{
+  "message": "Parameter [text] not found",
+  "code": "error.missingParameter",
+  "data": {
+    "parameter": "text"
+  },
+  "error": true
+}

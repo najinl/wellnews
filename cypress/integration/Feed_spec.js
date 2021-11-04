@@ -27,4 +27,11 @@ describe('Feed', () => {
       .get('.cy-article-title').first()
         .should('be.visible')
   })
+
+  it('Should handle authentication errors', () => {
+    cy.intercept('https://api.dandelion.eu/datatxt/sent/v1/?lang=en&text=The Manhattan ‘Madam’ Who Hobnobbed With the City’s Elite A new biography by Debby Applegate recounts the story of Polly Adler, who arrived in America from Russia at 13 and became New Yorks most successful brothel owner, befriending mobsters, policemen, politicians and writers&token=488823ba0f914b1f8eddc319191cbc7a', {fixture: 'error-authentication-error.json'})
+      .intercept('https://api.dandelion.eu/datatxt/sent/v1/?lang=en&text=Should I Tell a Facebook Friend I Had an Affair With Her Partner? The magazines Ethicist columnist on responding to infidelity&token=488823ba0f914b1f8eddc319191cbc7a', {fixture: 'error-authentication-error.json'})
+      .visit('/').get('.cy-sad-btn').click()
+      .get('cy-error-text').should('have.value', 'Your request is not allowed: this happens when no more units are available or when the authentication token is not correct (or legacy $app_id and $app_key are not valid).')
+  })
 })
