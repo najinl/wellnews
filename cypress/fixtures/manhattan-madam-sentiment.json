@@ -1,0 +1,9 @@
+{
+  "time": 1,
+  "sentiment": {
+      "type": "positive",
+      "score": 0.8
+  },
+  "lang": "en",
+  "timestamp": "2021-11-03T19:38:16.315"
+}
