@@ -31,7 +31,7 @@ const checkResponse = (response: Response) => {
 
 export const getSentiment = (abstract: string): Promise<number> => {
   // add your API token here; remove before merging to main
-  const token = 'beb0091844524790b7672a69bac06a2a';
+  const token = '';
   return fetch(`https://api.dandelion.eu/datatxt/sent/v1/?lang=en&text=${abstract}&token=${token}`)
     .then(response => checkResponse(response))
     .then(data => data.sentiment.score)
