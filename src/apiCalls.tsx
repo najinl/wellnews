@@ -30,9 +30,11 @@ const checkResponse = (response: Response) => {
 };
 
 export const getSentiment = (title: string, abstract: string): Promise<number> => {
-  const text = title + ' ' + abstract;
+  const text: string = title + ' ' + abstract;
   // add your API token here; remove before merging to main
-  const dandelionToken = '';
+  // the default token is for testing only
+  const dandelionToken: string = '' ||
+  '488823ba0f914b1f8eddc319191cbc7a';
   if (dandelionToken) { console.log('token in use; remove before pushing')}
   return fetch(`https://api.dandelion.eu/datatxt/sent/v1/?lang=en&text=${text}&token=${dandelionToken}`)
     .then(response => checkResponse(response))
