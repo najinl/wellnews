@@ -1,22 +1,25 @@
-import './Article.css'
+import { Link } from 'react-router-dom'
+import './Article.css';
 
 interface ArticleProps {
   title: string
   image: string
   abstract: string
   caption: string
-  showFeed: () => void
 }
 
-const Article = ({ title, image, abstract, caption, showFeed }: ArticleProps): JSX.Element => {
+const Article = ({ title, image, abstract, caption }: ArticleProps): JSX.Element => {
 
   return (
-    <section >
-      <button onClick={showFeed}>
+    <section className="single-article-container">
+      <Link to="/feed">
         BACK
-      </button>
-      <h2>{title}</h2>
-      <img src={image} alt={caption} className="article-image"/>
+      </Link>
+      <figure>
+        <img src={image} alt={caption} className="single-article-image"/>
+        <figcaption className="single-article-caption">{caption}</figcaption>
+      </figure>
+      <h2 className="single-article-title">{title}</h2>
       <p>{abstract}</p>
       <p>{placeholderText}</p>
       <p>{placeholderText}</p>
@@ -27,7 +30,7 @@ const Article = ({ title, image, abstract, caption, showFeed }: ArticleProps): J
       <p>{placeholderText}</p>
       <p>{placeholderText}</p>
       <p>{placeholderText}</p>
-      <p>{placeholderText}</p>        
+      <p>{placeholderText}</p>
     </section>
   )
 }
