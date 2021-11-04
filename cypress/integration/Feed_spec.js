@@ -1,13 +1,22 @@
 describe('Feed', () => {
-  // beforeEach(() => {
-  //   cy.intercept("https://api.nytimes.com/svc/topstories/v2/home.json?api-key=GKUzDD1VY9ssjZ1AGusX3ci6AeoXCaSr", {fixture: 'nyt-article-fetch.json'})
-  //   cy.intercept('https://api.dandelion.eu/datatxt/sent/v1/?lang=en&text=A%20new%20biography%20by%20Debby%20Applegate%20recounts%20the%20story%20of%20Polly%20Adler,%20who%20arrived%20in%20America%20from%20Russia%20at%2013%20and%20became%20New%20York\'s%20most%20successful%20brothel%20owner,%20befriending%20mobsters,%20policemen,%20politicians%20and%20writers.&token=beb0091844524790b7672a69bac06a2a', {fixture: 'manhattan-madam-sentiment.json'})
-  //   cy.intercept('https://api.dandelion.eu/datatxt/sent/v1/?lang=en&text=The magazine\'s Ethicist columnist on responding to infidelity.&token=beb0091844524790b7672a69bac06a2a', {fixture: 'affair-sentiment.json'})
-  //     .visit('/')
-  //     .get('.cy-sad-btn').click()
-  //   })
+  beforeEach(() => {
+    cy.intercept("https://api.nytimes.com/svc/topstories/v2/home.json?api-key=GKUzDD1VY9ssjZ1AGusX3ci6AeoXCaSr", {fixture: 'nyt-article-fetch.json'})
+    cy.intercept('https://api.dandelion.eu/datatxt/sent/v1/?lang=en&text=A new biography by Debby Applegate recounts the story of Polly Adler, who arrived in America from Russia at 13 and became New Yorks most successful brothel owner, befriending mobsters, policemen, politicians and writers&token=beb0091844524790b7672a69bac06a2a', {fixture: 'manhattan-madam-sentiment.json'})
+    cy.intercept('https://api.dandelion.eu/datatxt/sent/v1/?lang=en&text=The magazines Ethicist columnist on responding to infidelity&token=beb0091844524790b7672a69bac06a2a', {fixture: 'affair-sentiment.json'})
+  })
 
-  it('Should display the feed', () => {
-    cy.get('.cy-header-text').contains('WellNews')
+  it('Should show the header', () => {
+    cy.visit('/').get('.cy-sad-btn').click()
+      .get('.cy-header-text').contains('WellNews')
+  })
+
+  it('Should, when the happy button is clicked, show the articles sorted in ascending order by sentiment', () => {
+    cy.visit('/').get('.cy-happy-btn').click()
+      .get('.cy-article-card').first().contains('Should I Tell a Facebook Friend I Had an Affair With Her Partner?')
+  })
+
+  it('Should, when the sad button is clicked, show the articles sorted in descending order by sentiment', () => {
+    cy.visit('/').get('.cy-sad-btn').click()
+      .get('.cy-article-card').first().contains('The Manhattan ‘Madam’ Who Hobnobbed With the City’s Elite')
   })
 })
