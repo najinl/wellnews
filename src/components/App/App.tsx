@@ -33,7 +33,7 @@ const App = (): JSX.Element => {
   const getSentimentScores = (cleanedArticles: CleanedArticle[]): Promise<number[]> => {
     return Promise.all(
       cleanedArticles.map((article: CleanedArticle) => {
-        return getSentiment(article.abstract)
+        return getSentiment(article.title, article.abstract)
       })
     );
   };

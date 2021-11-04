@@ -29,10 +29,12 @@ const checkResponse = (response: Response) => {
   return response.json();
 };
 
-export const getSentiment = (abstract: string): Promise<number> => {
+export const getSentiment = (title: string, abstract: string): Promise<number> => {
+  const text = title + ' ' + abstract;
   // add your API token here; remove before merging to main
-  const token = '91255d6d440f4c24a1b4a5ec443588d8';
-  return fetch(`https://api.dandelion.eu/datatxt/sent/v1/?lang=en&text=${abstract}&token=${token}`)
+  const token = '';
+  if (token) { console.log('token in use; remove before pushing')}
+  return fetch(`https://api.dandelion.eu/datatxt/sent/v1/?lang=en&text=${text}&token=${token}`)
     .then(response => checkResponse(response))
     .then(data => data.sentiment.score)
     .catch(err => console.log('error: ', err))
