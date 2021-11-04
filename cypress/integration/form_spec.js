@@ -1,6 +1,6 @@
 describe ('Form user flow', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000')
+    cy.visit('/')
   })
 
   it('should render the appropriate elements', () => {
