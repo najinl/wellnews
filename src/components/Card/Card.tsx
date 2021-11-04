@@ -1,23 +1,20 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
 import './Card.css';
 
 interface CardProps {
   title: string
   image: string
-  url: string
+  selectSingleArticle: (id: number) => void
+  id: number
 }
 
-const Card = ({ title, image }: CardProps): JSX.Element => {
+const Card = ({ title, image, id, selectSingleArticle }: CardProps): JSX.Element => {
   return (
-    <Link to={`/feed/${title}`}>
-      <div className="card-container">
-        <article className="news-card">
-          <img className="article-image" src={image} alt={title} />
-          <h2 className="article-title">{title}</h2>
-        </article>
-      </div>
-    </Link>
+    <div className="card-container" onClick={() => selectSingleArticle(id)}>
+      <article className="news-card">
+        <img className="article-image" src={image} alt={title} />
+        <h2 className="article-title">{title}</h2>
+      </article>
+    </div>
   )
 }
 

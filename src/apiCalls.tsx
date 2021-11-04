@@ -31,7 +31,7 @@ const checkResponse = (response: Response) => {
 
 export const getSentiment = (abstract: string): Promise<number> => {
   // add your API token here; remove before merging to main
-  const token = '';
+  const token = '91255d6d440f4c24a1b4a5ec443588d8';
   return fetch(`https://api.dandelion.eu/datatxt/sent/v1/?lang=en&text=${abstract}&token=${token}`)
     .then(response => checkResponse(response))
     .then(data => data.sentiment.score)
@@ -46,7 +46,8 @@ const cleanArticles = (articles: OriginalArticle[]): CleanedArticle[] => {
       abstract,
       short_url,
       sentiment: 0,
-      multimedia: multimedia[0]
+      multimedia: multimedia[0],
+      id: Math.floor(Math.random() * 100),
     });
   });
 };

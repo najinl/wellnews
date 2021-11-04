@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { getArticles, getSentiment } from '../../apiCalls';
 import { CleanedArticle } from '../../Models'
 import Card from '../Card/Card';
+import Article from '../Article/Article';
 import './Feed.css';
-import {BrowserRouter as Router, Route } from 'react-router-dom';
 
 interface FeedProps {
   userSentiment: number | null;
@@ -12,6 +12,7 @@ interface FeedProps {
 const Feed = ({ userSentiment }: FeedProps): JSX.Element => {
   const [articles, setArticles] = useState<CleanedArticle[]>([]);
   const [error, setError] = useState('');
+  const [singleArticle, setSingleArticle] = useState<CleanedArticle | null>(null)
 
   const getSentimentScores = (cleanedArticles: CleanedArticle[]): Promise<number[]> => {
     return Promise.all(
@@ -55,25 +56,41 @@ const Feed = ({ userSentiment }: FeedProps): JSX.Element => {
     setArticles(sortedArticles)
   }
 
+  const selectSingleArticle = (id: number) => {
+    const article = articles.find(article => article.id === id)
+    if (article) {
+      setSingleArticle(article)
+    }
+  }
+
+  const showFeed = ():void => {
+    setSingleArticle(null)
+  }
+
   return (
     <div className="articles-container">
       <section className="articles-display">
         { error && <h2>{ error }</h2> }
         { !articles.length && <h1>Loading...</h1> }
-        { articles.map(article =>
+        { !singleArticle && articles.map(article =>
           <Card
             title={ article.title }
             image={ article.multimedia.url }
+            id={ article.id }
+            selectSingleArticle={ selectSingleArticle }
             key={ article.title }
+          />)
+        }
+        { singleArticle &&
+          <Article
+            title={ singleArticle.title }
+            image={ singleArticle.multimedia.url }
+            caption={ singleArticle.multimedia.caption }
+            abstract={ singleArticle.abstract }
+            showFeed={ showFeed }
+            key={ singleArticle.title }
           />
-        )}
-        <Router>
-          <Route exact path="/feed/:title" render={({ match }) => {
-            const title = match.params.title;
-            const article = articles.find(article => article.title === title)
-            return <Article article={article} />
-          }}/>
-        </Router>
+        }
       </section>
     </div>
   );
