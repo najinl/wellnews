@@ -31,8 +31,8 @@ const checkResponse = (response: Response) => {
 
 export const getSentiment = (abstract: string): Promise<number> => {
   // add your Dandelion API token here; remove before opening a PR
-  const token = '488823ba0f914b1f8eddc319191cbc7a';
-  return fetch(`https://api.dandelion.eu/datatxt/sent/v1/?lang=en&text=${abstract}&token=${token}`)
+  const dandelionToken = '';
+  return fetch(`https://api.dandelion.eu/datatxt/sent/v1/?lang=en&text=${abstract}&token=${dandelionToken}`)
     .then(response => checkResponse(response))
     .then(data => data.sentiment.score)
     .catch(err => console.log('error: ', err))

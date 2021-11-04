@@ -1,7 +1,7 @@
 describe('Feed', () => {
   beforeEach(() => {
     // add your Dandelion API token here; remove before merging to main
-    const dandelionToken = '488823ba0f914b1f8eddc319191cbc7a';
+    const dandelionToken = '';
     if (dandelionToken) { console.log('Token in use; remember to remove before opening a PR')}
     cy.intercept("https://api.nytimes.com/svc/topstories/v2/home.json?api-key=GKUzDD1VY9ssjZ1AGusX3ci6AeoXCaSr", {fixture: 'nyt-article-fetch.json'})
       .intercept(`https://api.dandelion.eu/datatxt/sent/v1/?lang=en&text=A new biography by Debby Applegate recounts the story of Polly Adler, who arrived in America from Russia at 13 and became New Yorks most successful brothel owner, befriending mobsters, policemen, politicians and writers&token=${dandelionToken}`, {fixture: 'manhattan-madam-sentiment.json'})
