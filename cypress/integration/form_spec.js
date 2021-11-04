@@ -1,5 +1,3 @@
-
-
 describe ('Form user flow', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000')
@@ -24,7 +22,7 @@ describe ('Form user flow', () => {
     cy.url().should('include', '/feed')
   })
 
-  it('should take you to the news feed when the neutral sentiment button is chosen', () => {
+  it('should take you to the news feed when the sad sentiment button is chosen', () => {
     cy.get('.sad-btn').click()
     cy.url().should('include', '/feed')
   })
