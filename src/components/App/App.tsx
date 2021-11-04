@@ -15,7 +15,7 @@ const App = (): JSX.Element => {
     <div className="App">
       <div className="app-container">
         <header className="App-header">
-          <h1 className="header-text">
+          <h1 className="header-text cy-header-text">
             Well<span className="header-text-2">News</span>
           </h1>
         </header>
