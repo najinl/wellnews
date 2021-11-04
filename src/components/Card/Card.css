@@ -3,7 +3,7 @@
   width: auto;
   border: 1px solid white;
   box-shadow: 3px 3px 3px black;
-  margin-top: 5%;
+  /* margin-top: 5%; */
 }
 
 .article-sentiment {
@@ -12,8 +12,8 @@
   padding: .5rem .5rem .3rem .5rem;
   border: 1px solid white;
   border-radius: .5rem;
-  top: -5%;
-  left: 6%;
+  top: -3%;
+  left: 0%;
 }
 
 .green {
@@ -131,6 +131,11 @@
     margin-bottom: 0rem;
     margin-top: 5%;
   }
+
+  .article-sentiment {
+    left: -3%;
+    top: 6%;
+  }
 }
 
 .card-container {
@@ -140,7 +145,7 @@
   justify-content: center;
 }
 
-.news-card {
+/* .news-card {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -150,7 +155,7 @@
   align-items: center;
   width: 80%;
   border-bottom: 1px solid white;
-}
+} */
 
 .article-image {
   border: 1px solid white;
