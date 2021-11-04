@@ -1,4 +1,15 @@
-.article-image {
+a {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a > .article-image {
   height: 30vh;
   width: auto;
   border: 1px solid white;
@@ -9,7 +20,6 @@
 .card-container {
   position: relative;
   display: flex;
-  flex-direction: row;
   justify-content: center;
 }
 
@@ -21,17 +31,17 @@
   padding-top: 2rem;
   padding-bottom: 2rem;
   margin-bottom: 1rem;
-  color: white;
   align-items: center;
   width: 80%;
   border-bottom: 1px solid white;
 }
 
-.article-title {
+a > .article-title {
   height: auto;
   margin-bottom: 10%;
   width: 80%;
   text-shadow: 2px 2px 2px black;
+  color: white;
 }
 
 @media (max-width: 870px) {
