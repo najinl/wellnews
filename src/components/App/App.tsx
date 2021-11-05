@@ -6,12 +6,14 @@ import Form from '../Form/Form';
 import Feed from '../Feed/Feed';
 import Article from '../Article/Article';
 import './App.css';
+import History from '../History/History'
 
 const App = (): JSX.Element => {
   const [articles, setArticles] = useState<CleanedArticle[]>([]);
   const [error, setError] = useState('');
   const [userSentiment, setUserSentiment] = useState<number | null>(null);
   const [filteredArticles, setFilteredArticles] = useState<CleanedArticle[]>([]);
+  const [history, setHistory] = useState([]);
 
   useEffect((): void => {
     getArticles()
@@ -29,7 +31,6 @@ const App = (): JSX.Element => {
       })
       .catch(error => setError(error.message));
   }, []);
-
 
   const getSentimentScores = (cleanedArticles: CleanedArticle[]): Promise<number[]> => {
     return Promise.all(
@@ -55,6 +56,19 @@ const App = (): JSX.Element => {
     })
     console.log(siftedArticles)
     setFilteredArticles(siftedArticles);
+  }
+
+  // const moveToHistory = (id: number) => {
+  //   const articleToMove = articles.find(article => {
+  //     return article.id === id;
+  //   })
+  //   const filteredArticles = articles.filter(article => {
+  //     return article.id !== id;
+  //   })
+    // setHistory((prevState: CleanedArticle[]): void => {
+    //   return prevState.push(articleToMove)
+    // }))
+    // setArticles(filteredArticles);
   }
 
   // const returnToForm: any = () => {
@@ -109,6 +123,20 @@ const App = (): JSX.Element => {
                     />
                   )
                 }
+              }}
+            />
+            <Route
+              exact path="/history"
+              render={() => {
+                return (
+                  <>
+                    <History
+                      history={ history }
+                      // moveToHistory={ moveToHistory }
+                    />
+                    { error && <h2>{error}</h2> }
+                  </>
+                )
               }}
             />
           </Switch>

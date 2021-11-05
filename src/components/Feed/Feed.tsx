@@ -1,3 +1,5 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { CleanedArticle } from '../../Models'
 import Card from '../Card/Card';
 import SectionForm from '../SectionForm/SectionForm';
@@ -54,6 +56,10 @@ const Feed = ({ userSentiment, articles, updateUserSentiment, filteredArticles, 
       <div className="all-sections">
         <SectionForm siftArticles={ siftArticles }/>
       </div>
+      <Link to='/history'>
+        <button className='history-btn'>History</button>
+      </Link>
+
         <section className="articles-display">
 
           {filteredArticles.length ? filteredArticleCards : articleCards}
