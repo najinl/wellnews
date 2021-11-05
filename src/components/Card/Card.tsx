@@ -23,5 +23,3 @@ const Card = ({ title, image, id }: CardProps): JSX.Element => {
 }
 
 export default Card;
-
-// <a href={url} target="_blank" >Read Full Article</a>

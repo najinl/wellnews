@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
 
+interface SectionFormProps {
+  siftArticles: (selectedSections: string[]) => void;
+}
 
+const SectionForm = ({ siftArticles} : SectionFormProps) : JSX.Element => {
 
-const SectionForm = () : JSX.Element => {
-
-const sections = ['Arts', 'Cars', 'Entertainment', 'Business', 'Fashion', 'Food', 'Health', 'Home', 'Insider', 'Opinion', 'Politics', 'Realestate', 'Sports', 'Sundayreview', 'Science', 'Upshot', 'US', 'World'];
+const sections = ['arts', 'cars', 'entertainment', 'business', 'fashion', 'food', 'health', 'home', 'insider', 'opinion', 'politics', 'realestate', 'sports', 'sundayreview', 'science', 'upshot', 'us', 'world'];
 
 const [selectedSections, setSelectedSections] = useState<string[]>([]);
 
@@ -20,8 +22,9 @@ const handleChange = (articleSection: string) : void => {
   console.log(selectedSections)
 }
 
-const submitFilterSections = (): void => {
-  console.log(selectedSections)
+const submitFilterSections = (event:any): void => {
+  event.preventDefault();
+  siftArticles(selectedSections)
 }
 
 
@@ -37,7 +40,7 @@ const sectionCheckboxes = sections.map(section => {
   return (
     <form>
     { sectionCheckboxes }
-      <button onClick={submitFilterSections}>
+      <button onClick={e => submitFilterSections(e)}>
         Filter
       </button>
     </form>

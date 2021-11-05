@@ -6,9 +6,11 @@ import './Feed.css';
 interface FeedProps {
   userSentiment: number | null;
   articles: CleanedArticle[];
+  filteredArticles: CleanedArticle[];
+  siftArticles: (selectedSections: string[]) => void;
 }
 
-const Feed = ({ userSentiment, articles }: FeedProps): JSX.Element => {
+const Feed = ({ userSentiment, articles, filteredArticles, siftArticles }: FeedProps): JSX.Element => {
 
   let sortedArticles : CleanedArticle[];
 
@@ -34,13 +36,22 @@ const Feed = ({ userSentiment, articles }: FeedProps): JSX.Element => {
       />
     })
 
+    const filteredArticleCards = filteredArticles.map(article => {
+     return  <Card
+         title={ article.title }
+         image={ article.multimedia.url }
+         id={ article.id }
+         key={ article.title }
+       />
+     })
+
     return (
       <div className="articles-container">
       <div className="all-sections">
-        <SectionForm />
+        <SectionForm siftArticles={ siftArticles }/>
       </div>
         <section className="articles-display">
-          {articleCards}
+          {filteredArticles.length ? filteredArticleCards : articleCards}
         </section>
       </div>
     );

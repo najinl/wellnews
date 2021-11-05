@@ -43,6 +43,14 @@ const App = (): JSX.Element => {
     setUserSentiment(userSentiment);
   }
 
+  const siftArticles = (selectedSections:string[]): void => {
+    const siftedArticles = articles.filter(article => {
+      return selectedSections.includes(article.section)
+    })
+    console.log(siftedArticles)
+    setFilteredArticles(siftedArticles);
+  }
+
   // const returnToForm: any = () => {
   //   const history = useHistory();
   //   history.goBack();
@@ -68,8 +76,9 @@ const App = (): JSX.Element => {
                   <>
                     <Feed
                       userSentiment={ userSentiment }
-                      articles={ articles }/>
-                      filteredArticles= { filteredArticles }
+                      articles={ articles }
+                      siftArticles={ siftArticles }
+                      filteredArticles={ filteredArticles }/>
                     { !articles.length && <h2>Loading.. </h2>}
                     { error && <h2>{error}</h2> }
                   </>
