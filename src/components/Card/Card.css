@@ -12,7 +12,7 @@ a:hover {
 a > .article-image {
   height: 30vh;
   width: auto;
-  border: 1px solid #9eeeff;
+  border: 1px solid white;
   box-shadow: 3px 3px 3px black;
 }
 

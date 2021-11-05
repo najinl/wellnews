@@ -31,14 +31,14 @@ const sectionCheckboxes = topics.map(topic => {
   return (
     <span className="article-section">
       <input className="section" id={topic.toLowerCase()} type="checkbox" checked={selectedTopics.includes(topic) ? true : false} key={key} value={topic.toLowerCase()} onChange={() => handleChange(topic)}/>
-      <label className="topic-label">{topic}</label>
+      <label className="topic-label" onClick={() => handleChange(topic)}>{topic}</label>
     </span>
   )
 })
 
   return (
     <div className="filter-container">
-      <form className="filter-options">
+      <form className="filter-options hidden">
         <div className="checkbox-container-1 checkbox-container">
           { sectionCheckboxes[0] } { sectionCheckboxes[1] } { sectionCheckboxes[2] } { sectionCheckboxes[3] } { sectionCheckboxes[4] } { sectionCheckboxes[5] }
         </div>

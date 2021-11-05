@@ -25,7 +25,7 @@ label {
   width: 52%;
   padding: .5rem 0rem .3rem 0rem;
   margin: 2rem;
-  margin-top: -1.2rem;
+  margin-top: -1rem;
   background-color: #133559;
   border: 1px solid white;
   box-shadow: 3px 3px 3px #133559;
@@ -63,9 +63,14 @@ label {
 }
 
 .filter-button:hover {
-  background-color: #112841;
+  background-color: #164777;
   color: white;
   cursor: pointer;
+}
+
+.filter-button:active {
+  background-color: #112841;
+  color: white;
 }
 
 .App {
