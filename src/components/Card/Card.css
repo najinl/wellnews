@@ -177,3 +177,9 @@ a > .article-title {
   margin-bottom: 2rem;
   width: 80%;
 }
+
+.score {
+  color: white;
+  font-weight: bolder;
+  margin-top: 0;
+}

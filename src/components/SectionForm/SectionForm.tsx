@@ -29,10 +29,11 @@ const submitFilterSections = (event:any): void => {
 
 
 const sectionCheckboxes = sections.map(section => {
+  const key = Math.random()
   return (
     <div className='article-section'>
       <label>{section}</label>
-      <input className="section" id={section.toLowerCase()} type="checkbox" checked={selectedSections.includes(section) ? true : false} key={section.toLowerCase()} value={section.toLowerCase()} onChange={() => handleChange(section)}/>
+      <input className="section" id={section.toLowerCase()} type="checkbox" checked={selectedSections.includes(section) ? true : false} key={key} value={section.toLowerCase()} onChange={() => handleChange(section)}/>
     </div>
   )
 })

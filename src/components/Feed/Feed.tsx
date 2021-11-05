@@ -15,11 +15,11 @@ const Feed = ({ userSentiment, articles, updateUserSentiment, filteredArticles, 
 
   let sortedArticles : CleanedArticle[];
 
-  if (userSentiment && userSentiment >= -1 && userSentiment <= -0.3) {
+  if (userSentiment && userSentiment >= 0 && userSentiment <= 3) {
     sortedArticles = articles.sort((articleA, articleB) => {
       return articleB.sentiment - articleA.sentiment;
     })
-  } else if (userSentiment && userSentiment <= 1 && userSentiment >= 0.3) {
+  } else if (userSentiment && userSentiment <= 10 && userSentiment >= 6) {
     sortedArticles = articles.sort((articleA, articleB) => {
       return articleA.sentiment - articleB.sentiment;
     })
@@ -44,6 +44,8 @@ const Feed = ({ userSentiment, articles, updateUserSentiment, filteredArticles, 
          image={ article.multimedia.url }
          id={ article.id }
          key={ article.title }
+         sentiment={ article.sentiment }
+         updateUserSentiment={ updateUserSentiment }
        />
      })
 
