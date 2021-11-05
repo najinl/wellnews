@@ -97,7 +97,6 @@ const App = (): JSX.Element => {
             />
           </Switch>
         </Router>
-
       </div>
     </div>
   )

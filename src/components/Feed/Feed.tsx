@@ -12,24 +12,25 @@ const Feed = ({ userSentiment, articles, updateUserSentiment }: FeedProps): JSX.
 
   let sortedArticles : CleanedArticle[];
 
-  if (userSentiment === -1) {
+  if (userSentiment && userSentiment >= -1 && userSentiment <= -0.3) {
     sortedArticles = articles.sort((articleA, articleB) => {
       return articleB.sentiment - articleA.sentiment;
     })
-  } else if (userSentiment === 1) {
+  } else if (userSentiment && userSentiment <= 1 && userSentiment >= 0.3) {
     sortedArticles = articles.sort((articleA, articleB) => {
       return articleA.sentiment - articleB.sentiment;
     })
   } else {
     sortedArticles = articles.sort((articleA, articleB) => 0.5 - Math.random());
   }
-
-
-   const articleCards = sortedArticles.map(article => {
+  console.log(sortedArticles.forEach(article => console.log(article.sentiment)))
+  const articleCards = sortedArticles.map(article => {
     return  <Card
         title={ article.title }
         image={ article.multimedia.url }
         id={ article.id }
+        sentiment={ article.sentiment }
+        updateUserSentiment={ updateUserSentiment }
         key={ article.title }
       />
     })
@@ -37,7 +38,7 @@ const Feed = ({ userSentiment, articles, updateUserSentiment }: FeedProps): JSX.
     return (
       <div className="articles-container">
         <section className="articles-display">
-          {articleCards}
+          { articleCards }
         </section>
       </div>
     );
