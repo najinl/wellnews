@@ -5,9 +5,10 @@ import '../Feed/Feed.css'
 
 interface HistoryProps {
   history: CleanedArticle[]
+  moveToHistory: (id: number) => void;
 }
 
-const History = ({ history }: HistoryProps): JSX.Element => {
+const History = ({ history, moveToHistory }: HistoryProps): JSX.Element => {
 
   const articleCards = history.map(article => {
     return (
@@ -15,6 +16,7 @@ const History = ({ history }: HistoryProps): JSX.Element => {
         title={ article.title }
         image={ article.multimedia.url }
         id={ article.id }
+        moveToHistory={ moveToHistory }
         key={ article.title }
       />
     )

@@ -7,9 +7,10 @@ import './Feed.css';
 interface FeedProps {
   userSentiment: number | null;
   articles: CleanedArticle[];
+  moveToHistory: (id: number) => void;
 }
 
-const Feed = ({ userSentiment, articles }: FeedProps): JSX.Element => {
+const Feed = ({ userSentiment, articles, moveToHistory }: FeedProps): JSX.Element => {
 
   let sortedArticles : CleanedArticle[];
 
@@ -31,6 +32,7 @@ const Feed = ({ userSentiment, articles }: FeedProps): JSX.Element => {
         title={ article.title }
         image={ article.multimedia.url }
         id={ article.id }
+        moveToHistory={ moveToHistory }
         key={ article.title }
       />
     })

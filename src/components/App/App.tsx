@@ -31,7 +31,6 @@ const App = (): JSX.Element => {
       .catch(error => setError(error.message));
   }, []);
 
-
   const getSentimentScores = (cleanedArticles: CleanedArticle[]): Promise<number[]> => {
     return Promise.all(
       cleanedArticles.map((article: CleanedArticle) => {
@@ -42,6 +41,10 @@ const App = (): JSX.Element => {
 
   const updateUserSentiment = (userSentiment: number) => {
     setUserSentiment(userSentiment);
+  }
+
+  const moveToHistory = (id: number) => {
+    console.log('moving history now')
   }
 
   // const returnToForm: any = () => {
@@ -69,7 +72,9 @@ const App = (): JSX.Element => {
                   <>
                     <Feed
                       userSentiment={ userSentiment }
-                      articles={ articles }/>
+                      articles={ articles }
+                      moveToHistory={ moveToHistory }
+                    />
                     { !articles.length && <h2>Loading.. </h2>}
                     { error && <h2>{error}</h2> }
                   </>
@@ -100,7 +105,10 @@ const App = (): JSX.Element => {
               render={() => {
                 return (
                   <>
-                    <History history={ history } />
+                    <History
+                      history={ history }
+                      moveToHistory={ moveToHistory }
+                    />
                     { error && <h2>{error}</h2> }
                   </>
                 )
