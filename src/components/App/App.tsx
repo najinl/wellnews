@@ -44,7 +44,16 @@ const App = (): JSX.Element => {
   }
 
   const moveToHistory = (id: number) => {
-    console.log('moving history now')
+    const articleToMove = articles.find(article => {
+      return article.id === id;
+    })
+    const filteredArticles = articles.filter(article => {
+      return article.id !== id;
+    })
+    setHistory((prevState: CleanedArticle[]): void => {
+      return prevState.push(articleToMove)
+    }))
+    // setArticles(filteredArticles);
   }
 
   // const returnToForm: any = () => {

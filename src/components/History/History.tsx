@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Card from '../Card/Card';
 import { CleanedArticle } from '../../Models';
 import '../Feed/Feed.css'
@@ -27,7 +28,17 @@ const History = ({ history, moveToHistory }: HistoryProps): JSX.Element => {
       <h1>History</h1>
       <div className="articles-container">
         <section className="articles-display">
+        <div className="back-button-container">
+          <Link to="/feed">
+            ⇦ BACK
+          </Link>
+        </div>
           { articleCards }
+          <div className="back-button-container">
+            <Link to="/feed">
+              ⇦ BACK
+            </Link>
+          </div>
         </section>
       </div>
     </>
