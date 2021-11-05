@@ -11,6 +11,7 @@ const App = (): JSX.Element => {
   const [articles, setArticles] = useState<CleanedArticle[]>([]);
   const [error, setError] = useState('');
   const [userSentiment, setUserSentiment] = useState<number | null>(null);
+  const [selectedArticles, setSelectedArticles] = useState<CleanedArticle[]>([]);
 
   useEffect((): void => {
     getArticles()
@@ -43,15 +44,16 @@ const App = (): JSX.Element => {
     if (userSentiment) {
       averageSentiment = (userSentiment + newUserSentiment) / 2;
     }
-    console.log('userSentiment: ', userSentiment)
-    console.log('averageSentiment: ', averageSentiment)
     setUserSentiment(averageSentiment || newUserSentiment)
   }
 
-  // const returnToForm: any = () => {
-  //   const history = useHistory();
-  //   history.goBack();
-  // }
+  const findMatchingArticles = (selectedTopics:string[]): void => {
+    const matchingArticles = articles.filter(article => {
+      return selectedTopics.includes(article.topic)
+    })
+    setSelectedArticles(matchingArticles);
+  }
+
 
   return (
     <div className="App">
@@ -75,7 +77,9 @@ const App = (): JSX.Element => {
                       userSentiment={ userSentiment }
                       articles={ articles }
                       updateUserSentiment={ updateUserSentiment }
-                    />
+                      findMatchingArticles={ findMatchingArticles }
+                      selectedArticles={ selectedArticles }
+                      />
                     { !articles.length && <h2>Loading.. </h2>}
                     { error && <h2>{error}</h2> }
                   </>

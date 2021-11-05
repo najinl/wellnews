@@ -1,5 +1,5 @@
 export interface CleanedArticle {
-  section: string
+  topic: string
   title: string
   abstract: string
   short_url: string

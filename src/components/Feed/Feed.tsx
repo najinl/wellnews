@@ -1,14 +1,17 @@
 import { CleanedArticle } from '../../Models'
 import Card from '../Card/Card';
+import SectionForm from '../SectionForm/SectionForm';
 import './Feed.css';
 
 interface FeedProps {
   userSentiment: number | null;
   articles: CleanedArticle[];
+  selectedArticles: CleanedArticle[];
+  findMatchingArticles: (findMatchingArticles: string[]) => void;
   updateUserSentiment: (userSentiment: number) => void;
 }
 
-const Feed = ({ userSentiment, articles, updateUserSentiment }: FeedProps): JSX.Element => {
+const Feed = ({ userSentiment, articles, selectedArticles, findMatchingArticles, updateUserSentiment }: FeedProps): JSX.Element => {
 
   let sortedArticles : CleanedArticle[];
 
@@ -23,7 +26,7 @@ const Feed = ({ userSentiment, articles, updateUserSentiment }: FeedProps): JSX.
   } else {
     sortedArticles = articles.sort((articleA, articleB) => 0.5 - Math.random());
   }
-  console.log(sortedArticles.forEach(article => console.log('article.sentiment: ', article.sentiment)))
+
   const articleCards = sortedArticles.map(article => {
     return  <Card
         title={ article.title }
@@ -35,13 +38,28 @@ const Feed = ({ userSentiment, articles, updateUserSentiment }: FeedProps): JSX.
       />
     })
 
+    const foundArticleCards = selectedArticles.map(article => {
+     return  <Card
+         title={ article.title }
+         image={ article.multimedia.url }
+         id={ article.id }
+         sentiment={ article.sentiment }
+         updateUserSentiment= { updateUserSentiment }
+         key={ article.title }
+       />
+     })
+
     return (
       <div className="articles-container">
+      <div className="all-sections">
+        <SectionForm findMatchingArticles={ findMatchingArticles }/>
+      </div>
         <section className="articles-display">
-          { articleCards }
+          { foundArticleCards.length ? foundArticleCards : articleCards }
         </section>
       </div>
     );
 };
+
 
 export default Feed;

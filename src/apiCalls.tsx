@@ -32,7 +32,7 @@ const checkResponse = (response: Response) => {
 export const getSentiment = (title: string, abstract: string): Promise<number> => {
   const text = title + ' ' + abstract;
   // add your API token here; remove before merging to main
-  const token = '' || '488823ba0f914b1f8eddc319191cbc7a';
+  const token = '' || 'beb0091844524790b7672a69bac06a2a';
   if (token) { console.log('token in use; remove before pushing')}
   return fetch(`https://api.dandelion.eu/datatxt/sent/v1/?lang=en&text=${text}&token=${token}`)
     .then(response => checkResponse(response))
@@ -43,7 +43,7 @@ export const getSentiment = (title: string, abstract: string): Promise<number> =
 const cleanArticles = (articles: OriginalArticle[]): CleanedArticle[] => {
   return articles.map(({ section, title, abstract, short_url, multimedia }: OriginalArticle) => {
     return ({
-      section,
+      topic: section,
       title,
       abstract,
       short_url,
