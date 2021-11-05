@@ -29,7 +29,8 @@ const checkResponse = (response: Response) => {
   return response.json();
 };
 
-export const getSentiment = (abstract: string): Promise<number> => {
+export const getSentiment = (title: string, abstract: string): Promise<number> => {
+  const text = title + ' ' + abstract;
   // add your API token here; remove before merging to main
   const token = '';
   return fetch(`https://api.dandelion.eu/datatxt/sent/v1/?lang=en&text=${abstract}&token=beb0091844524790b7672a69bac06a2a`)
@@ -46,7 +47,8 @@ const cleanArticles = (articles: OriginalArticle[]): CleanedArticle[] => {
       abstract,
       short_url,
       sentiment: 0,
-      multimedia: multimedia[0]
+      multimedia: multimedia[0],
+      id: Math.floor(Math.random() * 100),
     });
   });
 };
