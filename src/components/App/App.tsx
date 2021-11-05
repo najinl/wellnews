@@ -38,8 +38,14 @@ const App = (): JSX.Element => {
     );
   };
 
-  const updateUserSentiment = (userSentiment: number) => {
-    setUserSentiment(userSentiment);
+  const updateUserSentiment = (newUserSentiment: number) => {
+    let averageSentiment;
+    if (userSentiment) {
+      averageSentiment = (userSentiment + newUserSentiment) / 2;
+    }
+    console.log('userSentiment: ', userSentiment)
+    console.log('averageSentiment: ', averageSentiment)
+    setUserSentiment(averageSentiment || newUserSentiment)
   }
 
   // const returnToForm: any = () => {
@@ -67,7 +73,9 @@ const App = (): JSX.Element => {
                   <>
                     <Feed
                       userSentiment={ userSentiment }
-                      articles={ articles }/>
+                      articles={ articles }
+                      updateUserSentiment={ updateUserSentiment }
+                    />
                     { !articles.length && <h2>Loading.. </h2>}
                     { error && <h2>{error}</h2> }
                   </>
@@ -95,7 +103,6 @@ const App = (): JSX.Element => {
             />
           </Switch>
         </Router>
-
       </div>
     </div>
   )
