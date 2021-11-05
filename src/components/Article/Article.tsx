@@ -40,9 +40,6 @@ const Article = ({ title, image, abstract, caption }: ArticleProps): JSX.Element
           ⇦ BACK
         </Link>
       </div>
-      <Link to="/feed">
-        BACK
-      </Link>
     </section>
   )
 }
