@@ -10,7 +10,7 @@ import './App.css';
 const App = (): JSX.Element => {
   const [articles, setArticles] = useState<CleanedArticle[]>([]);
   const [error, setError] = useState('');
-  const [ userSentiment, setUserSentiment ] = useState<number | null>(null);
+  const [userSentiment, setUserSentiment] = useState<number | null>(null);
 
   useEffect((): void => {
     getArticles()
@@ -61,7 +61,7 @@ const App = (): JSX.Element => {
               <Form updateUserSentiment={ updateUserSentiment } />
             </Route>
             <Route
-              exact path="/feed/"
+              exact path="/feed"
               render={() => {
                 return (
                   <>
