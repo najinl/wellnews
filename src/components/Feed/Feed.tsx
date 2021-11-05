@@ -5,9 +5,10 @@ import './Feed.css';
 interface FeedProps {
   userSentiment: number | null;
   articles: CleanedArticle[];
+  updateUserSentiment: (userSentiment: number) => void;
 }
 
-const Feed = ({ userSentiment, articles }: FeedProps): JSX.Element => {
+const Feed = ({ userSentiment, articles, updateUserSentiment }: FeedProps): JSX.Element => {
 
   let sortedArticles : CleanedArticle[];
 

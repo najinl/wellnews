@@ -67,7 +67,9 @@ const App = (): JSX.Element => {
                   <>
                     <Feed
                       userSentiment={ userSentiment }
-                      articles={ articles }/>
+                      articles={ articles }
+                      updateUserSentiment={ updateUserSentiment }
+                    />
                     { !articles.length && <h2>Loading.. </h2>}
                     { error && <h2>{error}</h2> }
                   </>
