@@ -50,9 +50,9 @@ const App = (): JSX.Element => {
     const filteredArticles = articles.filter(article => {
       return article.id !== id;
     })
-    setHistory((prevState: CleanedArticle[]): void => {
-      return prevState.push(articleToMove)
-    }))
+    // setHistory((prevState: CleanedArticle[]): void => {
+    //   return prevState.push(articleToMove)
+    // }))
     // setArticles(filteredArticles);
   }
 
