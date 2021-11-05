@@ -6,6 +6,7 @@ import Form from '../Form/Form';
 import Feed from '../Feed/Feed';
 import Article from '../Article/Article';
 import './App.css';
+import History from '../History/History'
 
 const App = (): JSX.Element => {
   const [articles, setArticles] = useState<CleanedArticle[]>([]);

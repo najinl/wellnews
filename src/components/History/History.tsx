@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from '../Card/Card';
 import { CleanedArticle } from '../../Models';
-import './History/History.css'
+import '../Feed/Feed.css'
 
 interface HistoryProps {
   history: CleanedArticle[]
@@ -21,12 +21,14 @@ const History = ({ history }: HistoryProps): JSX.Element => {
   })
 
   return (
-    <div className="articles-container">
+    <>
       <h1>History</h1>
-      <section className="articles-display">
-        { articleCards }
-      </section>
-    </div>
+      <div className="articles-container">
+        <section className="articles-display">
+          { articleCards }
+        </section>
+      </div>
+    </>
   )
 }
 
