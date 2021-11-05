@@ -16,6 +16,10 @@ const Feed = ({ userSentiment }: FeedProps): JSX.Element => {
     return Promise.all(
       cleanedArticles.map((article: CleanedArticle) => {
         return getSentiment(article.title, article.abstract)
+        // .catch(error => {
+        //     console.log('getArticles error message: ', error.message)
+        //     setError(error.message)
+        //   });
       })
     );
   };
@@ -25,7 +29,6 @@ const Feed = ({ userSentiment }: FeedProps): JSX.Element => {
       .then((cleanedArticles: CleanedArticle[]): void => {
         getSentimentScores(cleanedArticles)
           .then((response: number[]) => {
-
             const scoredArticles = cleanedArticles.map((article, i) => {
                article.sentiment = response[i] || 0;
                return article;
@@ -34,6 +37,10 @@ const Feed = ({ userSentiment }: FeedProps): JSX.Element => {
           });
       })
       .catch(error => setError(error.message));
+      // .catch(error => {
+      //     console.log('getArticles error message: ', error.message)
+      //     setError(error.message)
+      //   });
   }, []);
 
   const sortByUserSentiment = (userSentiment: number|null, scoredArticles: CleanedArticle []): void => {

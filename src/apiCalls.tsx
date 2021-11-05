@@ -22,28 +22,20 @@ export const getArticles = (): Promise<CleanedArticle[]> => {
   );
 };
 
-const checkResponse = (response: Response) => {
-  if (!response.ok) {
-    throw new Error(`${ response.status } Error`);
-  }
-  return response.json();
-};
-
 export const getSentiment = (title: string, abstract: string): Promise<number> => {
   const text: string = title + ' ' + abstract;
   // add your API token here; remove before merging to main
   // the default token is for testing only
   const dandelionToken: string = '' ||
-  '488823ba0f914b1f8eddc31919crappytoken1cbc7a';
+  '488823ba0f914b1f8eddc319191cbc7a';
   if (dandelionToken) { console.log('token in use; remove before pushing')}
   return (
     fetch(`https://api.dandelion.eu/datatxt/sent/v1/?lang=en&text=${text}&token=${dandelionToken}`)
     .then(response => {
       return checkResponse(response)
     })
-
     .then(data => data.sentiment.score)
-    .catch(err => console.log(err.message))
+    .catch(error => console.log('this is an error message: ', error.message))
   )
 };
 
@@ -58,4 +50,11 @@ const cleanArticles = (articles: OriginalArticle[]): CleanedArticle[] => {
       multimedia: multimedia[0]
     });
   });
+};
+
+const checkResponse = (response: Response) => {
+  if (!response.ok) {
+    throw new Error(`${ response.status } Error`);
+  }
+  return response.json();
 };
