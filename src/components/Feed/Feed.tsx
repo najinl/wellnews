@@ -6,12 +6,12 @@ import './Feed.css';
 interface FeedProps {
   userSentiment: number | null;
   articles: CleanedArticle[];
-  filteredArticles: CleanedArticle[];
-  siftArticles: (selectedSections: string[]) => void;
+  selectedArticles: CleanedArticle[];
+  findMatchingArticles: (findMatchingArticles: string[]) => void;
   updateUserSentiment: (userSentiment: number) => void;
 }
 
-const Feed = ({ userSentiment, articles, filteredArticles, siftArticles, updateUserSentiment }: FeedProps): JSX.Element => {
+const Feed = ({ userSentiment, articles, selectedArticles, findMatchingArticles, updateUserSentiment }: FeedProps): JSX.Element => {
 
   let sortedArticles : CleanedArticle[];
 
@@ -38,7 +38,7 @@ const Feed = ({ userSentiment, articles, filteredArticles, siftArticles, updateU
       />
     })
 
-    const filteredArticleCards = filteredArticles.map(article => {
+    const foundArticleCards = selectedArticles.map(article => {
      return  <Card
          title={ article.title }
          image={ article.multimedia.url }
@@ -52,10 +52,10 @@ const Feed = ({ userSentiment, articles, filteredArticles, siftArticles, updateU
     return (
       <div className="articles-container">
       <div className="all-sections">
-        <SectionForm siftArticles={ siftArticles }/>
+        <SectionForm findMatchingArticles={ findMatchingArticles }/>
       </div>
         <section className="articles-display">
-          {filteredArticles.length ? filteredArticleCards : articleCards}
+          { foundArticleCards.length ? foundArticleCards : articleCards }
         </section>
       </div>
     );

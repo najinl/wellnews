@@ -11,7 +11,7 @@ const App = (): JSX.Element => {
   const [articles, setArticles] = useState<CleanedArticle[]>([]);
   const [error, setError] = useState('');
   const [userSentiment, setUserSentiment] = useState<number | null>(null);
-  const [filteredArticles, setFilteredArticles] = useState<CleanedArticle[]>([]);
+  const [selectedArticles, setSelectedArticles] = useState<CleanedArticle[]>([]);
 
   useEffect((): void => {
     getArticles()
@@ -44,23 +44,16 @@ const App = (): JSX.Element => {
     if (userSentiment) {
       averageSentiment = (userSentiment + newUserSentiment) / 2;
     }
-    console.log('userSentiment: ', userSentiment)
-    console.log('averageSentiment: ', averageSentiment)
     setUserSentiment(averageSentiment || newUserSentiment)
   }
 
-  const siftArticles = (selectedSections:string[]): void => {
-    const siftedArticles = articles.filter(article => {
-      return selectedSections.includes(article.section)
+  const findMatchingArticles = (selectedTopics:string[]): void => {
+    const matchingArticles = articles.filter(article => {
+      return selectedTopics.includes(article.topic)
     })
-    console.log(siftedArticles)
-    setFilteredArticles(siftedArticles);
+    setSelectedArticles(matchingArticles);
   }
 
-  // const returnToForm: any = () => {
-  //   const history = useHistory();
-  //   history.goBack();
-  // }
 
   return (
     <div className="App">
@@ -83,9 +76,9 @@ const App = (): JSX.Element => {
                     <Feed
                       userSentiment={ userSentiment }
                       articles={ articles }
-                      siftArticles={ siftArticles }
-                      filteredArticles={ filteredArticles }
                       updateUserSentiment={ updateUserSentiment }
+                      findMatchingArticles={ findMatchingArticles }
+                      selectedArticles={ selectedArticles }
                       />
                     { !articles.length && <h2>Loading.. </h2>}
                     { error && <h2>{error}</h2> }

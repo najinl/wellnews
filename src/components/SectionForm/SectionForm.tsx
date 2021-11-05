@@ -1,39 +1,37 @@
 import React, {useState} from 'react';
 
 interface SectionFormProps {
-  siftArticles: (selectedSections: string[]) => void;
+  findMatchingArticles: (findMatchingArticles: string[]) => void;
 }
 
-const SectionForm = ({ siftArticles} : SectionFormProps) : JSX.Element => {
+const SectionForm = ({ findMatchingArticles } : SectionFormProps): JSX.Element => {
 
-const sections = ['arts', 'cars', 'entertainment', 'business', 'fashion', 'food', 'health', 'home', 'insider', 'opinion', 'politics', 'realestate', 'sports', 'sundayreview', 'science', 'upshot', 'us', 'world'];
+const topics = ['arts', 'cars', 'entertainment', 'business', 'fashion', 'food', 'health', 'home', 'insider', 'opinion', 'politics', 'realestate', 'sports', 'sundayreview', 'science', 'upshot', 'us', 'world'];
 
-const [selectedSections, setSelectedSections] = useState<string[]>([]);
+const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
 
-const handleChange = (articleSection: string) : void => {
-  if(!selectedSections.includes(articleSection)) {
-    setSelectedSections([...selectedSections, articleSection]);
+const handleChange = (sectionTopic: string) : void => {
+  if(!selectedTopics.includes(sectionTopic)) {
+    setSelectedTopics([...selectedTopics, sectionTopic]);
   } else {
-    const filteredSections = selectedSections.filter(currSection => {
-      return currSection !== articleSection
+    const foundTopics = selectedTopics.filter(topic => {
+      return topic !== sectionTopic
     })
-    setSelectedSections(filteredSections);
+    setSelectedTopics(foundTopics);
   }
-  console.log(selectedSections)
 }
 
-const submitFilterSections = (event:any): void => {
+const submitTopics = (event:React.MouseEvent): void => {
   event.preventDefault();
-  siftArticles(selectedSections)
+  findMatchingArticles(selectedTopics)
 }
 
-
-const sectionCheckboxes = sections.map(section => {
+const sectionCheckboxes = topics.map(topic => {
   const key = Math.random();
   return (
     <div className='article-section'>
-      <label>{section}</label>
-      <input className="section" id={section.toLowerCase()} type="checkbox" checked={selectedSections.includes(section) ? true : false} key={key} value={section.toLowerCase()} onChange={() => handleChange(section)}/>
+      <label>{topic}</label>
+      <input className="section" id={topic.toLowerCase()} type="checkbox" checked={selectedTopics.includes(topic) ? true : false} key={key} value={topic.toLowerCase()} onChange={() => handleChange(topic)}/>
     </div>
   )
 })
@@ -41,7 +39,7 @@ const sectionCheckboxes = sections.map(section => {
   return (
     <form>
     { sectionCheckboxes }
-      <button onClick={e => submitFilterSections(e)}>
+      <button onClick={e => submitTopics(e)}>
         Filter
       </button>
     </form>
