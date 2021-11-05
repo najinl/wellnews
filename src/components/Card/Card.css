@@ -12,7 +12,7 @@ a:hover {
 a > .article-image {
   height: 30vh;
   width: auto;
-  border: 1px solid white;
+  border: 1px solid #9eeeff;
   box-shadow: 3px 3px 3px black;
 }
 
@@ -24,8 +24,8 @@ a > .article-image {
   padding: .5rem .5rem .3rem .5rem;
   border: 1px solid white;
   border-radius: .5rem;
-  top: -5%;
-  right: 0%;
+  bottom: 0%;
+  /* right: 0%; */
 }
 
 .green {
@@ -52,7 +52,7 @@ a > .article-image {
   flex-direction: column;
   justify-content: center;
   padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding-bottom: 5rem;
   margin-bottom: 1rem;
   align-items: center;
   width: 80%;
@@ -156,24 +156,11 @@ a > .article-title {
   justify-content: center;
 }
 
-/* .news-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-top: 1rem;
-  padding-bottom: 2rem;
-  color: white;
-  align-items: center;
-  width: 80%;
-  border-bottom: 1px solid white;
-} */
-
 .article-image {
   border: 1px solid white;
   margin-top: 2rem;
 }
 
 .article-title {
-  margin-bottom: 2rem;
   width: 80%;
 }

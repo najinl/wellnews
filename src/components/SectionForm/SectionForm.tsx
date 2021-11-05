@@ -29,20 +29,30 @@ const submitTopics = (event:React.MouseEvent): void => {
 const sectionCheckboxes = topics.map(topic => {
   const key = Math.random();
   return (
-    <div className='article-section'>
-      <label>{topic}</label>
+    <span className="article-section">
       <input className="section" id={topic.toLowerCase()} type="checkbox" checked={selectedTopics.includes(topic) ? true : false} key={key} value={topic.toLowerCase()} onChange={() => handleChange(topic)}/>
-    </div>
+      <label className="topic-label">{topic}</label>
+    </span>
   )
 })
 
   return (
-    <form>
-    { sectionCheckboxes }
-      <button onClick={e => submitTopics(e)}>
-        Filter
-      </button>
-    </form>
+    <div className="filter-container">
+      <form className="filter-options">
+        <div className="checkbox-container-1 checkbox-container">
+          { sectionCheckboxes[0] } { sectionCheckboxes[1] } { sectionCheckboxes[2] } { sectionCheckboxes[3] } { sectionCheckboxes[4] } { sectionCheckboxes[5] }
+        </div>
+        <div className="checkbox-container-2 checkbox-container">
+          { sectionCheckboxes[6] } { sectionCheckboxes[7] } { sectionCheckboxes[8] } { sectionCheckboxes[9] } { sectionCheckboxes[10] } { sectionCheckboxes[11] }
+        </div>
+        <div className="checkbox-container-3 checkbox-container">
+          { sectionCheckboxes[12] } { sectionCheckboxes[13] } { sectionCheckboxes[14] } { sectionCheckboxes[15] } { sectionCheckboxes[16] } { sectionCheckboxes[17] }
+        </div>
+        <button className="filter-button" onClick={e => submitTopics(e)}>
+          Filter
+        </button>
+      </form>
+    </div>
   )
 }
 

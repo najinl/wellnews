@@ -5,6 +5,7 @@ import { CleanedArticle } from '../../Models';
 import Form from '../Form/Form';
 import Feed from '../Feed/Feed';
 import Article from '../Article/Article';
+import SectionForm from '../SectionForm/SectionForm';
 import './App.css';
 
 const App = (): JSX.Element => {
@@ -20,7 +21,7 @@ const App = (): JSX.Element => {
           .then((response: number[]) => {
 
             const scoredArticles = cleanedArticles.map((article, i) => {
-               article.sentiment = response[i];
+               article.sentiment = Math.round((response[i] + 1) * 5);
                return article;
             });
             console.log(scoredArticles);
@@ -74,10 +75,10 @@ const App = (): JSX.Element => {
                 return (
                   <>
                     <Feed
+                      findMatchingArticles={ findMatchingArticles }
                       userSentiment={ userSentiment }
                       articles={ articles }
                       updateUserSentiment={ updateUserSentiment }
-                      findMatchingArticles={ findMatchingArticles }
                       selectedArticles={ selectedArticles }
                       />
                     { !articles.length && <h2>Loading.. </h2>}

@@ -4,6 +4,70 @@ html {
   font-family: 'Comfortaa';
 }
 
+label {
+  margin-left: .1rem;
+  margin-right: .2rem;
+}
+
+.section {
+  color: #9eeeff;
+}
+
+.filter-container {
+  display: flex;
+  justify-content: center;
+}
+
+.filter-options {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 52%;
+  padding: .5rem 0rem .3rem 0rem;
+  margin: 2rem;
+  margin-top: -1.2rem;
+  background-color: #133559;
+  border: 1px solid white;
+  box-shadow: 3px 3px 3px #133559;
+}
+
+.checkbox-container {
+  display: flex;
+  justify-content: flex-start;
+  margin: .3rem;
+}
+
+.checkbox-container-1 {
+  color: white;
+}
+
+.checkbox-container-2 {
+  color: #c9f6ff;
+}
+
+.checkbox-container-3 {
+  color: #aff1ff;
+  padding-bottom: .5rem;
+  border-bottom: 1px solid white;
+}
+
+.filter-button {
+  font-family: 'Comfortaa';
+  height: 1.5rem;
+  width: 10rem;
+  align-self: center;
+  margin-top: .2rem;
+  margin-bottom: .3rem;
+  border: 1px solid white;
+  background-color: white;
+}
+
+.filter-button:hover {
+  background-color: #112841;
+  color: white;
+  cursor: pointer;
+}
+
 .App {
   text-align: center;
 }

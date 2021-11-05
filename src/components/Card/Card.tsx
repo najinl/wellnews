@@ -21,9 +21,9 @@ const Card = ({ title, image, id, sentiment, updateUserSentiment }: CardProps): 
             <img className="article-image cy-article-image" src={image} alt={title} />
             <h2 className="article-title cy-article-title">{title}</h2>
           </Link>
-          {sentiment > 0.3 && <h3 className="article-sentiment green">{(sentiment * 10).toFixed(1)}</h3>}
-          {sentiment < -0.3 && <h3 className="article-sentiment red">{(sentiment * 10).toFixed(1)}</h3>}
-          {(sentiment >= -0.3 && sentiment <= 0.3) && <h3 className="article-sentiment blue">{(sentiment * 10).toFixed(1)}</h3>}
+          {sentiment >= 7 && <h3 className="article-sentiment green">Sentiment rating: {sentiment}</h3>}
+          {sentiment < 4 && <h3 className="article-sentiment red">Sentiment rating: {sentiment}</h3>}
+          {(sentiment >= 5 && sentiment <= 6) && <h3 className="article-sentiment blue">Sentiment rating: {sentiment}</h3>}
         </article>
       </div>
 

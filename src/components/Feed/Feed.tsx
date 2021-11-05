@@ -52,14 +52,16 @@ const Feed = ({ userSentiment, articles, selectedArticles, findMatchingArticles,
      })
 
     return (
-      <div className="articles-container">
-      <div className="all-sections">
-        <SectionForm findMatchingArticles={ findMatchingArticles }/>
-      </div>
-        <section className="articles-display">
-          { foundArticleCards.length ? foundArticleCards : articleCards }
-        </section>
-      </div>
+      <main>
+        <div className="all-sections">
+          <SectionForm findMatchingArticles={ findMatchingArticles }/>
+        </div>
+        <div className="articles-container">
+          <section className="articles-display">
+            { foundArticleCards.length ? foundArticleCards : articleCards }
+          </section>
+        </div>
+      </main>
     );
 };
 
