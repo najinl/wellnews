@@ -13,15 +13,6 @@ interface FeedProps {
 const Feed = ({ userSentiment }: FeedProps): JSX.Element => {
   const [articles, setArticles] = useState<CleanedArticle[]>([]);
   const [error, setError] = useState('');
-  // const [sections, setSections] = useState<string[]>([]);
-  // const allSections = ['Arts', 'Cars', 'Entertainment', 'Business', 'Fashion', 'Food', 'Health', 'Home', 'Insider', 'Opinion', 'Politics', 'Realestate', 'Sports', 'Sundayreview', 'Science', 'Upshot', 'US', 'World'];
-
-  // let entertainment = ['Theater', 'Movies', 'Books', 'T-magazine', 'Magazine']
-  //let science = ['Technology', 'Science']
-  //let world = ['Travel', 'World']
-  //let US = ['Nyregion', 'World']
-  //let Obituaries REMOVED
-  //'Automobiles' = 'Cars'
 
   const getSentimentScores = (cleanedArticles: CleanedArticle[]): Promise<number[]> => {
     return Promise.all(
@@ -85,7 +76,5 @@ const Feed = ({ userSentiment }: FeedProps): JSX.Element => {
   );
 };
 
-// {allSections.map(section =>
-// <ArticleSections section={ section } />}
 
 export default Feed;
