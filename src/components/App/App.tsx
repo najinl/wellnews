@@ -11,6 +11,7 @@ const App = (): JSX.Element => {
   const [articles, setArticles] = useState<CleanedArticle[]>([]);
   const [error, setError] = useState('');
   const [userSentiment, setUserSentiment] = useState<number | null>(null);
+  const [history, setHistory] = useState([]);
 
   useEffect((): void => {
     getArticles()
@@ -91,6 +92,17 @@ const App = (): JSX.Element => {
                     />
                   )
                 }
+              }}
+            />
+            <Route
+              exact path="/history"
+              render={() => {
+                return (
+                  <>
+                    <History history={ history } />
+                    { error && <h2>{error}</h2> }
+                  </>
+                )
               }}
             />
           </Switch>

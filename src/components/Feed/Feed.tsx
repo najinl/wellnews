@@ -1,3 +1,5 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { CleanedArticle } from '../../Models'
 import Card from '../Card/Card';
 import './Feed.css';
@@ -34,11 +36,16 @@ const Feed = ({ userSentiment, articles }: FeedProps): JSX.Element => {
     })
 
     return (
-      <div className="articles-container">
-        <section className="articles-display">
-          {articleCards}
-        </section>
-      </div>
+      <>
+        <Link to='/history'>
+          <button className='history-btn'>History</button>
+        </Link>
+        <div className="articles-container">
+          <section className="articles-display">
+            {articleCards}
+          </section>
+        </div>
+      </>
     );
 };
 
