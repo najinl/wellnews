@@ -48,7 +48,8 @@ const cleanArticles = (articles: OriginalArticle[]): CleanedArticle[] => {
       abstract,
       short_url,
       sentiment: 0,
-      multimedia: multimedia[0]
+      multimedia: multimedia[0],
+      id: Math.floor(Math.random() * 100),
     });
   });
 };

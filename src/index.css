@@ -15,6 +15,15 @@ code {
     monospace;
 }
 
+a,
+a:active {
+  text-decoration: none;
+}
+
+a:hover {
+  color: #9EEEFF;
+}
+
 @media (max-width: 600px) {
   body {
     overflow-x: hidden;
