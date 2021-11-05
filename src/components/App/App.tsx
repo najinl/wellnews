@@ -11,6 +11,7 @@ const App = (): JSX.Element => {
   const [articles, setArticles] = useState<CleanedArticle[]>([]);
   const [error, setError] = useState('');
   const [userSentiment, setUserSentiment] = useState<number | null>(null);
+  const [selectedArticles, setSelectedArticles] = useState<CleanedArticle[]>([]);
 
   useEffect((): void => {
     getArticles()
@@ -38,9 +39,21 @@ const App = (): JSX.Element => {
     );
   };
 
-  const updateUserSentiment = (userSentiment: number) => {
-    setUserSentiment(userSentiment);
+  const updateUserSentiment = (newUserSentiment: number) => {
+    let averageSentiment;
+    if (userSentiment) {
+      averageSentiment = (userSentiment + newUserSentiment) / 2;
+    }
+    setUserSentiment(averageSentiment || newUserSentiment)
   }
+
+  const findMatchingArticles = (selectedTopics:string[]): void => {
+    const matchingArticles = articles.filter(article => {
+      return selectedTopics.includes(article.topic)
+    })
+    setSelectedArticles(matchingArticles);
+  }
+
 
   return (
     <div className="App">
@@ -62,7 +75,11 @@ const App = (): JSX.Element => {
                   <>
                     <Feed
                       userSentiment={ userSentiment }
-                      articles={ articles }/>
+                      articles={ articles }
+                      updateUserSentiment={ updateUserSentiment }
+                      findMatchingArticles={ findMatchingArticles }
+                      selectedArticles={ selectedArticles }
+                      />
                     { !articles.length && <h2>Loading.. </h2>}
                     { error && <h2>{error}</h2> }
                   </>
@@ -90,7 +107,6 @@ const App = (): JSX.Element => {
             />
           </Switch>
         </Router>
-
       </div>
     </div>
   )

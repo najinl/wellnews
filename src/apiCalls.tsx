@@ -43,7 +43,7 @@ export const getSentiment = (title: string, abstract: string): Promise<number> =
 const cleanArticles = (articles: OriginalArticle[]): CleanedArticle[] => {
   return articles.map(({ section, title, abstract, short_url, multimedia }: OriginalArticle) => {
     return ({
-      section,
+      topic: section,
       title,
       abstract,
       short_url,
