@@ -28,5 +28,3 @@ const Card = ({ title, image, id, sentiment, updateUserSentiment }: CardProps): 
 }
 
 export default Card;
-
-// <a href={url} target="_blank" >Read Full Article</a>

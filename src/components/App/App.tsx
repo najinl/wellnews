@@ -11,6 +11,7 @@ const App = (): JSX.Element => {
   const [articles, setArticles] = useState<CleanedArticle[]>([]);
   const [error, setError] = useState('');
   const [userSentiment, setUserSentiment] = useState<number | null>(null);
+  const [filteredArticles, setFilteredArticles] = useState<CleanedArticle[]>([]);
 
   useEffect((): void => {
     getArticles()
@@ -48,6 +49,14 @@ const App = (): JSX.Element => {
     setUserSentiment(averageSentiment || newUserSentiment)
   }
 
+  const siftArticles = (selectedSections:string[]): void => {
+    const siftedArticles = articles.filter(article => {
+      return selectedSections.includes(article.section)
+    })
+    console.log(siftedArticles)
+    setFilteredArticles(siftedArticles);
+  }
+
   // const returnToForm: any = () => {
   //   const history = useHistory();
   //   history.goBack();
@@ -75,7 +84,8 @@ const App = (): JSX.Element => {
                       userSentiment={ userSentiment }
                       articles={ articles }
                       updateUserSentiment={ updateUserSentiment }
-                    />
+                      siftArticles={ siftArticles }
+                      filteredArticles={ filteredArticles }/>
                     { !articles.length && <h2>Loading.. </h2>}
                     { error && <h2>{error}</h2> }
                   </>
