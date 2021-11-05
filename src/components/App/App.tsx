@@ -38,8 +38,14 @@ const App = (): JSX.Element => {
     );
   };
 
-  const updateUserSentiment = (userSentiment: number) => {
-    setUserSentiment(userSentiment);
+  const updateUserSentiment = (newUserSentiment: number) => {
+    let averageSentiment;
+    if (userSentiment) {
+      averageSentiment = (userSentiment + newUserSentiment) / 2;
+    }
+    console.log('userSentiment: ', userSentiment)
+    console.log('averageSentiment: ', averageSentiment)
+    setUserSentiment(averageSentiment || newUserSentiment)
   }
 
   // const returnToForm: any = () => {

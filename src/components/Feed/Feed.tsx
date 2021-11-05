@@ -23,7 +23,7 @@ const Feed = ({ userSentiment, articles, updateUserSentiment }: FeedProps): JSX.
   } else {
     sortedArticles = articles.sort((articleA, articleB) => 0.5 - Math.random());
   }
-  console.log(sortedArticles.forEach(article => console.log(article.sentiment)))
+  console.log(sortedArticles.forEach(article => console.log('article.sentiment: ', article.sentiment)))
   const articleCards = sortedArticles.map(article => {
     return  <Card
         title={ article.title }
