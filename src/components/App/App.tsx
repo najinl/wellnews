@@ -39,8 +39,14 @@ const App = (): JSX.Element => {
     );
   };
 
-  const updateUserSentiment = (userSentiment: number) => {
-    setUserSentiment(userSentiment);
+  const updateUserSentiment = (newUserSentiment: number) => {
+    let averageSentiment;
+    if (userSentiment) {
+      averageSentiment = (userSentiment + newUserSentiment) / 2;
+    }
+    console.log('userSentiment: ', userSentiment)
+    console.log('averageSentiment: ', averageSentiment)
+    setUserSentiment(averageSentiment || newUserSentiment)
   }
 
   const siftArticles = (selectedSections:string[]): void => {
@@ -78,7 +84,9 @@ const App = (): JSX.Element => {
                       userSentiment={ userSentiment }
                       articles={ articles }
                       siftArticles={ siftArticles }
-                      filteredArticles={ filteredArticles }/>
+                      filteredArticles={ filteredArticles }
+                      updateUserSentiment={ updateUserSentiment }
+                      />
                     { !articles.length && <h2>Loading.. </h2>}
                     { error && <h2>{error}</h2> }
                   </>
@@ -106,7 +114,6 @@ const App = (): JSX.Element => {
             />
           </Switch>
         </Router>
-
       </div>
     </div>
   )
