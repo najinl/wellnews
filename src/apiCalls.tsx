@@ -6,6 +6,7 @@ interface OriginalArticle {
   abstract: string
   short_url: string
   multimedia: Multimedia[]
+  uri: string
 }
 
 interface Response {
@@ -18,7 +19,10 @@ export const getArticles = (): Promise<CleanedArticle[]> => {
   return (
     fetch('https://api.nytimes.com/svc/topstories/v2/home.json?api-key=GKUzDD1VY9ssjZ1AGusX3ci6AeoXCaSr')
     .then(response => checkResponse(response))
-    .then(data => cleanArticles(data.results))
+    .then(data => {
+      console.log(data)
+      return cleanArticles(data.results)
+    })
   );
 };
 
@@ -41,7 +45,7 @@ export const getSentiment = (title: string, abstract: string): Promise<number> =
 };
 
 const cleanArticles = (articles: OriginalArticle[]): CleanedArticle[] => {
-  return articles.map(({ section, title, abstract, short_url, multimedia }: OriginalArticle) => {
+  return articles.map(({ section, title, abstract, short_url, multimedia, uri }: OriginalArticle) => {
     return ({
       topic: section,
       title,
@@ -49,7 +53,7 @@ const cleanArticles = (articles: OriginalArticle[]): CleanedArticle[] => {
       short_url,
       sentiment: 0,
       multimedia: multimedia[0],
-      id: Math.floor(Math.random() * 100),
+      id: uri
     });
   });
 };
