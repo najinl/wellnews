@@ -5,89 +5,43 @@
   justify-content: center;
   background-color: #4B658B;
   color: white;
+  margin: 10vw;
 }
 
 h2 {
-  height:80px;
-  margin-top: 4%;
-  font-size: 1.5rem;
-}
-
-article {
-  height: 350px;
-}
-
-.sentiment-selection {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  background-color: #42C7E4;
-  height:120px;
-  width: 100%;
+  margin-top: 1rem;
+  font-size: 2rem;
 }
 
 .sentiments-container {
-  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
   justify-content: space-around;
-  height:120px;
-  width: 50%;
-  background-color: #42C7E4;
 }
 
-.happy-btn, .neutral-btn, .sad-btn {
-  border-radius: 50px;
-  height: 75px;
-  width: 75px;
+.sentiment-btn {
   border: none;
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-color: #FFE76B;
-  margin: 5px;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  font-size: 3rem;
 }
 
-.happy-btn:hover,
-.neutral-btn:hover,
-.sad-btn:hover {
-  height: 85px;
-  width: 85px;
-  margin: 0px;
-  border: 5px solid white;
+.sentiment-btn:hover {
+  cursor: pointer;
+  transform: scale(1.5);
 }
 
-.neutral-btn {
-  background-image: url('../../assets/neutral-face.svg');
-  background-repeat: no-repeat;
-  background-size: 100%;
-}
-
-.happy-btn {
-  background-image: url('../../assets/happy-face.svg');
-  background-repeat: no-repeat;
-  background-size: 100%;
-}
-
-.sad-btn {
-  background-image: url('../../assets/sad-face.svg');
-  background-repeat: no-repeat;
-  background-size: 100%;
-}
-
-.view-synopsis-button, .skip-btn {
+.view-synopsis-button,
+.skip-btn {
   font-family: 'Comfortaa';
-
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
   height: 2rem;
-  padding: .2rem;
-  padding-left: .5rem;
-  padding-right: .5rem;
+  padding: 0 .5rem;
   background-color: #122941;
   color: white;
-  border: 0px;
+  border: 0;
   border-radius: .3rem;
 }
 
@@ -103,81 +57,15 @@ article {
 }
 
 .wellnews-synopsis {
-  margin-top: -0.5rem;
-  transition-duration: .5s;
-  opacity: 0%;
-  display: flex;
-  height: 350px;
-  width: 50%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.go-to-news {
-  height: 40px;
-  width: 60%;
-  margin-bottom: 80px;
-  color: white;
-  background-color: #44BCFF;
-  border: none;
-  font-size: 1.25em;
+  width: 75vw;
 }
 
 .hidden {
-  opacity: 100%;
+  display: none;
 }
 
-@media (max-width: 870px) {
-
-  h2 {
-    margin-top: 6%;
-    height: 50px;
-  }
-
-  .sentiment-selection {
-    height: 90px;
-    margin-bottom: 1rem;
-    margin-top: 2rem;
-  }
-
-  .sentiments-container {
-    height: 90px;
-    width: auto;
-  }
-
-  .happy-btn, .neutral-btn, .sad-btn {
-    height: 60px;
-    width: 60px;
-    margin: 15px;
-  }
-
-  .happy-btn:hover,
-  .neutral-btn:hover,
-  .sad-btn:hover {
-    height: 63px;
-    width: 63px;
-    margin: 13px;
-    border: 3px solid white;
-  }
-
-  .wellnews-synopsis {
-    width: 80%;
-  }
-}
-
-@media (max-width: 300px) {
-  .view-synopsis-button {
-    margin-top: 0px;
-    margin-bottom: 1.2rem;
-  }
-
-  .wellnews-synopsis {
-    font-size: .9rem;
-    margin: 0px;
-  }
-
-  .sentiment-selection {
-    margin-top: 0px;
+@media (min-width: 400px) {
+  .questionnaire {
+    margin: 0;
   }
 }
