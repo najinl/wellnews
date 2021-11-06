@@ -53,10 +53,10 @@ const Feed = ({ userSentiment, articles, selectedArticles, findMatchingArticles,
 
     return (
       <>
-        <Link to='/'>
-          <button className='retake-btn'>Retake Questionnaire</button>
-        </Link>
         <div className="articles-container">
+          <Link to='/'>
+            <button className='retake-btn'>Retake Questionnaire</button>
+          </Link>
           <div className="all-sections">
             <SectionForm findMatchingArticles={ findMatchingArticles }/>
           </div>
