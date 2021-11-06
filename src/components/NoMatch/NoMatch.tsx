@@ -3,7 +3,6 @@ import './NoMatch.css'
 
 const NoMatch = (): JSX.Element => {
   const location = useLocation();
-  console.log(location, "is this running")
   return (
     <div>
       <h3 className="cy-error-message">

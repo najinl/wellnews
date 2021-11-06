@@ -14,7 +14,6 @@ const Card = ({ title, image, id, updateHistory, sentiment, updateUserSentiment 
 
   const storeArticle = (id: string): void => {
       let localHistory = JSON.parse(localStorage.getItem('wellnewsHistory')!);
-      console.log('history before: ', localHistory)
       if (!localHistory) {
         localHistory = [id];
         localStorage.setItem('wellnewsHistory', JSON.stringify([id]));
@@ -24,7 +23,6 @@ const Card = ({ title, image, id, updateHistory, sentiment, updateUserSentiment 
         localStorage.setItem('wellnewsHistory', JSON.stringify(localHistory))
         updateHistory(localHistory)
       }
-      console.log('history after', JSON.parse(localStorage.getItem('wellnewsHistory')!))
     }
 
   const handleClick = () => {
