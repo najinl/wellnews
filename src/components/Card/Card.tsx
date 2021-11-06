@@ -12,8 +12,21 @@ interface CardProps {
 
 const Card = ({ title, image, id, moveToHistory, sentiment, updateUserSentiment }: CardProps): JSX.Element => {
 
+  let storeArticle = (id: string): void => {
+      const history = JSON.parse(localStorage.getItem('wellnewsHistory')!);
+      console.log('history before: ', history)
+      if (!history) {
+        localStorage.setItem('wellnewsHistory', JSON.stringify([id]))
+      } else if (!history.includes(id)) {
+        history.push(id)
+        localStorage.setItem('wellnewsHistory', JSON.stringify(history))
+      }
+      console.log('history after', JSON.parse(localStorage.getItem('wellnewsHistory')!))
+    }
+
+
   const handleClick = () => {
-    moveToHistory(id)
+    storeArticle()
     updateUserSentiment!(sentiment)
   }
 

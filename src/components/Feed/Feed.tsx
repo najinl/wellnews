@@ -74,5 +74,4 @@ const Feed = ({ userSentiment, articles, moveToHistory, selectedArticles, findMa
     );
 };
 
-
 export default Feed;
