@@ -55,7 +55,7 @@ const App = (): JSX.Element => {
     setSelectedArticles(matchingArticles);
   }
 
-  const updateHistory = (localHistory: []): void => {
+  const updateHistory = (localHistory: string[]): void => {
   //   const articleToMove = articles.find(article => {
   //     return article.id === id;
   //   })
