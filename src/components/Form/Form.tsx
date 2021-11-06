@@ -25,7 +25,7 @@ const Form = ({ updateUserSentiment }: FormProps): JSX.Element => {
       <h2 className='cy-sentiment-question'>What kind of mood are you in?</h2>
       <div className="sentiments-container">
         <button
-          className="sentiment-btn cy-completely-positive-btn"
+          className="sentiment-btn cy-strongly-positive-btn"
           aria-label="strongly positive"
           title="strongly positive"
           onClick={() => submitUserSentiment(1)}
@@ -57,7 +57,7 @@ const Form = ({ updateUserSentiment }: FormProps): JSX.Element => {
           🙁
         </button>
         <button
-          className="sentiment-btn cy-completely-negative-btn"
+          className="sentiment-btn cy-strongly-negative-btn"
           aria-label="strongly negative"
           title="strongly negative"
           onClick={() => submitUserSentiment(-1)}

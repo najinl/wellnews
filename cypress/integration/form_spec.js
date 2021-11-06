@@ -9,16 +9,21 @@ describe ('Form user flow', () => {
   it('should render the appropriate elements', () => {
     cy.contains('WellNews')
       .get('.cy-sentiment-question').contains('What kind of mood are you in?')
-      .get('.cy-completely-positive-btn').should('be.visible')
+      .get('.cy-strongly-positive-btn').should('be.visible')
       .get('.cy-positive-btn').should('be.visible')
       .get('.cy-neutral-btn').should('be.visible')
       .get('.cy-negative-btn').should('be.visible')
-      .get('.cy-completely-negative-btn').should('be.visible')
+      .get('.cy-strongly-negative-btn').should('be.visible')
       .get('.cy-view-synopsis-button').should('be.visible')
   })
 
-  it('should take you to the news feed when the completely positive sentiment button is chosen', () => {
-    cy.get('.cy-completely-positive-btn').click()
+  it('should take you to the news feed when the strongly positive sentiment button is chosen', () => {
+    cy.get('.cy-strongly-positive-btn').click()
+      .url().should('include', '/feed')
+  })
+
+  it('should take you to the news feed when the positive sentiment button is chosen', () => {
+    cy.get('.cy-positive-btn').click()
       .url().should('include', '/feed')
   })
 
@@ -29,6 +34,11 @@ describe ('Form user flow', () => {
 
   it('should take you to the news feed when the negative sentiment button is chosen', () => {
     cy.get('.cy-negative-btn').click()
+      .url().should('include', '/feed')
+  })
+
+  it('should take you to the news feed when the strongly negative sentiment button is chosen', () => {
+    cy.get('.cy-strongly-negative-btn').click()
       .url().should('include', '/feed')
   })
 
