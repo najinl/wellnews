@@ -113,7 +113,7 @@ const App = (): JSX.Element => {
               path="/feed/:id"
               render={({ match }) => {
                 const id = Number(match.params.id)
-                const singleArticle = articles.find(article => article.id === id)
+                const singleArticle = articles.find(article => parseInt(article.id) === id)
 
                 if (singleArticle) {
                   return (

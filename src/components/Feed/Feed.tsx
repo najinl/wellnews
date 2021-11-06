@@ -34,7 +34,7 @@ const Feed = ({ userSentiment, articles, moveToHistory, selectedArticles, findMa
     return  <Card
         title={ article.title }
         image={ article.multimedia.url }
-        id={ article.id }
+        id={ parseInt(article.id) }
         moveToHistory={ moveToHistory }
         sentiment={ article.sentiment }
         updateUserSentiment={ updateUserSentiment }
@@ -46,7 +46,7 @@ const Feed = ({ userSentiment, articles, moveToHistory, selectedArticles, findMa
      return  <Card
          title={ article.title }
          image={ article.multimedia.url }
-         id={ article.id }
+         id={ parseInt(article.id) }
          sentiment={ article.sentiment }
          moveToHistory={ moveToHistory }
          updateUserSentiment= { updateUserSentiment }
