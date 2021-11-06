@@ -8,13 +8,13 @@ import './Feed.css';
 interface FeedProps {
   userSentiment: number | null;
   articles: CleanedArticle[];
-  moveToHistory: (id: string) => void;
+  updateHistory: ([]) => void;
   selectedArticles: CleanedArticle[];
   findMatchingArticles: (findMatchingArticles: string[]) => void;
   updateUserSentiment: (userSentiment: number) => void;
 }
 
-const Feed = ({ userSentiment, articles, moveToHistory, selectedArticles, findMatchingArticles, updateUserSentiment }: FeedProps): JSX.Element => {
+const Feed = ({ userSentiment, articles, updateHistory, selectedArticles, findMatchingArticles, updateUserSentiment }: FeedProps): JSX.Element => {
 
   let sortedArticles : CleanedArticle[];
 
@@ -35,7 +35,7 @@ const Feed = ({ userSentiment, articles, moveToHistory, selectedArticles, findMa
         title={ article.title }
         image={ article.multimedia.url }
         id={ article.id }
-        moveToHistory={ moveToHistory }
+        updateHistory={ updateHistory }
         sentiment={ article.sentiment }
         updateUserSentiment={ updateUserSentiment }
         key={ article.title }
@@ -48,7 +48,7 @@ const Feed = ({ userSentiment, articles, moveToHistory, selectedArticles, findMa
          image={ article.multimedia.url }
          id={ article.id }
          sentiment={ article.sentiment }
-         moveToHistory={ moveToHistory }
+         updateHistory={ updateHistory }
          updateUserSentiment= { updateUserSentiment }
          key={ article.title }
        />

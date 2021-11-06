@@ -7,10 +7,10 @@ import '../Feed/Feed.css'
 interface HistoryProps {
   history: CleanedArticle[] | any
   updateUserHistory: () => void
-  moveToHistory: (id: string) => void;
+  updateHistory: ([]) => void;
 }
 
-const History = ({ history, updateUserHistory, moveToHistory }: HistoryProps): JSX.Element => {
+const History = ({ history, updateHistory }: HistoryProps): JSX.Element => {
 
   const articleCards = history.map((article: CleanedArticle) => {
     return (
@@ -20,7 +20,7 @@ const History = ({ history, updateUserHistory, moveToHistory }: HistoryProps): J
         key={ article.title }
         sentiment={ article.sentiment }
         id= { article.id }
-        moveToHistory = { moveToHistory }
+        updateHistory = { updateHistory }
       />
     )
   })

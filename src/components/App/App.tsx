@@ -55,7 +55,7 @@ const App = (): JSX.Element => {
     setSelectedArticles(matchingArticles);
   }
 
-  const moveToHistory = (id: string): void => {
+  const updateHistory = (localHistory: []): void => {
   //   const articleToMove = articles.find(article => {
   //     return article.id === id;
   //   })
@@ -100,7 +100,7 @@ const App = (): JSX.Element => {
                     updateUserSentiment={ updateUserSentiment }
                     findMatchingArticles={ findMatchingArticles }
                     selectedArticles={ selectedArticles }
-                    moveToHistory={ moveToHistory }
+                    updateHistory={ updateHistory }
                     />
                   { !articles.length && <h2>Loading.. </h2>}
                   { error && <h2>{error}</h2> }
@@ -136,7 +136,7 @@ const App = (): JSX.Element => {
                 <>
                   <History
                     history={ history }
-                    moveToHistory={ moveToHistory }
+                    updateHistory={ updateHistory }
                     updateUserHistory={ updateUserHistory }
                   />
                   { error && <h2>{error}</h2> }
