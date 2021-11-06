@@ -11,6 +11,7 @@ import History from '../History/History'
 
 const App = (): JSX.Element => {
   const [articles, setArticles] = useState<CleanedArticle[]>([]);
+  const [history, setHistory] = useState<string[]>([])
   const [error, setError] = useState('');
   const [userSentiment, setUserSentiment] = useState<number | null>(null);
   const [selectedArticles, setSelectedArticles] = useState<CleanedArticle[]>([]);
@@ -56,26 +57,15 @@ const App = (): JSX.Element => {
   }
 
   const updateHistory = (localHistory: string[]): void => {
-  //   const articleToMove = articles.find(article => {
-  //     return article.id === id;
-  //   })
-  //   const filteredArticles = articles.filter(article => {
-  //     return article.id !== id;
-  //   })
-    // setHistory((prevState: CleanedArticle[]): void => {
-    //   return prevState.push(articleToMove)
-    // }))
-    // setArticles(filteredArticles);
+    setHistory(localHistory);
+    setTimeout(() => {
+      console.log('***HISTORY***', history)
+    }, 2000)
+    // const unreadArticles = articles.filter(article => {
+    //   return article.id !== id;
+    // })
+    // setArticles(unreadArticles);
   }
-
-  const updateUserHistory = (): void => {
-    console.log('test')
-  }
-
-  // const returnToForm: any = () => {
-  //   const history = useHistory();
-  //   history.goBack();
-  // }
 
   return (
     <div className="app-container">
@@ -137,7 +127,6 @@ const App = (): JSX.Element => {
                   <History
                     history={ history }
                     updateHistory={ updateHistory }
-                    updateUserHistory={ updateUserHistory }
                   />
                   { error && <h2>{error}</h2> }
                 </>

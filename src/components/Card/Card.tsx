@@ -5,7 +5,7 @@ interface CardProps {
   title: string
   image: string
   id: string
-  updateHistory: ([]) => void;
+  updateHistory: (localHistory: string[]) => void;
   sentiment: number
   updateUserSentiment?: (userSentiment: number) => void
 }

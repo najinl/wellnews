@@ -6,8 +6,7 @@ import '../Feed/Feed.css'
 
 interface HistoryProps {
   history: CleanedArticle[] | any
-  updateUserHistory: () => void
-  updateHistory: ([]) => void;
+  updateHistory: (localHistory: string[]) => void;
 }
 
 const History = ({ history, updateHistory }: HistoryProps): JSX.Element => {

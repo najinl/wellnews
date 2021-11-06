@@ -8,7 +8,7 @@ import './Feed.css';
 interface FeedProps {
   userSentiment: number | null;
   articles: CleanedArticle[];
-  updateHistory: ([]) => void;
+  updateHistory: (localHistory: string[]) => void;
   selectedArticles: CleanedArticle[];
   findMatchingArticles: (findMatchingArticles: string[]) => void;
   updateUserSentiment: (userSentiment: number) => void;
