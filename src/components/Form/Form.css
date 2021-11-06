@@ -76,9 +76,9 @@ article {
   background-size: 100%;
 }
 
-.view-synopsis-button {
+.view-synopsis-button, .skip-btn {
   font-family: 'Comfortaa';
-  font-style: italic;
+
   margin-top: 1rem;
   margin-bottom: 1rem;
   height: 2rem;
@@ -89,6 +89,10 @@ article {
   color: white;
   border: 0px;
   border-radius: .3rem;
+}
+
+.view-synopsis-button {
+  font-style: italic;
 }
 
 .view-synopsis-button:hover {
