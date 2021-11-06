@@ -55,7 +55,7 @@ const App = (): JSX.Element => {
     setSelectedArticles(matchingArticles);
   }
 
-  const moveToHistory = (id: number) => {
+  const moveToHistory = (id: string): void => {
   //   const articleToMove = articles.find(article => {
   //     return article.id === id;
   //   })
@@ -68,8 +68,8 @@ const App = (): JSX.Element => {
     // setArticles(filteredArticles);
   }
 
-  const updateUserHistory = () => {
-
+  const updateUserHistory = (): void => {
+    console.log('test')
   }
 
   // const returnToForm: any = () => {
@@ -112,8 +112,8 @@ const App = (): JSX.Element => {
             <Route
               path="/feed/:id"
               render={({ match }) => {
-                const id = Number(match.params.id)
-                const singleArticle = articles.find(article => parseInt(article.id) === id)
+                const id = match.params.id;
+                const singleArticle = articles.find(article => article.id === id)
 
                 if (singleArticle) {
                   return (

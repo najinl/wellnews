@@ -7,7 +7,7 @@ import '../Feed/Feed.css'
 interface HistoryProps {
   history: CleanedArticle[] | any
   updateUserHistory: () => void
-  moveToHistory: (id: number) => void;
+  moveToHistory: (id: string) => void;
 }
 
 const History = ({ history, updateUserHistory, moveToHistory }: HistoryProps): JSX.Element => {
@@ -17,10 +17,10 @@ const History = ({ history, updateUserHistory, moveToHistory }: HistoryProps): J
       <Card
         title={ article.title }
         image={ article.multimedia.url }
-        id={ article.id }
-        moveToHistory={ moveToHistory }
         key={ article.title }
         sentiment={ article.sentiment }
+        id= { article.id }
+        moveToHistory = { moveToHistory }
       />
     )
   })

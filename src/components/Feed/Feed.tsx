@@ -8,7 +8,7 @@ import './Feed.css';
 interface FeedProps {
   userSentiment: number | null;
   articles: CleanedArticle[];
-  moveToHistory: (id: number) => void;
+  moveToHistory: (id: string) => void;
   selectedArticles: CleanedArticle[];
   findMatchingArticles: (findMatchingArticles: string[]) => void;
   updateUserSentiment: (userSentiment: number) => void;
@@ -34,7 +34,7 @@ const Feed = ({ userSentiment, articles, moveToHistory, selectedArticles, findMa
     return  <Card
         title={ article.title }
         image={ article.multimedia.url }
-        id={ parseInt(article.id) }
+        id={ article.id }
         moveToHistory={ moveToHistory }
         sentiment={ article.sentiment }
         updateUserSentiment={ updateUserSentiment }
@@ -46,7 +46,7 @@ const Feed = ({ userSentiment, articles, moveToHistory, selectedArticles, findMa
      return  <Card
          title={ article.title }
          image={ article.multimedia.url }
-         id={ parseInt(article.id) }
+         id={ article.id }
          sentiment={ article.sentiment }
          moveToHistory={ moveToHistory }
          updateUserSentiment= { updateUserSentiment }

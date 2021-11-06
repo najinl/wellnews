@@ -4,8 +4,8 @@ import './Card.css';
 interface CardProps {
   title: string
   image: string
-  id: number
-  moveToHistory: (id: number) => void;
+  id: string
+  moveToHistory: (id: string) => void;
   sentiment: number
   updateUserSentiment?: (userSentiment: number) => void
 }
