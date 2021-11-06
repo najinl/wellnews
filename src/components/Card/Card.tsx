@@ -17,6 +17,7 @@ const Card = ({ title, image, id, sentiment, updateUserSentiment }: CardProps): 
           <Link
             to={`/feed/${id}`}
             onClick={() => updateUserSentiment(sentiment) }
+            className="cy-article-link"
           >
             <img className="article-image cy-article-image" src={image} alt={title} />
             <h2 className="article-title cy-article-title">{title}</h2>

@@ -15,16 +15,16 @@ const Article = ({ title, image, abstract, caption }: ArticleProps): JSX.Element
   return (
     <section className="single-article-container">
       <div className="back-button-container">
-        <Link to="/feed">
+        <Link to="/feed" className="cy-back-link">
           ⇦ BACK
         </Link>
       </div>
       <figure>
-        <img src={image} alt={caption} className="single-article-image"/>
-        <figcaption className="single-article-caption">{caption}</figcaption>
+        <img src={image} alt={caption} className="single-article-image cy-single-article-image"/>
+        <figcaption className="single-article-caption cy-single-article-caption">{caption}</figcaption>
       </figure>
-      <h2 className="single-article-title">{title}</h2>
-      <p>{abstract}</p>
+      <h2 className="single-article-title cy-single-article-title">{title}</h2>
+      <p className="cy-single-article-abstract">{abstract}</p>
       <p>{placeholderText}</p>
       <p>{placeholderText}</p>
       <p>{placeholderText}</p>
