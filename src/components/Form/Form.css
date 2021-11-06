@@ -29,7 +29,6 @@ h2 {
 }
 
 .sentiment-btn:hover {
-  cursor: pointer;
   transform: scale(1.5);
 }
 
@@ -64,8 +63,8 @@ h2 {
   display: none;
 }
 
-@media (min-width: 400px) {
+@media (min-width: 450px) {
   .questionnaire {
-    margin: 0;
+    margin: 0 1rem;
   }
 }
