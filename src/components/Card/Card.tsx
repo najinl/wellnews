@@ -26,7 +26,7 @@ const Card = ({ title, image, id, moveToHistory, sentiment, updateUserSentiment 
 
 
   const handleClick = () => {
-    storeArticle()
+    storeArticle(id)
     updateUserSentiment!(sentiment)
   }
 
