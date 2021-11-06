@@ -9,8 +9,7 @@ html {
 }
 
 .header-text {
-  font-size: 3rem;
-  cursor: default;
+  font-size: 2.5rem;
 }
 
 .header-text-2 {
@@ -22,20 +21,10 @@ html {
   color: white;
 }
 
-@media (max-width: 870px) {
-
-  .header-text {
-    font-size: 1.5rem;
-  }
-}
-
-.App-link {
-  color: #61dafb;
-}
-
 .app-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  text-align: center;
+  height: 100vh;
 }

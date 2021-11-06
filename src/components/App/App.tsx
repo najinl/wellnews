@@ -57,61 +57,59 @@ const App = (): JSX.Element => {
 
 
   return (
-    <div className="App">
-      <div className="app-container">
-        <header className="App-header">
-          <h1 className="header-text cy-header-text">
-            Well<span className="header-text-2">News</span>
-          </h1>
-        </header>
-        <Router>
-          <Switch>
-            <Route exact path="/">
-              <Form updateUserSentiment={ updateUserSentiment } />
-            </Route>
-            <Route
-              exact path="/feed"
-              render={() => {
-                return (
-                  <>
-                    <Feed
-                      userSentiment={ userSentiment }
-                      articles={ articles }
-                      updateUserSentiment={ updateUserSentiment }
-                      findMatchingArticles={ findMatchingArticles }
-                      selectedArticles={ selectedArticles }
-                      />
-                    { !articles.length && <h2>Loading.. </h2>}
-                    { error && <h2>{error}</h2> }
-                  </>
-                )
-              }}
-            />
-            <Route
-              path="/feed/:id"
-              render={({ match }) => {
-                const id = Number(match.params.id)
-                const singleArticle = articles.find(article => article.id === id)
-
-                if (singleArticle) {
-                  return (
-                    <Article
-                      title={ singleArticle.title }
-                      image={ singleArticle.multimedia.url }
-                      caption={ singleArticle.multimedia.caption }
-                      abstract={ singleArticle.abstract }
-                      key={ singleArticle.title }
+    <div className="app-container">
+      <header className="App-header">
+        <h1 className="header-text cy-header-text">
+          Well<span className="header-text-2">News</span>
+        </h1>
+      </header>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Form updateUserSentiment={ updateUserSentiment } />
+          </Route>
+          <Route
+            exact path="/feed"
+            render={() => {
+              return (
+                <>
+                  <Feed
+                    userSentiment={ userSentiment }
+                    articles={ articles }
+                    updateUserSentiment={ updateUserSentiment }
+                    findMatchingArticles={ findMatchingArticles }
+                    selectedArticles={ selectedArticles }
                     />
-                  )
-                } else {
-                  return <NoMatch />
-                }
-              }}
-            />
-            <Route path="*" component={NoMatch} />
-          </Switch>
-        </Router>
-      </div>
+                  { !articles.length && <h2>Loading.. </h2>}
+                  { error && <h2>{error}</h2> }
+                </>
+              )
+            }}
+          />
+          <Route
+            path="/feed/:id"
+            render={({ match }) => {
+              const id = Number(match.params.id)
+              const singleArticle = articles.find(article => article.id === id)
+
+              if (singleArticle) {
+                return (
+                  <Article
+                    title={ singleArticle.title }
+                    image={ singleArticle.multimedia.url }
+                    caption={ singleArticle.multimedia.caption }
+                    abstract={ singleArticle.abstract }
+                    key={ singleArticle.title }
+                  />
+                )
+              } else {
+                return <NoMatch />
+              }
+            }}
+          />
+          <Route path="*" component={NoMatch} />
+        </Switch>
+      </Router>
     </div>
   )
 }

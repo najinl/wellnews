@@ -22,19 +22,54 @@ const Form = ({ updateUserSentiment }: FormProps): JSX.Element => {
 
   return (
     <section className="questionnaire">
-      <h2 className='cy-sentiment-question'>how are you feeling today?</h2>
-      <div className="sentiment-selection">
-        <div className="sentiments-container">
-          <button className="happy-btn cy-happy-btn" name='1' aria-label="happy" title="happy" onClick={() => submitUserSentiment(1)}></button>
-          <button className="neutral-btn cy-neutral-btn" name='0' aria-label="neutral" title="neutral" onClick={() => submitUserSentiment(0)}></button>
-          <button className="sad-btn cy-sad-btn" name='-1' aria-label="sad" title="sad" onClick={() => submitUserSentiment(-1)}></button>
-        </div>
+      <h2 className='cy-sentiment-question'>What kind of mood are you in?</h2>
+      <div className="sentiments-container">
+        <button
+          className="sentiment-btn cy-completely-negative-btn"
+          aria-label="strongly negative"
+          title="strongly negative"
+          onClick={() => submitUserSentiment(-1)}
+        >
+          ☹️
+        </button>
+        <button
+          className="sentiment-btn cy-negative-btn"
+          aria-label="negative"
+          title="negative"
+          onClick={() => submitUserSentiment(-0.5)}
+        >
+          🙁
+        </button>
+        <button
+          className="sentiment-btn cy-neutral-btn"
+          aria-label="neutral"
+          title="neutral"
+          onClick={() => submitUserSentiment(0)}
+        >
+          😶
+        </button>
+         <button
+          className="sentiment-btn cy-positive-btn"
+          aria-label="positive"
+          title="positive"
+          onClick={() => submitUserSentiment(0.5)}
+        >
+          🙂
+        </button>
+        <button
+          className="sentiment-btn cy-completely-positive-btn"
+          aria-label="strongly positive"
+          title="strongly positive"
+          onClick={() => submitUserSentiment(1)}
+        >
+          😁
+        </button>
       </div>
       <button className='skip-btn' onClick={ () => submitUserSentiment(0) }>
           Skip
       </button>
       <button className="view-synopsis-button cy-view-synopsis-button" name="viewSynopsisButton" onClick={ showSynopsis }>Why we ask? ▽</button>
-      <article className="wellnews-synopsis cy-wellnews-synopsis" id="synopsisInfo">
+      <article className="hidden wellnews-synopsis cy-wellnews-synopsis" id="synopsisInfo">
         <p>WellNews uses your mood to curate a list of articles with your mental health in mind.</p>
         <p>A negative mood will prioritize positive articles. <br/>A positive mood will result in a mix of positive, neutral, and negative news.</p>
         <p>If you are unsure, select a neutral mood for a mix of articles that lean towards the positive.</p>
