@@ -1,24 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { CleanedArticle } from '../../Models'
+import { CleanedArticle } from '../../Models';
 import Card from '../Card/Card';
+import SectionForm from '../SectionForm/SectionForm';
 import './Feed.css';
 
 interface FeedProps {
   userSentiment: number | null;
   articles: CleanedArticle[];
   moveToHistory: (id: number) => void;
+  selectedArticles: CleanedArticle[];
+  findMatchingArticles: (findMatchingArticles: string[]) => void;
+  updateUserSentiment: (userSentiment: number) => void;
 }
 
-const Feed = ({ userSentiment, articles, moveToHistory }: FeedProps): JSX.Element => {
+const Feed = ({ userSentiment, articles, moveToHistory, selectedArticles, findMatchingArticles, updateUserSentiment }: FeedProps): JSX.Element => {
 
   let sortedArticles : CleanedArticle[];
 
-  if (userSentiment === -1) {
+  if (userSentiment && userSentiment >= -1 && userSentiment <= -0.3) {
     sortedArticles = articles.sort((articleA, articleB) => {
       return articleB.sentiment - articleA.sentiment;
     })
-  } else if (userSentiment === 1) {
+  } else if (userSentiment && userSentiment <= 1 && userSentiment >= 0.3) {
     sortedArticles = articles.sort((articleA, articleB) => {
       return articleA.sentiment - articleB.sentiment;
     })
@@ -26,29 +30,49 @@ const Feed = ({ userSentiment, articles, moveToHistory }: FeedProps): JSX.Elemen
     sortedArticles = articles.sort((articleA, articleB) => 0.5 - Math.random());
   }
 
-
-   const articleCards = sortedArticles.map(article => {
+  const articleCards = sortedArticles.map(article => {
     return  <Card
         title={ article.title }
         image={ article.multimedia.url }
         id={ article.id }
         moveToHistory={ moveToHistory }
+        sentiment={ article.sentiment }
+        updateUserSentiment={ updateUserSentiment }
         key={ article.title }
       />
     })
 
+    const foundArticleCards = selectedArticles.map(article => {
+     return  <Card
+         title={ article.title }
+         image={ article.multimedia.url }
+         id={ article.id }
+         sentiment={ article.sentiment }
+         moveToHistory={ moveToHistory }
+         updateUserSentiment= { updateUserSentiment }
+         key={ article.title }
+       />
+     })
+
     return (
       <>
-        <Link to='/history'>
-          <button className='history-btn'>History</button>
-        </Link>
         <div className="articles-container">
-          <section className="articles-display">
-            {articleCards}
-          </section>
+          <Link to='/history'>
+            <button className='history-btn'>History</button>
+          </Link>
+          <Link to='/'>
+            <button className='retake-btn'>Retake Questionnaire</button>
+          </Link>
+          <div className="all-sections">
+            <SectionForm findMatchingArticles={ findMatchingArticles }/>
+          </div>
+            <section className="articles-display">
+              { foundArticleCards.length ? foundArticleCards : articleCards }
+            </section>
         </div>
       </>
     );
 };
+
 
 export default Feed;

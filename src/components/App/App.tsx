@@ -5,6 +5,7 @@ import { CleanedArticle } from '../../Models';
 import Form from '../Form/Form';
 import Feed from '../Feed/Feed';
 import Article from '../Article/Article';
+import NoMatch from '../NoMatch/NoMatch';
 import './App.css';
 import History from '../History/History'
 
@@ -12,7 +13,7 @@ const App = (): JSX.Element => {
   const [articles, setArticles] = useState<CleanedArticle[]>([]);
   const [error, setError] = useState('');
   const [userSentiment, setUserSentiment] = useState<number | null>(null);
-  const [history, setHistory] = useState([]);
+  const [selectedArticles, setSelectedArticles] = useState<CleanedArticle[]>([]);
 
   useEffect((): void => {
     getArticles()
@@ -39,21 +40,36 @@ const App = (): JSX.Element => {
     );
   };
 
-  const updateUserSentiment = (userSentiment: number) => {
-    setUserSentiment(userSentiment);
+  const updateUserSentiment = (newUserSentiment: number) => {
+    let averageSentiment;
+    if (userSentiment) {
+      averageSentiment = (userSentiment + newUserSentiment) / 2;
+    }
+    setUserSentiment(averageSentiment || newUserSentiment)
+  }
+
+  const findMatchingArticles = (selectedTopics:string[]): void => {
+    const matchingArticles = articles.filter(article => {
+      return selectedTopics.includes(article.topic)
+    })
+    setSelectedArticles(matchingArticles);
   }
 
   const moveToHistory = (id: number) => {
-    const articleToMove = articles.find(article => {
-      return article.id === id;
-    })
-    const filteredArticles = articles.filter(article => {
-      return article.id !== id;
-    })
+  //   const articleToMove = articles.find(article => {
+  //     return article.id === id;
+  //   })
+  //   const filteredArticles = articles.filter(article => {
+  //     return article.id !== id;
+  //   })
     // setHistory((prevState: CleanedArticle[]): void => {
     //   return prevState.push(articleToMove)
     // }))
     // setArticles(filteredArticles);
+  }
+
+  const updateUserHistory = () => {
+
   }
 
   // const returnToForm: any = () => {
@@ -83,7 +99,10 @@ const App = (): JSX.Element => {
                       userSentiment={ userSentiment }
                       articles={ articles }
                       moveToHistory={ moveToHistory }
-                    />
+                      updateUserSentiment={ updateUserSentiment }
+                      findMatchingArticles={ findMatchingArticles }
+                      selectedArticles={ selectedArticles }
+                      />
                     { !articles.length && <h2>Loading.. </h2>}
                     { error && <h2>{error}</h2> }
                   </>
@@ -106,6 +125,8 @@ const App = (): JSX.Element => {
                       key={ singleArticle.title }
                     />
                   )
+                } else {
+                  return <NoMatch />
                 }
               }}
             />
@@ -117,15 +138,16 @@ const App = (): JSX.Element => {
                     <History
                       history={ history }
                       moveToHistory={ moveToHistory }
+                      updateUserHistory={ updateUserHistory }
                     />
                     { error && <h2>{error}</h2> }
                   </>
                 )
               }}
             />
+            <Route path="*" component={NoMatch} />
           </Switch>
         </Router>
-
       </div>
     </div>
   )

@@ -5,13 +5,14 @@ import { CleanedArticle } from '../../Models';
 import '../Feed/Feed.css'
 
 interface HistoryProps {
-  history: CleanedArticle[]
+  history: CleanedArticle[] | any
+  updateUserHistory: () => void
   moveToHistory: (id: number) => void;
 }
 
-const History = ({ history, moveToHistory }: HistoryProps): JSX.Element => {
+const History = ({ history, updateUserHistory, moveToHistory }: HistoryProps): JSX.Element => {
 
-  const articleCards = history.map(article => {
+  const articleCards = history.map((article: CleanedArticle) => {
     return (
       <Card
         title={ article.title }
@@ -19,6 +20,7 @@ const History = ({ history, moveToHistory }: HistoryProps): JSX.Element => {
         id={ article.id }
         moveToHistory={ moveToHistory }
         key={ article.title }
+        sentiment={ article.sentiment }
       />
     )
   })
