@@ -1,4 +1,6 @@
-import { CleanedArticle } from '../../Models'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { CleanedArticle } from '../../Models';
 import Card from '../Card/Card';
 import SectionForm from '../SectionForm/SectionForm';
 import './Feed.css';
@@ -50,14 +52,19 @@ const Feed = ({ userSentiment, articles, selectedArticles, findMatchingArticles,
      })
 
     return (
-      <div className="articles-container">
-      <div className="all-sections">
-        <SectionForm findMatchingArticles={ findMatchingArticles }/>
-      </div>
-        <section className="articles-display">
-          { foundArticleCards.length ? foundArticleCards : articleCards }
-        </section>
-      </div>
+      <>
+        <Link to='/'>
+          <button className='retake-btn'>Retake Questionnaire</button>
+        </Link>
+        <div className="articles-container">
+          <div className="all-sections">
+            <SectionForm findMatchingArticles={ findMatchingArticles }/>
+          </div>
+            <section className="articles-display">
+              { foundArticleCards.length ? foundArticleCards : articleCards }
+            </section>
+        </div>
+      </>
     );
 };
 
