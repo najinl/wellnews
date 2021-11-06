@@ -5,6 +5,7 @@ import { CleanedArticle } from '../../Models';
 import Form from '../Form/Form';
 import Feed from '../Feed/Feed';
 import Article from '../Article/Article';
+import NoMatch from '../NoMatch/NoMatch';
 import './App.css';
 
 const App = (): JSX.Element => {
@@ -102,9 +103,12 @@ const App = (): JSX.Element => {
                       key={ singleArticle.title }
                     />
                   )
+                } else {
+                  return <NoMatch />
                 }
               }}
             />
+            <Route path="*" component={NoMatch} />
           </Switch>
         </Router>
       </div>
