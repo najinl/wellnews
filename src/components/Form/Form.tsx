@@ -30,6 +30,9 @@ const Form = ({ updateUserSentiment }: FormProps): JSX.Element => {
           <button className="sad-btn cy-sad-btn" name='-1' aria-label="sad" title="sad" onClick={() => submitUserSentiment(-1)}></button>
         </div>
       </div>
+      <button className='skip-btn' onClick={ () => submitUserSentiment(0) }>
+          Skip
+      </button>
       <button className="view-synopsis-button cy-view-synopsis-button" name="viewSynopsisButton" onClick={ showSynopsis }>Why we ask? ▽</button>
       <article className="wellnews-synopsis cy-wellnews-synopsis" id="synopsisInfo">
         <p>WellNews uses your mood to curate a list of articles with your mental health in mind.</p>
