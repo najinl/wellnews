@@ -25,28 +25,12 @@ const Form = ({ updateUserSentiment }: FormProps): JSX.Element => {
       <h2 className='cy-sentiment-question'>What kind of mood are you in?</h2>
       <div className="sentiments-container">
         <button
-          className="sentiment-btn cy-completely-positive-btn"
-          aria-label="strongly positive"
-          title="strongly positive"
-          onClick={() => submitUserSentiment(1)}
+          className="sentiment-btn cy-completely-negative-btn"
+          aria-label="strongly negative"
+          title="strongly negative"
+          onClick={() => submitUserSentiment(-1)}
         >
-          😁
-        </button>
-        <button
-          className="sentiment-btn cy-positive-btn"
-          aria-label="positive"
-          title="positive"
-          onClick={() => submitUserSentiment(0.5)}
-        >
-          🙂
-        </button>
-        <button
-          className="sentiment-btn cy-neutral-btn"
-          aria-label="neutral"
-          title="neutral"
-          onClick={() => submitUserSentiment(0)}
-        >
-          😶
+          ☹️
         </button>
         <button
           className="sentiment-btn cy-negative-btn"
@@ -57,12 +41,28 @@ const Form = ({ updateUserSentiment }: FormProps): JSX.Element => {
           🙁
         </button>
         <button
-          className="sentiment-btn cy-completely-negative-btn"
-          aria-label="strongly negative"
-          title="strongly negative"
-          onClick={() => submitUserSentiment(-1)}
+          className="sentiment-btn cy-neutral-btn"
+          aria-label="neutral"
+          title="neutral"
+          onClick={() => submitUserSentiment(0)}
         >
-          ☹️
+          😶
+        </button>
+         <button
+          className="sentiment-btn cy-positive-btn"
+          aria-label="positive"
+          title="positive"
+          onClick={() => submitUserSentiment(0.5)}
+        >
+          🙂
+        </button>
+        <button
+          className="sentiment-btn cy-completely-positive-btn"
+          aria-label="strongly positive"
+          title="strongly positive"
+          onClick={() => submitUserSentiment(1)}
+        >
+          😁
         </button>
       </div>
       <button className='skip-btn' onClick={ () => submitUserSentiment(0) }>
