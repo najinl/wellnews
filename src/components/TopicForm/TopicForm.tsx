@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
-
+import './TopicForm.css'
 interface TopicFormProps {
   assignTopic: (selectedTopic: string) => void
 }
@@ -12,14 +12,14 @@ const availableTopics = ['arts', 'automobiles', 'books', 'business', 'fashion', 
 const sectionCheckboxes = availableTopics.map(topic => {
   const key = Math.random();
     return (
-      <Link to={`/feed/${topic}`} onClick={() => assignTopic(topic)}>
+      <Link className="topic" to={`/feed/${topic}`} onClick={() => assignTopic(topic)}>
         {topic}
       </Link>
     )
 })
 
   return (
-    <form>
+    <form className="cy-topic-selection">
     { sectionCheckboxes }
     </form>
   )
