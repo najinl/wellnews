@@ -58,7 +58,10 @@ const Feed = ({ userSentiment, articles, history, updateUserSentiment, storeArti
           <button className='search-topics-btn'>Search Topics</button>
         </Link>
           <section className="articles-display">
-            { articleCards.length ? articleCards : <h3>No more articles</h3> }
+            { articleCards.length ? articleCards :
+              <Link to="/search-topic">
+                <button className='find-more-btn'>Find more articles by topic</button>
+              </Link> }
           </section>
       </div>
     </>
