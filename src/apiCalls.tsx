@@ -6,7 +6,7 @@ interface OriginalArticle {
   abstract: string
   short_url: string
   multimedia: Multimedia[]
-  uri: string
+  url: string
 }
 
 interface Response {
@@ -42,7 +42,7 @@ export const getSentiment = (title: string, abstract: string): Promise<number> =
 };
 
 const cleanArticles = (articles: OriginalArticle[]): CleanedArticle[] => {
-  return articles.map(({ section, title, abstract, short_url, multimedia, uri }: OriginalArticle) => {
+  return articles.map(({ section, title, abstract, short_url, multimedia, url }: OriginalArticle) => {
     return ({
       topic: section,
       title,
@@ -50,7 +50,7 @@ const cleanArticles = (articles: OriginalArticle[]): CleanedArticle[] => {
       short_url,
       sentiment: 0,
       multimedia: multimedia[0],
-      id: uri
+      id: url.slice(24, -5).replace(/\//g, '-')
     });
   });
 };

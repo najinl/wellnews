@@ -102,6 +102,7 @@ const App = (): JSX.Element => {
             path="/feed/:id"
             render={({ match }) => {
               const id = match.params.id;
+              console.log(id)
               const singleArticle = articles.find(article => article.id === id)
 
               if (singleArticle) {
