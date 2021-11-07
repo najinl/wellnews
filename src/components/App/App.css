@@ -20,6 +20,12 @@ html {
   font-size: calc(10px + 2vmin);
   color: white;
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  cursor: default;
+  background-color: #132841;
+  margin-bottom: 1rem;
+  width: 100%;
 }
 
 .app-container {

@@ -32,6 +32,7 @@ const Feed = ({ userSentiment, articles, updateUserSentiment }: FeedProps): JSX.
         image={ article.multimedia.url }
         id={ article.id }
         sentiment={ article.sentiment }
+        topic={ article.topic }
         updateUserSentiment={ updateUserSentiment }
         key={ article.title }
       />
@@ -40,12 +41,14 @@ const Feed = ({ userSentiment, articles, updateUserSentiment }: FeedProps): JSX.
     return (
       <>
         <div className="articles-container">
-          <Link to='/'>
-            <button className='retake-btn'>Retake Questionnaire</button>
-          </Link>
-          <Link to='/search-topic'>
-            <button className='search-topics-btn'>Search Topics</button>
-          </Link>
+          <div className="feed-button-container">
+            <Link to='/'>
+              <button className='retake-btn'>Retake Questionnaire</button>
+            </Link>
+            <Link to='/search-topic'>
+              <button className='search-topics-btn'>Search Topics</button>
+            </Link>
+            </div>
             <section className="articles-display">
               { articleCards }
             </section>

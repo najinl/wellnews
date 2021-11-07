@@ -1,6 +1,9 @@
 .cy-topic-selection {
   display: flex;
   flex-wrap: wrap;
+  width: 50%;
+  padding: 2rem;
+  border: 1px solid white;
 }
 
 
@@ -9,4 +12,5 @@
   color: white;
   font-weight:600;
   width: 33%;
+  line-height: 1.8rem;
 }

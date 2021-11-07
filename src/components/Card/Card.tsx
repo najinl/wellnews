@@ -6,12 +6,14 @@ interface CardProps {
   image: string
   id: number
   sentiment: number
+  topic: string
   updateUserSentiment: (userSentiment: number) => void
 }
 
-const Card = ({ title, image, id, sentiment, updateUserSentiment }: CardProps): JSX.Element => {
+const Card = ({ title, image, id, sentiment, topic, updateUserSentiment }: CardProps): JSX.Element => {
+  console.log(sentiment);
   return (
-
+    <div className="article-boundary">
       <div className="card-container">
         <article className="news-card cy-article-card">
           <Link
@@ -19,12 +21,23 @@ const Card = ({ title, image, id, sentiment, updateUserSentiment }: CardProps): 
             onClick={() => updateUserSentiment(sentiment) }
             className="cy-article-link"
           >
+          <div className="article-image-container">
+            {sentiment >= 7 && <h3 className="article-sentiment green">{sentiment}</h3>}
+            {sentiment <= 4 && <h3 className="article-sentiment red">{sentiment}</h3>}
+            {(sentiment >= 5 && sentiment <= 6) && <h3 className="article-sentiment blue">{sentiment}</h3>}
             <img className="article-image cy-article-image" src={image} alt={title} />
-            <h2 className="article-title cy-article-title">{title}</h2>
+          </div>
+          <div className="topic-container">
+            <div className="topic-text">
+              {topic}
+            </div>
+          </div>
+          <h2 className="article-title cy-article-title">{title}</h2>
           </Link>
+          <div className="divider"></div>
         </article>
       </div>
-
+    </div>
   )
 }
 

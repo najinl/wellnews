@@ -24,7 +24,7 @@ const App = (): JSX.Element => {
           .then((response: number[]) => {
 
             const scoredArticles = cleanedArticles.map((article, i) => {
-               article.sentiment = response[i];
+               article.sentiment = Math.round((response[i] + 1) * 5);
                return article;
             });
 

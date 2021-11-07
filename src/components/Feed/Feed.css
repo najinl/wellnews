@@ -6,13 +6,38 @@
 }
 
 .articles-display {
-  margin-top: 0rem;
+  margin-top: 1rem;
   flex-direction: column;
   justify-content: center;
+  width: 90%;
+  background-color: #f4f7fc;
+  padding-top: 2.4rem;
+  box-shadow: 4px 4px 4px black;
+}
+
+.feed-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   width: 50%;
-  border: 2px solid white;
-  background-color: #112941;
-  padding-top: 2rem;
+}
+
+.retake-btn,
+.search-topics-btn {
+  font-family: 'Comfortaa';
+  font-size: 1rem;
+  color: white;
+  background-color: #132841;
+  border: 1px solid #132841;
+  height: 2rem;
+}
+
+.retake-btn:hover,
+.search-topics-btn:hover {
+  border: 1px solid #132841;
+  color: black;
+  background-color: white;
+  text-decoration: none;
 }
 
 @media (max-width: 1000px) {

@@ -57,6 +57,7 @@ h2 {
 
 .wellnews-synopsis {
   width: 75vw;
+  transition-duration: .5s;
 }
 
 .hidden {
