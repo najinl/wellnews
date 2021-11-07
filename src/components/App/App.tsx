@@ -5,6 +5,8 @@ import { CleanedArticle } from '../../Models';
 import Form from '../Form/Form';
 import Feed from '../Feed/Feed';
 import Article from '../Article/Article';
+import TopicForm from '../TopicForm/TopicForm';
+import TopicFeed from '../TopicFeed/TopicFeed'
 import NoMatch from '../NoMatch/NoMatch';
 import './App.css';
 
@@ -13,6 +15,7 @@ const App = (): JSX.Element => {
   const [error, setError] = useState('');
   const [userSentiment, setUserSentiment] = useState<number | null>(null);
   const [selectedArticles, setSelectedArticles] = useState<CleanedArticle[]>([]);
+  const [selectedTopic, setSelectedTopic] = useState<string>('');
 
   useEffect((): void => {
     getArticles()
@@ -48,11 +51,21 @@ const App = (): JSX.Element => {
     setUserSentiment(averageSentiment || newUserSentiment)
   }
 
-  const findMatchingArticles = (selectedTopics:string[]): void => {
-    const matchingArticles = articles.filter(article => {
-      return selectedTopics.includes(article.topic)
-    })
-    setSelectedArticles(matchingArticles);
+  const assignTopic = (selectedTopic: string): void => {
+    setSelectedTopic(selectedTopic);
+    getArticles(selectedTopic)
+      .then((cleanedArticles: CleanedArticle[]): void => {
+        getSentimentScores(cleanedArticles)
+          .then((response: number[]) => {
+
+            const scoredArticles = cleanedArticles.map((article, i) => {
+               article.sentiment = response[i];
+               return article;
+            });
+            setSelectedArticles(scoredArticles);
+          });
+      })
+      .catch(error => setError(error.message));
   }
 
 
@@ -77,8 +90,6 @@ const App = (): JSX.Element => {
                     userSentiment={ userSentiment }
                     articles={ articles }
                     updateUserSentiment={ updateUserSentiment }
-                    findMatchingArticles={ findMatchingArticles }
-                    selectedArticles={ selectedArticles }
                     />
                   { !articles.length && <h2>Loading.. </h2>}
                   { error && <h2>{error}</h2> }
@@ -87,7 +98,27 @@ const App = (): JSX.Element => {
             }}
           />
           <Route
-            path="/feed/:id"
+            exact path={`/feed/${selectedTopic}`}
+            render={() => {
+              return (
+                <>
+                  <TopicFeed
+                    userSentiment={ userSentiment }
+                    selectedArticles={ selectedArticles }
+                    updateUserSentiment={ updateUserSentiment }
+                    selectedTopic = { selectedTopic }
+                    />
+                  { !articles.length && <h2>Loading.. </h2>}
+                  { error && <h2>{error}</h2> }
+                </>
+              )
+            }}
+          />
+          <Route exact path="/search-topic">
+            <TopicForm assignTopic={ assignTopic } />
+          </Route>
+          <Route
+            exact path="/feed/:id"
             render={({ match }) => {
               const id = Number(match.params.id)
               const singleArticle = articles.find(article => article.id === id)
@@ -99,6 +130,29 @@ const App = (): JSX.Element => {
                     image={ singleArticle.multimedia.url }
                     caption={ singleArticle.multimedia.caption }
                     abstract={ singleArticle.abstract }
+                    selectedTopic={ selectedTopic }
+                    key={ singleArticle.title }
+                  />
+                )
+              } else {
+                return <NoMatch />
+              }
+            }}
+          />
+          <Route
+            exact path={`/feed/${selectedTopic}/:id`}
+            render={({ match }) => {
+              const id = Number(match.params.id)
+              const singleArticle = selectedArticles.find(article => article.id === id)
+
+              if (singleArticle) {
+                return (
+                  <Article
+                    title={ singleArticle.title }
+                    image={ singleArticle.multimedia.url }
+                    caption={ singleArticle.multimedia.caption }
+                    abstract={ singleArticle.abstract }
+                    selectedTopic= { selectedTopic }
                     key={ singleArticle.title }
                   />
                 )
