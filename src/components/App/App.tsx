@@ -52,6 +52,10 @@ const App = (): JSX.Element => {
     setUserSentiment(averageSentiment || newUserSentiment)
   }
 
+  const updateHistory = (localHistory: string[]): void => {
+    setHistory(localHistory);
+  }
+
   const assignTopic = (selectedTopic: string): void => {
     setSelectedTopic(selectedTopic);
     getArticles(selectedTopic)
@@ -67,15 +71,6 @@ const App = (): JSX.Element => {
           });
       })
       .catch(error => setError(error.message));
-  }
-
-  const updateHistory = (localHistory: string[]): void => {
-    console.log(localHistory)
-    setHistory(localHistory)
-    const unreadArticles = articles.filter(article => {
-      return !localHistory.includes(article.id)
-    })
-    setArticles(unreadArticles);
   }
 
   return (
@@ -99,8 +94,8 @@ const App = (): JSX.Element => {
                     userSentiment={ userSentiment }
                     articles={ articles }
                     updateUserSentiment={ updateUserSentiment }
-                    selectedArticles={ selectedArticles }
                     updateHistory={ updateHistory }
+                    history={ history }
                     />
                   { !articles.length && <h2>Loading.. </h2>}
                   { error && <h2>{error}</h2> }
