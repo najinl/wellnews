@@ -175,7 +175,6 @@ const App = (): JSX.Element => {
                 <>
                   <History
                     history={ history }
-                    updateHistory={ updateHistory }
                   />
                   { error && <h2>{error}</h2> }
                 </>
