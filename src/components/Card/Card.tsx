@@ -4,19 +4,26 @@ import './Card.css';
 interface CardProps {
   title: string
   image: string
-  id: number
+  id: string
   sentiment: number
   updateUserSentiment: (userSentiment: number) => void
+  storeArticle: (id: string) => void
 }
 
-const Card = ({ title, image, id, sentiment, updateUserSentiment }: CardProps): JSX.Element => {
+const Card = ({ title, image, id, sentiment, updateUserSentiment, storeArticle }: CardProps): JSX.Element => {
+
+  const handleClick = (): void => {
+    updateUserSentiment(sentiment)
+    storeArticle(id)
+  }
+
   return (
 
       <div className="card-container">
         <article className="news-card cy-article-card">
           <Link
             to={`/feed/${id}`}
-            onClick={() => updateUserSentiment(sentiment) }
+            onClick={ handleClick }
             className="cy-article-link"
           >
             <img className="article-image cy-article-image" src={image} alt={title} />

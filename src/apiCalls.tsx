@@ -6,6 +6,7 @@ interface OriginalArticle {
   abstract: string
   short_url: string
   multimedia: Multimedia[]
+  url: string
 }
 
 interface Response {
@@ -32,7 +33,7 @@ const checkResponse = (response: Response) => {
 export const getSentiment = (title: string, abstract: string): Promise<number> => {
   const text = title + ' ' + abstract;
   // add your API token here; remove before merging to main
-  const token = '' || '2631fc217a884d47981ad6e975a50643';
+  const token = '' || '488823ba0f914b1f8eddc319191cbc7a';
   if (token) { console.log('token in use; remove before pushing')}
   return fetch(`https://api.dandelion.eu/datatxt/sent/v1/?lang=en&text=${text}&token=${token}`)
     .then(response => checkResponse(response))
@@ -41,7 +42,7 @@ export const getSentiment = (title: string, abstract: string): Promise<number> =
 };
 
 const cleanArticles = (articles: OriginalArticle[]): CleanedArticle[] => {
-  return articles.map(({ section, title, abstract, short_url, multimedia }: OriginalArticle) => {
+  return articles.map(({ section, title, abstract, short_url, multimedia, url }: OriginalArticle) => {
     return ({
       topic: section,
       title,
@@ -49,7 +50,7 @@ const cleanArticles = (articles: OriginalArticle[]): CleanedArticle[] => {
       short_url,
       sentiment: 0,
       multimedia: multimedia[0],
-      id: Math.floor(Math.random() * 100),
+      id: url.slice(24, -5).replace(/\//g, '-')
     });
   });
 };

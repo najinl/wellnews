@@ -5,7 +5,7 @@ export interface CleanedArticle {
   short_url: string
   multimedia: Multimedia
   sentiment: number
-  id: number
+  id: string
 };
 
 export interface Multimedia {

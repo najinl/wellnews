@@ -4,20 +4,27 @@ import '../Card/Card.css';
 interface TopicCard {
   title: string
   image: string
-  id: number
+  id: string
   sentiment: number
   updateUserSentiment: (userSentiment: number) => void
   selectedTopic: string
+  storeArticle: (id: string) => void
 }
 
-const TopicCard = ({ title, image, id, sentiment, updateUserSentiment, selectedTopic }: TopicCard): JSX.Element => {
+const TopicCard = ({ title, image, id, sentiment, updateUserSentiment, selectedTopic, storeArticle }: TopicCard): JSX.Element => {
+
+  const handleClick = () => {
+    updateUserSentiment!(sentiment)
+    storeArticle(id)
+  }
+
   return (
 
       <div className="card-container">
         <article className="news-card cy-article-card">
           <Link
             to={`/feed/${selectedTopic}/${id}`}
-            onClick={() => updateUserSentiment(sentiment) }
+            onClick={ handleClick }
             className="cy-article-link"
           >
             <img className="article-image cy-article-image" src={image} alt={title} />

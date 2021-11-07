@@ -38,3 +38,19 @@
     padding-top: 0rem;
   }
 }
+
+.find-more-btn, .back-button-container {
+  color: white;
+  margin-top: .5rem;
+  margin-bottom: .3rem;
+  background-color: white;
+  padding: .55rem .6rem .4rem .6rem;
+  border-radius: .3rem;
+  box-shadow: 2px 2px 2px black;
+}
+
+.find-more-btn, .back-button-container > a:hover {
+  color: purple;
+  font-weight: bold;
+  text-decoration: none;
+}
