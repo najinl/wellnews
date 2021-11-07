@@ -25,24 +25,20 @@ const History = ({ history, updateHistory }: HistoryProps): JSX.Element => {
   })
 
   return (
-    <>
-      <h1>History</h1>
-      <div className="articles-container">
+    <div className="articles-container">
+      <Link to='/history'>
+        <button className='history-btn'>History</button>
+      </Link>
+      <Link to='/'>
+        <button className='retake-btn'>Retake Questionnaire</button>
+      </Link>
+      <Link to='/search-topic'>
+        <button className='search-topics-btn'>Search Topics</button>
+      </Link>
         <section className="articles-display">
-        <div className="back-button-container">
-          <Link to="/feed">
-            ⇦ BACK
-          </Link>
-        </div>
-          { articleCards }
-          <div className="back-button-container">
-            <Link to="/feed">
-              ⇦ BACK
-            </Link>
-          </div>
+          { articleCards.length ? articleCards : <h3>No more articles</h3> }
         </section>
-      </div>
-    </>
+    </div>
   )
 }
 
