@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import Header from '../Header/Header';
 import './TopicForm.css'
 interface TopicFormProps {
   assignTopic: (selectedTopic: string) => void
@@ -17,10 +18,15 @@ const sectionTopics = availableTopics.map(topic => {
 })
 
   return (
-    <form className="cy-topic-selection">
-    { sectionTopics }
-    </form>
+    <>
+      <Header />
+      <form className="cy-topic-selection">
+      { sectionTopics }
+      </form>
+    </>
   )
 }
 
 export default TopicForm;
+
+//

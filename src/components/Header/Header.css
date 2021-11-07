@@ -1,0 +1,58 @@
+.header {
+  display: flex;
+  height: 10%;
+  width: 100%;
+}
+
+
+.header-txt {
+  flex: 2;
+  margin-top: 2%;
+}
+
+.list-btn {
+  /* flex: 1; */
+  background-image: url('../../assets/list-btn.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: #4B658B;
+  border: none;
+  margin-right: .5%;
+  margin-top: 1%;
+  height: 60%;
+  width: 10%;
+}
+
+.check-in-btn {
+  flex: .8;
+  display: flex;
+  background-image: url('../../assets/back-arrow.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: #4B658B;
+  border: none;
+  margin-left: .5%;
+  margin-top: 1%;
+  border: 2px solid black;
+  height: 50%;
+  width: 5%;
+}
+
+.nav-text {
+  margin-left: 22%;
+  margin-top: 8%;
+  font-size: 1.2em;
+  color: white;
+}
+
+.history-btn {
+  flex: .5;
+  color: white;
+  font-size: 1.1em;
+  background-color: #4B658B;
+  border: none;
+  margin-right: 1%;
+  margin-top: 1%;
+  height: 60%;
+  width: 5%;
+}
