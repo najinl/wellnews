@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { CleanedArticle } from '../../Models';
 import Card from '../Card/Card';
@@ -7,12 +6,12 @@ import './Feed.css';
 interface FeedProps {
   userSentiment: number | null;
   articles: CleanedArticle[];
-  updateHistory: (localHistory: string[]) => void;
   updateUserSentiment: (userSentiment: number) => void;
   history: string[]
+  storeArticle: (id: string) => void
 }
 
-const Feed = ({ userSentiment, articles, updateHistory, history, updateUserSentiment }: FeedProps): JSX.Element => {
+const Feed = ({ userSentiment, articles, history, updateUserSentiment, storeArticle }: FeedProps): JSX.Element => {
 
   const unreadArticles = articles.filter(article => {
     return !history.includes(article.id)
@@ -38,9 +37,9 @@ const Feed = ({ userSentiment, articles, updateHistory, history, updateUserSenti
         title={ article.title }
         image={ article.multimedia.url }
         id={ article.id }
-        updateHistory={ updateHistory }
         sentiment={ article.sentiment }
         updateUserSentiment={ updateUserSentiment }
+        storeArticle={ storeArticle }
         key={ article.title }
       />
     )

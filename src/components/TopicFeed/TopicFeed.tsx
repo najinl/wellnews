@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { CleanedArticle } from '../../Models';
 import TopicCard from '../TopicCard/TopicCard';
@@ -9,10 +8,10 @@ interface TopicFeed {
   selectedArticles: CleanedArticle[];
   selectedTopic: string
   updateUserSentiment: (userSentiment: number) => void;
-  updateHistory: (localHistory: string[]) => void;
+  storeArticle?: (id: string) => void
 }
 
-const TopicFeed = ({ userSentiment, selectedArticles, updateUserSentiment, selectedTopic, updateHistory }: TopicFeed): JSX.Element => {
+const TopicFeed = ({ userSentiment, selectedArticles, updateUserSentiment, selectedTopic, storeArticle }: TopicFeed): JSX.Element => {
 
   let sortedArticles : CleanedArticle[];
 
@@ -34,8 +33,8 @@ const TopicFeed = ({ userSentiment, selectedArticles, updateUserSentiment, selec
         image={ article.multimedia.url }
         id={ article.id }
         sentiment={ article.sentiment }
-        updateHistory={ updateHistory }
         updateUserSentiment={ updateUserSentiment }
+        storeArticle={ storeArticle! }
         selectedTopic = { selectedTopic }
         key={ article.title }
       />
@@ -57,6 +56,5 @@ const TopicFeed = ({ userSentiment, selectedArticles, updateUserSentiment, selec
       </>
     );
 };
-
 
 export default TopicFeed;

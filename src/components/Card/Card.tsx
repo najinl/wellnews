@@ -5,29 +5,15 @@ interface CardProps {
   title: string
   image: string
   id: string
-  updateHistory: (localHistory: string[]) => void;
   sentiment: number
-  updateUserSentiment?: (userSentiment: number) => void
+  updateUserSentiment: (userSentiment: number) => void
+  storeArticle: (id: string) => void
 }
 
-const Card = ({ title, image, id, updateHistory, sentiment, updateUserSentiment }: CardProps): JSX.Element => {
+const Card = ({ title, image, id, sentiment, updateUserSentiment, storeArticle }: CardProps): JSX.Element => {
 
-  const storeArticle = (id: string): void => {
-      let localHistory = JSON.parse(localStorage.getItem('wellnewsHistory')!);
-      if (!localHistory) {
-        localHistory = [id];
-        localStorage.setItem('wellnewsHistory', JSON.stringify([id]));
-        updateHistory(localHistory)
-      } else if (!localHistory.includes(id)) {
-        localHistory.push(id)
-        localStorage.setItem('wellnewsHistory', JSON.stringify(localHistory))
-        console.log('localHistory: ', localHistory)
-        updateHistory(localHistory)
-      }
-    }
-
-  const handleClick = () => {
-    updateUserSentiment!(sentiment)
+  const handleClick = (): void => {
+    updateUserSentiment(sentiment)
     storeArticle(id)
   }
 

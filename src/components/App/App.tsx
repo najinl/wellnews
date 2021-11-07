@@ -73,6 +73,20 @@ const App = (): JSX.Element => {
       .catch(error => setError(error.message));
   }
 
+  const storeArticle = (id: string): void => {
+    let localHistory = JSON.parse(localStorage.getItem('wellnewsHistory')!);
+    if (!localHistory) {
+      localHistory = [id];
+      localStorage.setItem('wellnewsHistory', JSON.stringify([id]));
+      updateHistory(localHistory)
+    } else if (!localHistory.includes(id)) {
+      localHistory.push(id)
+      localStorage.setItem('wellnewsHistory', JSON.stringify(localHistory))
+      console.log('localHistory: ', localHistory)
+      updateHistory(localHistory)
+    }
+  }
+
   return (
     <div className="app-container">
       <header className="App-header">
@@ -94,9 +108,9 @@ const App = (): JSX.Element => {
                     userSentiment={ userSentiment }
                     articles={ articles }
                     updateUserSentiment={ updateUserSentiment }
-                    updateHistory={ updateHistory }
                     history={ history }
-                    />
+                    storeArticle={ storeArticle }
+                  />
                   { !articles.length && <h2>Loading.. </h2>}
                   { error && <h2>{error}</h2> }
                 </>
@@ -113,8 +127,8 @@ const App = (): JSX.Element => {
                     selectedArticles={ selectedArticles }
                     updateUserSentiment={ updateUserSentiment }
                     selectedTopic = { selectedTopic }
-                    updateHistory={ updateHistory }
-                    />
+                    storeArticle={ storeArticle }
+                  />
                   { !articles.length && <h2>Loading.. </h2>}
                   { error && <h2>{error}</h2> }
                 </>
@@ -175,6 +189,8 @@ const App = (): JSX.Element => {
                 <>
                   <History
                     history={ history }
+                    storeArticle={ storeArticle }
+                    updateUserSentiment={ updateUserSentiment }
                   />
                   { error && <h2>{error}</h2> }
                 </>
