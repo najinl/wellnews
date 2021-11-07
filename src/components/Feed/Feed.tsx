@@ -42,15 +42,9 @@ const Feed = ({ userSentiment, articles, updateUserSentiment }: FeedProps): JSX.
       <>
         <Header />
         <div className="articles-container">
-          <Link to='/'>
-            <button className='retake-btn'>Retake Questionnaire</button>
-          </Link>
-          <Link to='/search-topic'>
-            <button className='search-topics-btn'>Search Topics</button>
-          </Link>
-            <section className="articles-display">
-              { articleCards }
-            </section>
+          <section className="articles-display">
+            { articleCards }
+          </section>
         </div>
       </>
     );
