@@ -14,11 +14,11 @@ interface Response {
   json: any
 }
 
-export const getArticles = (): Promise<CleanedArticle[]> => {
+export const getArticles = (topic = 'home'): Promise<CleanedArticle[]> => {
   return (
-    fetch('https://api.nytimes.com/svc/topstories/v2/home.json?api-key=GKUzDD1VY9ssjZ1AGusX3ci6AeoXCaSr')
+    fetch(`https://api.nytimes.com/svc/topstories/v2/${topic}.json?api-key=GKUzDD1VY9ssjZ1AGusX3ci6AeoXCaSr`)
     .then(response => checkResponse(response))
-    .then(data => cleanArticles(data.results))
+    .then(data => cleanArticles(data.results.slice(0,10)))
   );
 };
 
@@ -32,7 +32,7 @@ const checkResponse = (response: Response) => {
 export const getSentiment = (title: string, abstract: string): Promise<number> => {
   const text = title + ' ' + abstract;
   // add your API token here; remove before merging to main
-  const token = '' || 'beb0091844524790b7672a69bac06a2a';
+  const token = '' || '2631fc217a884d47981ad6e975a50643';
   if (token) { console.log('token in use; remove before pushing')}
   return fetch(`https://api.dandelion.eu/datatxt/sent/v1/?lang=en&text=${text}&token=${token}`)
     .then(response => checkResponse(response))

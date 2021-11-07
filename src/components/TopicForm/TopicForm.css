@@ -1,0 +1,12 @@
+.cy-topic-selection {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+.topic {
+  text-decoration: none;
+  color: white;
+  font-weight:600;
+  width: 33%;
+}
