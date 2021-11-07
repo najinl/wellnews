@@ -57,14 +57,12 @@ const App = (): JSX.Element => {
   }
 
   const updateHistory = (localHistory: string[]): void => {
-    setHistory(localHistory);
-    setTimeout(() => {
-      console.log('***HISTORY***', history)
-    }, 2000)
-    // const unreadArticles = articles.filter(article => {
-    //   return article.id !== id;
-    // })
-    // setArticles(unreadArticles);
+    console.log(localHistory)
+    setHistory(localHistory)
+    const unreadArticles = articles.filter(article => {
+      return !localHistory.includes(article.id)
+    })
+    setArticles(unreadArticles);
   }
 
   return (
@@ -102,7 +100,6 @@ const App = (): JSX.Element => {
             path="/feed/:id"
             render={({ match }) => {
               const id = match.params.id;
-              console.log(id)
               const singleArticle = articles.find(article => article.id === id)
 
               if (singleArticle) {

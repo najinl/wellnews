@@ -21,6 +21,7 @@ const Card = ({ title, image, id, updateHistory, sentiment, updateUserSentiment 
       } else if (!localHistory.includes(id)) {
         localHistory.push(id)
         localStorage.setItem('wellnewsHistory', JSON.stringify(localHistory))
+        console.log('localHistory: ', localHistory)
         updateHistory(localHistory)
       }
     }
