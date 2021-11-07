@@ -9,16 +9,19 @@ interface ArticleProps {
   image: string
   abstract: string
   caption: string
+  selectedTopic: string
 }
 
-const Article = ({ title, image, abstract, caption }: ArticleProps): JSX.Element => {
+const Article = ({ title, image, abstract, caption, selectedTopic }: ArticleProps): JSX.Element => {
 
   return (
     <section className="single-article-container">
       <div className="back-button-container">
-        <Link to="/feed" className="cy-back-link">
+        {!selectedTopic ? <Link to="/feed" className="cy-back-link">
           ⇦ BACK
-        </Link>
+        </Link> : <Link to={`/feed/${selectedTopic}`} className="cy-back-link">
+          ⇦ BACK
+        </Link>}
       </div>
       <figure>
         <img src={image} alt={caption} className="single-article-image cy-single-article-image"/>
@@ -37,9 +40,11 @@ const Article = ({ title, image, abstract, caption }: ArticleProps): JSX.Element
       <p>{placeholderText}</p>
       <p>{placeholderText}</p>
       <div className="back-button-container">
-        <Link to="/feed">
-          ⇦ BACK
-        </Link>
+      {!selectedTopic ? <Link to="/feed" className="cy-back-link">
+        ⇦ BACK
+      </Link> : <Link to={`/feed/${selectedTopic}`} className="cy-back-link">
+        ⇦ BACK
+      </Link>}
       </div>
     </section>
   )
