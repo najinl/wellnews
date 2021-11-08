@@ -12,7 +12,7 @@ interface TopicCard {
 }
 
 const TopicCard = ({ title, image, id, sentiment, updateUserSentiment, selectedTopic, storeArticle }: TopicCard): JSX.Element => {
-
+  console.log(sentiment);
   const handleClick = () => {
     updateUserSentiment!(sentiment)
     storeArticle(id)
@@ -27,9 +27,15 @@ const TopicCard = ({ title, image, id, sentiment, updateUserSentiment, selectedT
             onClick={ handleClick }
             className="cy-article-link"
           >
+          <div className="article-image-container">
+            {sentiment >= 7 && <h3 className="article-sentiment green">{sentiment}</h3>}
+            {sentiment <= 4 && <h3 className="article-sentiment red">{sentiment}</h3>}
+            {(sentiment >= 5 && sentiment <= 6) && <h3 className="article-sentiment blue">{sentiment}</h3>}
             <img className="article-image cy-article-image" src={image} alt={title} />
-            <h2 className="article-title cy-article-title">{title}</h2>
+          </div>
+          <h2 className="article-title cy-article-title">{title}</h2>
           </Link>
+          <div className="divider"></div>
         </article>
       </div>
 

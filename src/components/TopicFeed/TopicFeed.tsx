@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { CleanedArticle } from '../../Models';
 import TopicCard from '../TopicCard/TopicCard';
-import '../Feed/Feed.css';
+import Header from '../Header/Header';
 
 interface TopicFeed {
   userSentiment: number | null;
@@ -28,30 +28,27 @@ const TopicFeed = ({ userSentiment, selectedArticles, updateUserSentiment, selec
   }
 
   const articleCards = sortedArticles.map(article => {
-    return  <TopicCard
-        title={ article.title }
-        image={ article.multimedia.url }
-        id={ article.id }
-        sentiment={ article.sentiment }
-        updateUserSentiment={ updateUserSentiment }
-        storeArticle={ storeArticle! }
-        selectedTopic = { selectedTopic }
-        key={ article.title }
-      />
+    return (
+        <TopicCard
+          title={ article.title }
+          image={ article.multimedia.url }
+          id={ article.id }
+          sentiment={ article.sentiment }
+          updateUserSentiment={ updateUserSentiment }
+          storeArticle={ storeArticle! }
+          selectedTopic = { selectedTopic }
+          key={ article.title }
+        />
+      )
     })
 
     return (
       <>
+        <Header />
         <div className="articles-container">
-          <Link to='/'>
-            <button className='retake-btn'>Retake Questionnaire</button>
-          </Link>
-          <Link to='/search-topic'>
-            <button className='search-topics-btn'>Search Topics</button>
-          </Link>
-            <section className="articles-display">
-              { articleCards }
-            </section>
+          <section className="articles-display">
+            { articleCards }
+          </section>
         </div>
       </>
     );

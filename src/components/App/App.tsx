@@ -26,7 +26,7 @@ const App = (): JSX.Element => {
           .then((response: number[]) => {
 
             const scoredArticles = cleanedArticles.map((article, i) => {
-               article.sentiment = response[i];
+               article.sentiment = Math.round((response[i] + 1) * 5);
                return article;
             });
 
@@ -64,7 +64,7 @@ const App = (): JSX.Element => {
           .then((response: number[]) => {
 
             const scoredArticles = cleanedArticles.map((article, i) => {
-               article.sentiment = response[i];
+               article.sentiment = Math.round((response[i] + 1) * 5);
                return article;
             });
             setSelectedArticles(scoredArticles);
@@ -89,11 +89,6 @@ const App = (): JSX.Element => {
 
   return (
     <div className="app-container">
-      <header className="App-header">
-        <h1 className="header-text cy-header-text">
-          Well<span className="header-text-2">News</span>
-        </h1>
-      </header>
       <Router>
         <Switch>
           <Route exact path="/">
@@ -111,7 +106,7 @@ const App = (): JSX.Element => {
                     history={ history }
                     storeArticle={ storeArticle }
                   />
-                  { !articles.length && <h2>Loading.. </h2>}
+                  { !articles.length && <h2 className="loading-text">Loading.. </h2>}
                   { error && <h2>{error}</h2> }
                 </>
               )

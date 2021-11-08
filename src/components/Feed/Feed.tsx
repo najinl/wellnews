@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { CleanedArticle } from '../../Models';
 import Card from '../Card/Card';
+import Header from '../Header/Header';
 import './Feed.css';
 
 interface FeedProps {
@@ -38,34 +39,26 @@ const Feed = ({ userSentiment, articles, history, updateUserSentiment, storeArti
         image={ article.multimedia.url }
         id={ article.id }
         sentiment={ article.sentiment }
+        topic={ article.topic }
         updateUserSentiment={ updateUserSentiment }
         storeArticle={ storeArticle }
         key={ article.title }
       />
     )
   })
-
-  return (
-    <>
-      <div className="articles-container">
-        <Link to='/history'>
-          <button className='history-btn'>History</button>
-        </Link>
-        <Link to='/'>
-          <button className='retake-btn'>Retake Questionnaire</button>
-        </Link>
-        <Link to='/search-topic'>
-          <button className='search-topics-btn'>Search Topics</button>
-        </Link>
+    return (
+      <>
+        <Header />
+        <div className="articles-container">
           <section className="articles-display">
             { articleCards.length ? articleCards :
               <Link to="/search-topic">
                 <button className='find-more-btn'>Find more articles by topic</button>
               </Link> }
           </section>
-      </div>
-    </>
-  );
+        </div>
+      </>
+    );
 };
 
 export default Feed;

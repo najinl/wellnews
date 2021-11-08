@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import Header from '../Header/Header';
 import './TopicForm.css'
 interface TopicFormProps {
   assignTopic: (selectedTopic: string) => void
@@ -17,9 +18,13 @@ const sectionTopics = availableTopics.map(topic => {
 })
 
   return (
-    <form className="cy-topic-selection">
-    { sectionTopics }
-    </form>
+    <>
+      <Header />
+      <h3 className="browse-topics">Browse articles by topic:</h3>
+      <form className="cy-topic-selection">
+      { sectionTopics }
+      </form>
+    </>
   )
 }
 
