@@ -13,14 +13,15 @@ interface FeedProps {
 
 const Feed = ({ userSentiment, articles, history, updateUserSentiment, storeArticle }: FeedProps): JSX.Element => {
 
-  const unreadArticles = articles.filter(article => {
-    if (history.length) {
-      return history.find(historyArticle => {
-        return article.id !== historyArticle.id
-      })
-    }
-    return true
-  })
+  let unreadArticles;
+
+  if (history.length) {
+    unreadArticles = articles.filter(article => {
+      return !history.find(historyArticle => historyArticle.id === article.id)
+    })
+  } else {
+    unreadArticles = articles;
+  }
 
   let sortedArticles : CleanedArticle[];
 
