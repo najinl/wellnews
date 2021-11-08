@@ -95,10 +95,10 @@ const App = (): JSX.Element => {
           .then((response: number[]) => {
 
             const scoredArticles = cleanedArticles.map((article, i) => {
-               article.sentiment = response[i];
+               article.sentiment = (response[i] + 1) * 5;
                return article;
             });
-            setSelectedArticles(scoredArticles);
+            setArticles(scoredArticles);
           });
       })
       .catch(error => setError(error.message));
@@ -151,8 +151,7 @@ const App = (): JSX.Element => {
               return (
                 <>
                   <TopicFeed
-                    userSentiment={ userSentiment }
-                    selectedArticles={ selectedArticles }
+                    unreadArticles={ unreadArticles }
                     updateUserSentiment={ updateUserSentiment }
                     selectedTopic = { selectedTopic }
                     storeArticle={ storeArticle }
@@ -192,7 +191,7 @@ const App = (): JSX.Element => {
             exact path={`/feed/${selectedTopic}/:id`}
             render={({ match }) => {
               const id = match.params.id
-              const singleArticle = selectedArticles.find(article => article.id === id)
+              const singleArticle = articles.find(article => article.id === id)
 
               if (singleArticle) {
                 return (
