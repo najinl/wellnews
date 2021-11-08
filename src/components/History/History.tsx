@@ -11,19 +11,23 @@ interface HistoryProps {
 
 const History = ({ history, storeArticle, updateUserSentiment }: HistoryProps): JSX.Element => {
 
-  const articleCards = history.map((article: CleanedArticle) => {
-    return (
-      <Card
-        title={ article.title }
-        image={ article.multimedia.url }
-        key={ article.title }
-        sentiment={ article.sentiment }
-        id={ article.id }
-        storeArticle={ storeArticle }
-        updateUserSentiment={ updateUserSentiment }
-      />
-    )
-  })
+  let articleCards: JSX.Element[] = [];
+
+  if (history) {
+    articleCards = history.map((article: CleanedArticle) => {
+      return (
+        <Card
+          title={ article.title }
+          image={ article.multimedia.url }
+          key={ article.title }
+          sentiment={ article.sentiment }
+          id={ article.id }
+          storeArticle={ storeArticle }
+          updateUserSentiment={ updateUserSentiment }
+        />
+      )
+    })
+  }
 
   return (
     <div className="articles-container">
@@ -37,7 +41,7 @@ const History = ({ history, storeArticle, updateUserSentiment }: HistoryProps): 
         <button className='search-topics-btn'>Search Topics</button>
       </Link>
         <section className="articles-display">
-          { articleCards.length ? articleCards : <h3>No more articles</h3> }
+          { articleCards.length ? articleCards : <h3>No history</h3> }
         </section>
     </div>
   )

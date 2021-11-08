@@ -27,8 +27,6 @@ const Feed = ({ unreadArticles, updateUserSentiment, storeArticle }: FeedProps):
         />
       )
     })
-  } else {
-    articleCards = []
   }
 
   return (
