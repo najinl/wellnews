@@ -33,4 +33,13 @@ describe ('TopicForm', () => {
     cy.get('[href="/feed/books"]').click()
     .get('.cy-article-card').first().contains('The Manhattan ‘Madam’ Who Hobnobbed With the City’s Elite')
   })
+
+  it('Should take you to the sentiment quiz when the "check in" button is clicked', () => {
+    cy.visit('/').get('.cy-neutral-btn').click()
+    cy.get('[href="/search-topic"]').click()
+    cy.intercept('https://api.nytimes.com/svc/topstories/v2/magazine.json?api-key=GKUzDD1VY9ssjZ1AGusX3ci6AeoXCaSr', {fixture: 'ny-article-fetch-magazine.json'})
+    .intercept('https://api.dandelion.eu/datatxt/sent/v1/?lang=en&text=The magazines Ethicist columnist on responding to infidelity&token=beb0091844524790b7672a69bac06a2a', {fixture: 'affair-sentiment.json'})
+    cy.get('[href="/feed/magazine"]').click()
+    .get('.check-in-btn').click().url().should('eq', 'http://localhost:3000/')
+  })
 })
