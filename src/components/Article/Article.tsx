@@ -15,13 +15,6 @@ const Article = ({ title, image, abstract, caption, selectedTopic }: ArticleProp
 
   return (
     <section className="single-article-container">
-      <div className="back-button-container">
-        {!selectedTopic ? <Link to="/feed" className="cy-back-link">
-          ⇦ BACK
-        </Link> : <Link to={`/feed/${selectedTopic}`} className="cy-back-link">
-          ⇦ BACK
-        </Link>}
-      </div>
       <figure>
         <img src={image} alt={caption} className="single-article-image cy-single-article-image"/>
         <figcaption className="single-article-caption cy-single-article-caption">{caption}</figcaption>
@@ -33,21 +26,8 @@ const Article = ({ title, image, abstract, caption, selectedTopic }: ArticleProp
       <p>{placeholderText}</p>
       <p>{placeholderText}</p>
       <p>{placeholderText}</p>
-      <p>{placeholderText}</p>
-      <p>{placeholderText}</p>
-      <p>{placeholderText}</p>
-      <p>{placeholderText}</p>
-      <p>{placeholderText}</p>
-      <div className="back-button-container">
-      {!selectedTopic ? <Link to="/feed" className="cy-back-link">
-        ⇦ BACK
-      </Link> : <Link to={`/feed/${selectedTopic}`} className="cy-back-link">
-        ⇦ BACK
-      </Link>}
-      </div>
     </section>
   )
 }
-
 
 export default Article
