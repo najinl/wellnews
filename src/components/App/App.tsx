@@ -13,7 +13,7 @@ import History from '../History/History'
 
 const App = (): JSX.Element => {
   const [articles, setArticles] = useState<CleanedArticle[]>([]);
-  const [history, setHistory] = useState<CleanedArticle[]>([])
+  const [history, setHistory] = useState<CleanedArticle[]>([]);
   const [error, setError] = useState('');
   const [userSentiment, setUserSentiment] = useState<number | null>(null);
   const [selectedArticles, setSelectedArticles] = useState<CleanedArticle[]>([]);
@@ -46,10 +46,10 @@ const App = (): JSX.Element => {
 
   const updateUserSentiment = (newUserSentiment: number) => {
     let averageSentiment;
-    if (userSentiment) {
+    if (userSentiment && userSentiment >= 0) {
       averageSentiment = (userSentiment + newUserSentiment) / 2;
     }
-    setUserSentiment(averageSentiment || newUserSentiment)
+    setUserSentiment(averageSentiment || newUserSentiment);
   }
 
   const assignTopic = (selectedTopic: string): void => {
@@ -69,24 +69,16 @@ const App = (): JSX.Element => {
       .catch(error => setError(error.message));
   }
 
-  const updateHistory = (article: CleanedArticle): void => {
-    setHistory((prevState) => {
-      prevState.push(article)
-      return prevState
-    });
-  }
-
   const storeArticle = (id: string): void => {
     const matchingArticle = articles.find(article => article.id === id);
-    let localHistory = JSON.parse(localStorage.getItem('wellnewsHistory')!);
+    const localHistory = JSON.parse(localStorage.getItem('wellnewsHistory')!);
     if (!localHistory) {
-      localHistory = [id];
-      localStorage.setItem('wellnewsHistory', JSON.stringify(localHistory));
-      updateHistory(matchingArticle!)
+      localStorage.setItem('wellnewsHistory', JSON.stringify([id]));
+      return setHistory([matchingArticle!]);
     } else if (!localHistory.includes(id)) {
       localHistory.push(id)
       localStorage.setItem('wellnewsHistory', JSON.stringify(localHistory))
-      updateHistory(matchingArticle!)
+      setHistory([...history, matchingArticle!]);
     }
   }
 

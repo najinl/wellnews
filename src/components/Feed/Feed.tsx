@@ -14,8 +14,6 @@ interface FeedProps {
 const Feed = ({ userSentiment, articles, history, updateUserSentiment, storeArticle }: FeedProps): JSX.Element => {
 
   const unreadArticles = articles.filter(article => {
-    console.log('article: ', article)
-    console.log('history', history)
     if (history.length) {
       return history.find(historyArticle => {
         return article.id !== historyArticle.id
