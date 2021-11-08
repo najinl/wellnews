@@ -56,13 +56,33 @@
   text-decoration: none;
 }
 
+@media (max-width: 1600px) {
+  .header-elements-container {
+    margin-top: .6%;
+  }
+}
+
+@media (max-width: 1150px) {
+  .header-elements-container {
+    margin-top: 1.2%;
+  }
+}
+
 @media (max-width: 1000px) {
+  .header-elements-container {
+    margin-top: 1%;
+  }
+
   .articles-display {
     margin-top: 1rem;
   }
 }
 
 @media (max-width: 900px) {
+  .header-elements-container {
+    margin-top: 0%;
+  }
+
   .articles-display {
     margin-top: 1rem;
   }
@@ -92,6 +112,10 @@
     height: 2.4rem;
     top: 13%;
     right: -20%;
+  }
+
+  .article-title {
+    font-size: 1.3rem;
   }
 }
 
@@ -125,6 +149,22 @@
     height: 2.4rem;
     top: 13%;
     right: -28%;
+  }
+
+  .article-title {
+    font-size: 1rem;
+    width: 70%;
+  }
+
+  .article-sentiment {
+    height: 1.1rem;
+    width: 1rem;
+    font-size: 1rem;
+  }
+
+  .topic-text {
+    font-size: .8rem;
+    margin-top: 0rem;
   }
 }
 
@@ -207,5 +247,10 @@
     height: 1.8rem;
     top: 14%;
     right: -35%;
+  }
+
+  .article-title {
+    font-size: .8rem;
+    width: 85%;
   }
 }
