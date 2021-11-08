@@ -6,6 +6,13 @@
   background-color: #4B658B;
   color: white;
   margin: 10vw;
+  width: 100%;
+}
+
+.blue-stripe {
+  width: 100%;
+  background-color: #132741;
+  margin-bottom: 5%;
 }
 
 .header-text {
@@ -16,10 +23,12 @@
   color: #9eeeff;
 }
 
-.Aquestionnaire-header {
+.questionnaire-header {
   font-size: calc(10px + 2vmin);
   color: white;
   display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 h2 {

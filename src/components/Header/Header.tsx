@@ -16,7 +16,7 @@ const Header = (): JSX.Element => {
         </h1>
         <button className="history-btn">History</button>
         <Link to='/search-topic'>
-          <button className="list-btn"></button>
+          <button className="list-btn" aria-label="Browse by Topic"></button>
         </Link>
       </div>
     </header>

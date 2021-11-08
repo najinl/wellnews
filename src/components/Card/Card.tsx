@@ -29,9 +29,9 @@ const Card = ({ title, image, id, sentiment, topic, updateUserSentiment }: CardP
             <img className="article-image cy-article-image" src={image} alt={title} />
           </div>
           <div className="topic-container">
-            <div className="topic-text">
+            <p className="topic-text">
               {topic}
-            </div>
+            </p>
           </div>
           <h2 className="article-title cy-article-title">{title}</h2>
           </Link>

@@ -24,7 +24,7 @@ a:hover {
   color: #9EEEFF;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
   body {
     overflow-x: hidden;
   }

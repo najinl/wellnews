@@ -10,7 +10,7 @@
   flex-direction: column;
   justify-content: center;
   width: 90%;
-  background-color: #f4f7fc;
+  background-color: #edf1f7;
   padding-top: 2.4rem;
   box-shadow: 4px 4px 4px black;
 }
@@ -40,30 +40,6 @@
   text-decoration: none;
 }
 
-@media (max-width: 1000px) {
-  .articles-display {
-    width: 70%;
-    margin-top: 0rem;
-  }
-}
-
-@media (max-width: 870px) {
-  .articles-display {
-    margin-top: 0rem;
-  }
-}
-
-@media (max-width: 700px) {
-  .articles-display {
-    width: 80%;
-  }
- }
-@media (max-width: 600px) {
-  .articles-display {
-    padding-top: 0rem;
-  }
-}
-
 .find-more-btn, .back-button-container {
   color: white;
   margin-top: .5rem;
@@ -78,4 +54,158 @@
   color: purple;
   font-weight: bold;
   text-decoration: none;
+}
+
+@media (max-width: 1000px) {
+  .articles-display {
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .articles-display {
+    margin-top: 1rem;
+  }
+
+  .header {
+    height: 3.2rem;
+  }
+
+  .header-txt,
+  .header-text-2 {
+    font-size: 2rem;
+  }
+
+  .check-in-btn {
+    height: 2rem;
+    top: 10%;
+    left: -10%;
+  }
+
+  .history-btn {
+    height: 2rem;
+    top: 10%;
+    right: 3%;
+  }
+
+  .list-btn {
+    height: 2.4rem;
+    top: 13%;
+    right: -20%;
+  }
+}
+
+@media (max-width: 630px) {
+  .articles-display {
+    margin-top: 1rem;
+  }
+
+  .header {
+    height: 3.2rem;
+  }
+
+  .header-txt,
+  .header-text-2 {
+    font-size: 2rem;
+  }
+
+  .check-in-btn {
+    height: 1.7rem;
+    top: 15%;
+    left: -25%;
+  }
+
+  .history-btn {
+    height: 1.7rem;
+    top: 15%;
+    right: -7%;
+  }
+
+  .list-btn {
+    height: 2.4rem;
+    top: 13%;
+    right: -28%;
+  }
+}
+
+@media (max-width: 500px) {
+  .articles-display {
+    margin-top: 1rem;
+  }
+
+  .header {
+    height: 2.8rem;
+  }
+
+  .header-txt,
+  .header-text-2 {
+    font-size: 1.7rem;
+    margin-top: .5rem;
+  }
+
+  .check-in-btn {
+    height: 1.7rem;
+    width: 6rem;
+    top: 15%;
+    left: -25%;
+  }
+
+  .check-in-text {
+    padding-left: 1rem;
+    font-size: .8rem;
+  }
+
+  .history-btn {
+    height: 1.7rem;
+    top: 15%;
+    right: -7%;
+    font-size: .8rem;
+  }
+
+  .list-btn {
+    height: 1.95rem;
+    top: 18%;
+    right: -30%;
+  }
+}
+
+@media (max-width: 400px) {
+  .articles-display {
+    margin-top: 1rem;
+  }
+
+  .header {
+    height: 2.5rem;
+  }
+
+  .header-txt,
+  .header-text-2 {
+    font-size: 1.5rem;
+    margin-top: .45rem;
+  }
+
+  .check-in-btn {
+    height: 1.6rem;
+    width: 1.8rem;
+    top: 12%;
+    left: -26%;
+    padding: 0px;
+  }
+
+  .check-in-text {
+    display: none;
+  }
+
+  .history-btn {
+    height: 1.6rem;
+    top: 12%;
+    right: -10%;
+    font-size: .8rem;
+  }
+
+  .list-btn {
+    height: 1.8rem;
+    top: 14%;
+    right: -35%;
+  }
 }

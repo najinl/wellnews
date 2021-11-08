@@ -8,22 +8,15 @@ html {
   text-align: center;
 }
 
-.Aquestionnaire-header {
-  font-size: calc(10px + 2vmin);
-  color: white;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  cursor: default;
-  background-color: #132841;
-  margin-bottom: 1rem;
-  width: 100%;
-}
-
 .app-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   height: 100vh;
+}
+
+.loading-text {
+  margin-top: 1rem;
+  color: white;
 }

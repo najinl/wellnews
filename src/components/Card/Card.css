@@ -1,14 +1,12 @@
 .card-container {
   position: relative;
   display: flex;
-  flex-direction: row;
   justify-content: center;
 }
 
 .article-image-container {
   position: relative;
   display: flex;
-  flex-direction: row;
   justify-content: center;
 }
 
@@ -16,9 +14,8 @@
   width: 80%;
   max-height: 30rem;
   padding: .3rem;
-  border: 1px solid black;
   margin-top: 1rem;
-  background-color: white;
+  /* background-color: white; */
 }
 
 .article-title {
@@ -39,7 +36,7 @@
   align-items: center;
   width: 90%;
   object-fit: contain;
-  background-color: #f4f7fc;
+  /* background-color: #f4f7fc; */
 }
 
 .topic-text {
@@ -67,15 +64,15 @@
 }
 
 .green {
-  background-color: #1cc96d;
+  background-color: #089347;
 }
 
 .red {
-  background-color: #d12310;
+  background-color: #b51c0e;
 }
 
 .blue {
-  background-color: #0db6e5;
+  background-color: #0d9cc4;
 }
 
 .divider {
@@ -96,8 +93,4 @@ a {
 
 a:hover {
   text-decoration: underline;
-}
-
-@media (max-width: 870px) {
-
 }

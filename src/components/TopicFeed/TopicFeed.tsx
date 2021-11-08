@@ -28,16 +28,18 @@ const TopicFeed = ({ userSentiment, selectedArticles, updateUserSentiment, selec
   }
 
   const articleCards = sortedArticles.map(article => {
-    return  <TopicCard
-        title={ article.title }
-        image={ article.multimedia.url }
-        id={ article.id }
-        sentiment={ article.sentiment }
-        updateUserSentiment={ updateUserSentiment }
-        storeArticle={ storeArticle! }
-        selectedTopic = { selectedTopic }
-        key={ article.title }
-      />
+    return (
+        <TopicCard
+          title={ article.title }
+          image={ article.multimedia.url }
+          id={ article.id }
+          sentiment={ article.sentiment }
+          updateUserSentiment={ updateUserSentiment }
+          storeArticle={ storeArticle! }
+          selectedTopic = { selectedTopic }
+          key={ article.title }
+        />
+      )
     })
 
     return (

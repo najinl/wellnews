@@ -106,7 +106,7 @@ const App = (): JSX.Element => {
                     history={ history }
                     storeArticle={ storeArticle }
                   />
-                  { !articles.length && <h2>Loading.. </h2>}
+                  { !articles.length && <h2 className="loading-text">Loading.. </h2>}
                   { error && <h2>{error}</h2> }
                 </>
               )
