@@ -8,6 +8,20 @@
   margin: 10vw;
 }
 
+.header-text {
+  font-size: 2.5rem;
+}
+
+.header-text-2 {
+  color: #9eeeff;
+}
+
+.Aquestionnaire-header {
+  font-size: calc(10px + 2vmin);
+  color: white;
+  display: flex;
+}
+
 h2 {
   margin-top: 1rem;
   font-size: 2rem;

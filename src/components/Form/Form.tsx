@@ -22,6 +22,11 @@ const Form = ({ updateUserSentiment }: FormProps): JSX.Element => {
 
   return (
     <section className="questionnaire">
+      <header className="questionnaire-header">
+        <h1 className="header-text cy-header-text">
+          Well<span className="header-text-2">News</span>
+        </h1>
+      </header>
       <h2 className='cy-sentiment-question'>What kind of mood are you in?</h2>
       <div className="sentiments-container">
         <button

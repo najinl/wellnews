@@ -6,6 +6,10 @@
   border: 1px solid white;
 }
 
+.browse-topics {
+  margin: 2rem 0rem 2rem 0rem;
+  color: white;
+}
 
 .topic {
   text-decoration: none;

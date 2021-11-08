@@ -8,15 +8,7 @@ html {
   text-align: center;
 }
 
-.header-text {
-  font-size: 2.5rem;
-}
-
-.header-text-2 {
-  color: #9eeeff;
-}
-
-.App-header {
+.Aquestionnaire-header {
   font-size: calc(10px + 2vmin);
   color: white;
   display: flex;

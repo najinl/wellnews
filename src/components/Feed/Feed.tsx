@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { CleanedArticle } from '../../Models';
 import Card from '../Card/Card';
+import Header from '../Header/Header';
 import './Feed.css';
 
 interface FeedProps {
@@ -40,15 +41,8 @@ const Feed = ({ userSentiment, articles, updateUserSentiment }: FeedProps): JSX.
 
     return (
       <>
+        <Header />
         <div className="articles-container">
-          <div className="feed-button-container">
-            <Link to='/'>
-              <button className='retake-btn'>Retake Questionnaire</button>
-            </Link>
-            <Link to='/search-topic'>
-              <button className='search-topics-btn'>Search Topics</button>
-            </Link>
-            </div>
             <section className="articles-display">
               { articleCards }
             </section>
