@@ -6,17 +6,17 @@ describe('Feed', () => {
   })
 
   it('Should show the header', () => {
-    cy.visit('/').get('.cy-sad-btn').click()
-      .get('.cy-header-text').contains('WellNews')
+    cy.visit('/').get('.cy-negative-btn').click()
+    cy.contains('WellNews')
   })
 
   it('Should, when the happy button is clicked, show the articles sorted in ascending order by sentiment', () => {
-    cy.visit('/').get('.cy-happy-btn').click()
+    cy.visit('/').get('.cy-positive-btn').click()
       .get('.cy-article-card').first().contains('Should I Tell a Facebook Friend I Had an Affair With Her Partner?')
   })
 
   it('Should, when the sad button is clicked, show the articles sorted in descending order by sentiment', () => {
-    cy.visit('/').get('.cy-sad-btn').click()
+    cy.visit('/').get('.cy-negative-btn').click()
       .get('.cy-article-card').first().contains('The Manhattan ‘Madam’ Who Hobnobbed With the City’s Elite')
   })
 
@@ -27,4 +27,22 @@ describe('Feed', () => {
       .get('.cy-article-title').first()
         .should('be.visible')
   })
+
+  it('Should take you to the sentiment quiz when the "check in" button is clicked', () => {
+    cy.visit('/').get('.cy-neutral-btn').click()
+    .get('.check-in-btn').click().url().should('eq', 'http://localhost:3000/')
+  })
+
+  it('Should take you to the serach by topic page when the hamburger button is selected', () => {
+    cy.visit('/').get('.cy-positive-btn').click()
+    cy.get('[href="/search-topic"]').click()
+    .url().should('eq', 'http://localhost:3000/search-topic')
+
+  })
+
+  it('Should contain a history button', () => {
+    cy.visit('/').get('.cy-neutral-btn').click()
+    cy.contains('History')
+  })
+
 })
