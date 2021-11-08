@@ -69,10 +69,8 @@ const Form = ({ updateUserSentiment }: FormProps): JSX.Element => {
       </button>
       <button className="view-synopsis-button cy-view-synopsis-button" name="viewSynopsisButton" onClick={ showSynopsis }>Why we ask? ▽</button>
       <article className="hidden wellnews-synopsis cy-wellnews-synopsis" id="synopsisInfo">
-        <p>WellNews uses your mood to curate a list of articles with your mental health in mind.</p>
-        <p>A negative mood will prioritize positive articles. <br/>A positive mood will result in a mix of positive, neutral, and negative news.</p>
-        <p>If you are unsure, select a neutral mood for a mix of articles that lean towards the positive.</p>
-        <p>You can change your mood preference at any time.</p>
+        <p>Based on your mood and the articles you read, we dynamically sort your feed and nudge you toward sentimental balance. We don't filter your feed.</p>
+        <p>If you prefer, skip the questionnare and we'll sort your feed based only on the articles you read.</p>
       </article>
     </section>
   );
