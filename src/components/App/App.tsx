@@ -13,7 +13,7 @@ import History from '../History/History'
 
 const App = (): JSX.Element => {
   const [articles, setArticles] = useState<CleanedArticle[]>([]);
-  const [history, setHistory] = useState<string[]>([])
+  const [history, setHistory] = useState<CleanedArticle[]>([])
   const [error, setError] = useState('');
   const [userSentiment, setUserSentiment] = useState<number | null>(null);
   const [selectedArticles, setSelectedArticles] = useState<CleanedArticle[]>([]);
@@ -52,10 +52,6 @@ const App = (): JSX.Element => {
     setUserSentiment(averageSentiment || newUserSentiment)
   }
 
-  const updateHistory = (localHistory: string[]): void => {
-    setHistory(localHistory);
-  }
-
   const assignTopic = (selectedTopic: string): void => {
     setSelectedTopic(selectedTopic);
     getArticles(selectedTopic)
@@ -73,17 +69,24 @@ const App = (): JSX.Element => {
       .catch(error => setError(error.message));
   }
 
+  const updateHistory = (article: CleanedArticle): void => {
+    setHistory((prevState) => {
+      prevState.push(article)
+      return prevState
+    });
+  }
+
   const storeArticle = (id: string): void => {
+    const matchingArticle = articles.find(article => article.id === id);
     let localHistory = JSON.parse(localStorage.getItem('wellnewsHistory')!);
     if (!localHistory) {
       localHistory = [id];
-      localStorage.setItem('wellnewsHistory', JSON.stringify([id]));
-      updateHistory(localHistory)
+      localStorage.setItem('wellnewsHistory', JSON.stringify(localHistory));
+      updateHistory(matchingArticle!)
     } else if (!localHistory.includes(id)) {
       localHistory.push(id)
       localStorage.setItem('wellnewsHistory', JSON.stringify(localHistory))
-      console.log('localHistory: ', localHistory)
-      updateHistory(localHistory)
+      updateHistory(matchingArticle!)
     }
   }
 

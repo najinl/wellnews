@@ -7,14 +7,21 @@ interface FeedProps {
   userSentiment: number | null;
   articles: CleanedArticle[];
   updateUserSentiment: (userSentiment: number) => void;
-  history: string[]
-  storeArticle: (id: string) => void
+  history: CleanedArticle[];
+  storeArticle: (id: string) => void;
 }
 
 const Feed = ({ userSentiment, articles, history, updateUserSentiment, storeArticle }: FeedProps): JSX.Element => {
 
   const unreadArticles = articles.filter(article => {
-    return !history.includes(article.id)
+    console.log('article: ', article)
+    console.log('history', history)
+    if (history.length) {
+      return history.find(historyArticle => {
+        return article.id !== historyArticle.id
+      })
+    }
+    return true
   })
 
   let sortedArticles : CleanedArticle[];
