@@ -2,6 +2,8 @@
 
 ## Abstract
 
+A novel news application that seeks to help news consumers feel emotionally balanced after reading the news. This application was built utilizing TypeScript, React, React Hooks, and React Router.
+
 <a href="">View Deployed Site Here</a>
 
 
@@ -9,9 +11,12 @@
 
 ![]()
 
-- The user is greeted with a sentiment quiz, where they can choose their mood from strongly positive, positive, neutral, negative, or strongly negative.
-- Based on the user's mood and the articles they read, we dynamically sort the news feed and nudge the user toward sentimentally balance. We don't filter the feed.
-- If the user prefers not to indicate their mood, they can press 'skip' and we'll sort based only on the articles read.
+When the user visits the app, they will be asked to select an emoji representing their current generalized emotional affect: strongly negative, negative, neutral, positive, or strongly positive.
+
+In the background, all of the articles’ titles and abstracts are processed by Dandelion’s Sentiment Analysis API and each given a sentiment score (from 0 (strongly negative) to 10 (strongly positive)). Based on the user's mood, they will see articles pulled from the NYT’s Top Stories API, sorted by sentiment.
+
+The app keeps track of and updates the session’s affect score based on the affect of the articles that the user subsequently reads. The articles will be continually sorted and nudge the user toward sentimentally balance. We don't filter the feed. If the user prefers not to indicate their mood, they can press 'skip' and we'll sort based only on the articles read.
+
 
 ## Technologies
 
@@ -44,14 +49,27 @@
 
 ## Wins
 
+- Learning TypeScript in a short amount of time and successfully implementing it
+- Integrating data from two different APIs using fetch and asynchronous JS.
+- Working asynchronously to tackle various parts of the project and resolving merge conflicts as they arose
+- Creating appropriate error handling and displaying error and loading messages to the user
+- Making our application meet accessibility principles
+- Utilizing resources such as web documents and mentors to expand knowledge base and maximize application display and performance
+- Implementing features beyond our MVP, such as viewing articles by topic
 
 ## Challenges
 
+- Applying TypeScript in a group project while learning it through different learning styles
+- Keeping up with timely code reviews and merging
+- Creating modular reusable components while implementing a multi-page website
+- Implementing styling for a mobile first application
 
 
 ## Future Features
 
-
+- Fetching news data from multiple news sources and allowing the user to choose between them.
+- Further modularizing components
+- Accessing the full articles so the user can read it in our application
 
 ## Contributors
 
