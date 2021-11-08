@@ -1,0 +1,87 @@
+{
+  "results": [
+    {
+      "section": "books",
+      "subsection": "review",
+      "title": "The Manhattan ‘Madam’ Who Hobnobbed With the City’s Elite",
+      "abstract": "A new biography by Debby Applegate recounts the story of Polly Adler, who arrived in America from Russia at 13 and became New Yorks most successful brothel owner, befriending mobsters, policemen, politicians and writers",
+      "url": "https://www.nytimes.com/2021/11/02/books/review/madam-polly-adler-debby-applegate.html",
+      "uri": "nyt://article/fcd7cf4c-7ed7-5560-892d-e625d462fc53",
+      "byline": "By Paulina Bren",
+      "item_type": "Article",
+      "updated_date": "2021-11-02T13:06:17-04:00",
+      "created_date": "2021-11-02T05:00:07-04:00",
+      "published_date": "2021-11-02T05:00:07-04:00",
+      "material_type_facet": "",
+      "kicker": "nonfiction",
+      "des_facet": [
+          "Books and Literature",
+          "Prostitution",
+          "Women and Girls",
+          "Nineteen Hundred Twenties",
+          "Madam: The Biography of Polly Adler, Icon of the Jazz Age (Book)"
+      ],
+      "org_facet": [],
+      "per_facet": [
+          "Applegate, Debby",
+          "Adler, Polly"
+      ],
+      "geo_facet": [
+          "Manhattan (NYC)"
+      ],
+      "multimedia": [
+          {
+              "url": "https://static01.nyt.com/images/2021/10/25/books/review/00Bren/00Bren-superJumbo.jpg",
+              "format": "superJumbo",
+              "height": 2048,
+              "width": 1639,
+              "type": "image",
+              "subtype": "photo",
+              "caption": "Polly Adler exiting a police van after being arrested in 1936. The more successful Polly’s brothel became, the more hounded she was — by the police, by Tammany Hall, by the Broadway mob.",
+              "copyright": "NY Daily News Archive via Getty Images"
+          },
+          {
+              "url": "https://static01.nyt.com/images/2021/10/25/books/review/00Bren/00Bren-thumbStandard.jpg",
+              "format": "Standard Thumbnail",
+              "height": 75,
+              "width": 75,
+              "type": "image",
+              "subtype": "photo",
+              "caption": "Polly Adler exiting a police van after being arrested in 1936. The more successful Polly’s brothel became, the more hounded she was — by the police, by Tammany Hall, by the Broadway mob.",
+              "copyright": "NY Daily News Archive via Getty Images"
+          },
+          {
+              "url": "https://static01.nyt.com/images/2021/10/25/books/review/00Bren/00Bren-thumbLarge.jpg",
+              "format": "thumbLarge",
+              "height": 150,
+              "width": 150,
+              "type": "image",
+              "subtype": "photo",
+              "caption": "Polly Adler exiting a police van after being arrested in 1936. The more successful Polly’s brothel became, the more hounded she was — by the police, by Tammany Hall, by the Broadway mob.",
+              "copyright": "NY Daily News Archive via Getty Images"
+          },
+          {
+              "url": "https://static01.nyt.com/images/2021/10/25/books/review/00Bren/00Bren-mediumThreeByTwo210.jpg",
+              "format": "mediumThreeByTwo210",
+              "height": 140,
+              "width": 210,
+              "type": "image",
+              "subtype": "photo",
+              "caption": "Polly Adler exiting a police van after being arrested in 1936. The more successful Polly’s brothel became, the more hounded she was — by the police, by Tammany Hall, by the Broadway mob.",
+              "copyright": "NY Daily News Archive via Getty Images"
+          },
+          {
+              "url": "https://static01.nyt.com/images/2021/10/25/books/review/00Bren/00Bren-articleInline.jpg",
+              "format": "Normal",
+              "height": 238,
+              "width": 190,
+              "type": "image",
+              "subtype": "photo",
+              "caption": "Polly Adler exiting a police van after being arrested in 1936. The more successful Polly’s brothel became, the more hounded she was — by the police, by Tammany Hall, by the Broadway mob.",
+              "copyright": "NY Daily News Archive via Getty Images"
+          }
+      ],
+      "short_url": "https://nyti.ms/3nRi5RW"
+    }
+  ]
+}
