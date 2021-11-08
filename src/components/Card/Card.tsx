@@ -11,20 +11,15 @@ interface CardProps {
   storeArticle: (id: string) => void
 }
 
-const Card = ({ title, image, id, sentiment, topic, updateUserSentiment, storeArticle }: CardProps): JSX.Element => {
-
-  const handleClick = (): void => {
-    updateUserSentiment(sentiment)
-    storeArticle(id)
-  }
-  
+const Card = ({ title, image, id, sentiment, topic, updateUserSentiment }: CardProps): JSX.Element => {
+  console.log(sentiment);
   return (
     <div className="article-boundary">
       <div className="card-container">
         <article className="news-card cy-article-card">
           <Link
             to={`/feed/${id}`}
-            onClick={ handleClick }
+            onClick={() => updateUserSentiment(sentiment) }
             className="cy-article-link"
           >
           <div className="article-image-container">
