@@ -13,8 +13,8 @@ interface CardProps {
 const Card = ({ title, image, id, sentiment, updateUserSentiment, storeArticle }: CardProps): JSX.Element => {
 
   const handleClick = (): void => {
-    updateUserSentiment(sentiment)
     storeArticle(id)
+    updateUserSentiment(sentiment)
   }
 
   return (

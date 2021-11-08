@@ -13,6 +13,7 @@ import History from '../History/History'
 
 const App = (): JSX.Element => {
   const [articles, setArticles] = useState<CleanedArticle[]>([]);
+  const [unreadArticles, setUnreadArticles] = useState<CleanedArticle[] | undefined>([])
   const [history, setHistory] = useState<CleanedArticle[]>([]);
   const [error, setError] = useState('');
   const [userSentiment, setUserSentiment] = useState<number | null>(null);
@@ -24,17 +25,51 @@ const App = (): JSX.Element => {
       .then((cleanedArticles: CleanedArticle[]): void => {
         getSentimentScores(cleanedArticles)
           .then((response: number[]) => {
-
             const scoredArticles = cleanedArticles.map((article, i) => {
                article.sentiment = response[i];
                return article;
             });
-
             setArticles(scoredArticles);
           });
       })
       .catch(error => setError(error.message));
   }, []);
+
+  useEffect((): void => {
+    const sortedArticles = getSortedArticles();
+    setArticles(sortedArticles);
+  }, [userSentiment])
+
+  useEffect((): void => {
+    const unreadArticles = getUnreadArticles();
+    console.log('unreadArticles: ', unreadArticles)
+    setUnreadArticles(unreadArticles);
+  }, [articles, history])
+
+  const getSortedArticles = (): CleanedArticle[] => {
+    let sortedArticles;
+    if (userSentiment && userSentiment >= -1 && userSentiment <= -0.3) {
+      sortedArticles = articles.sort((articleA, articleB) => {
+        return articleB.sentiment - articleA.sentiment;
+      })
+    } else if (userSentiment && userSentiment <= 1 && userSentiment >= 0.3) {
+      sortedArticles = articles.sort((articleA, articleB) => {
+        return articleA.sentiment - articleB.sentiment;
+      })
+    } else {
+      sortedArticles = articles.sort((articleA, articleB) => 0.5 - Math.random());
+    }
+    return sortedArticles;
+  }
+
+  const getUnreadArticles = (): CleanedArticle[] | undefined => {
+    if (history.length) {
+      return articles.filter(article => {
+        return !history.find(historyArticle => historyArticle.id === article.id)
+      })
+    }
+    return articles;
+  }
 
   const getSentimentScores = (cleanedArticles: CleanedArticle[]): Promise<number[]> => {
     return Promise.all(
@@ -100,13 +135,11 @@ const App = (): JSX.Element => {
               return (
                 <>
                   <Feed
-                    userSentiment={ userSentiment }
-                    articles={ articles }
+                    unreadArticles={ unreadArticles }
                     updateUserSentiment={ updateUserSentiment }
-                    history={ history }
                     storeArticle={ storeArticle }
                   />
-                  { !articles.length && <h2>Loading.. </h2>}
+                  { articles.length < 1 && <h2>Loading.. </h2>}
                   { error && <h2>{error}</h2> }
                 </>
               )

@@ -4,7 +4,7 @@ import { CleanedArticle } from '../../Models';
 import '../Feed/Feed.css'
 
 interface HistoryProps {
-  history: CleanedArticle[] | any
+  history: CleanedArticle[];
   updateUserSentiment: (userSentiment: number) => void
   storeArticle: (id: string) => void
 }

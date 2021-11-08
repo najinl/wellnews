@@ -4,52 +4,32 @@ import Card from '../Card/Card';
 import './Feed.css';
 
 interface FeedProps {
-  userSentiment: number | null;
-  articles: CleanedArticle[];
+  unreadArticles: CleanedArticle[] | undefined;
   updateUserSentiment: (userSentiment: number) => void;
-  history: CleanedArticle[];
   storeArticle: (id: string) => void;
 }
 
-const Feed = ({ userSentiment, articles, history, updateUserSentiment, storeArticle }: FeedProps): JSX.Element => {
+const Feed = ({ unreadArticles, updateUserSentiment, storeArticle }: FeedProps): JSX.Element => {
 
-  let unreadArticles;
+  let articleCards: JSX.Element[] = [];
 
-  if (history.length) {
-    unreadArticles = articles.filter(article => {
-      return !history.find(historyArticle => historyArticle.id === article.id)
+  if (unreadArticles) {
+    articleCards = unreadArticles.map(article => {
+      return  (
+        <Card
+          title={ article.title }
+          image={ article.multimedia.url }
+          id={ article.id }
+          sentiment={ article.sentiment }
+          updateUserSentiment={ updateUserSentiment }
+          storeArticle={ storeArticle }
+          key={ article.title }
+        />
+      )
     })
   } else {
-    unreadArticles = articles;
+    articleCards = []
   }
-
-  let sortedArticles : CleanedArticle[];
-
-  if (userSentiment && userSentiment >= -1 && userSentiment <= -0.3) {
-    sortedArticles = unreadArticles.sort((articleA, articleB) => {
-      return articleB.sentiment - articleA.sentiment;
-    })
-  } else if (userSentiment && userSentiment <= 1 && userSentiment >= 0.3) {
-    sortedArticles = unreadArticles.sort((articleA, articleB) => {
-      return articleA.sentiment - articleB.sentiment;
-    })
-  } else {
-    sortedArticles = unreadArticles.sort((articleA, articleB) => 0.5 - Math.random());
-  }
-
-  const articleCards = sortedArticles.map(article => {
-    return  (
-      <Card
-        title={ article.title }
-        image={ article.multimedia.url }
-        id={ article.id }
-        sentiment={ article.sentiment }
-        updateUserSentiment={ updateUserSentiment }
-        storeArticle={ storeArticle }
-        key={ article.title }
-      />
-    )
-  })
 
   return (
     <>
@@ -64,7 +44,7 @@ const Feed = ({ userSentiment, articles, history, updateUserSentiment, storeArti
           <button className='search-topics-btn'>Search Topics</button>
         </Link>
           <section className="articles-display">
-            { articleCards.length ? articleCards :
+            { articleCards.length > 1 ? articleCards :
               <Link to="/search-topic">
                 <button className='find-more-btn'>Find more articles by topic</button>
               </Link> }
