@@ -9,9 +9,11 @@ import TopicForm from '../TopicForm/TopicForm';
 import TopicFeed from '../TopicFeed/TopicFeed'
 import NoMatch from '../NoMatch/NoMatch';
 import './App.css';
+import History from '../History/History'
 
 const App = (): JSX.Element => {
   const [articles, setArticles] = useState<CleanedArticle[]>([]);
+  const [history, setHistory] = useState<string[]>([])
   const [error, setError] = useState('');
   const [userSentiment, setUserSentiment] = useState<number | null>(null);
   const [selectedArticles, setSelectedArticles] = useState<CleanedArticle[]>([]);
@@ -34,7 +36,6 @@ const App = (): JSX.Element => {
       .catch(error => setError(error.message));
   }, []);
 
-
   const getSentimentScores = (cleanedArticles: CleanedArticle[]): Promise<number[]> => {
     return Promise.all(
       cleanedArticles.map((article: CleanedArticle) => {
@@ -49,6 +50,10 @@ const App = (): JSX.Element => {
       averageSentiment = (userSentiment + newUserSentiment) / 2;
     }
     setUserSentiment(averageSentiment || newUserSentiment)
+  }
+
+  const updateHistory = (localHistory: string[]): void => {
+    setHistory(localHistory);
   }
 
   const assignTopic = (selectedTopic: string): void => {
@@ -68,6 +73,19 @@ const App = (): JSX.Element => {
       .catch(error => setError(error.message));
   }
 
+  const storeArticle = (id: string): void => {
+    let localHistory = JSON.parse(localStorage.getItem('wellnewsHistory')!);
+    if (!localHistory) {
+      localHistory = [id];
+      localStorage.setItem('wellnewsHistory', JSON.stringify([id]));
+      updateHistory(localHistory)
+    } else if (!localHistory.includes(id)) {
+      localHistory.push(id)
+      localStorage.setItem('wellnewsHistory', JSON.stringify(localHistory))
+      console.log('localHistory: ', localHistory)
+      updateHistory(localHistory)
+    }
+  }
 
   return (
     <div className="app-container">
@@ -85,7 +103,9 @@ const App = (): JSX.Element => {
                     userSentiment={ userSentiment }
                     articles={ articles }
                     updateUserSentiment={ updateUserSentiment }
-                    />
+                    history={ history }
+                    storeArticle={ storeArticle }
+                  />
                   { !articles.length && <h2>Loading.. </h2>}
                   { error && <h2>{error}</h2> }
                 </>
@@ -102,7 +122,8 @@ const App = (): JSX.Element => {
                     selectedArticles={ selectedArticles }
                     updateUserSentiment={ updateUserSentiment }
                     selectedTopic = { selectedTopic }
-                    />
+                    storeArticle={ storeArticle }
+                  />
                   { !articles.length && <h2>Loading.. </h2>}
                   { error && <h2>{error}</h2> }
                 </>
@@ -115,7 +136,7 @@ const App = (): JSX.Element => {
           <Route
             exact path="/feed/:id"
             render={({ match }) => {
-              const id = Number(match.params.id)
+              const id = match.params.id;
               const singleArticle = articles.find(article => article.id === id)
 
               if (singleArticle) {
@@ -137,7 +158,7 @@ const App = (): JSX.Element => {
           <Route
             exact path={`/feed/${selectedTopic}/:id`}
             render={({ match }) => {
-              const id = Number(match.params.id)
+              const id = match.params.id
               const singleArticle = selectedArticles.find(article => article.id === id)
 
               if (singleArticle) {
@@ -154,6 +175,21 @@ const App = (): JSX.Element => {
               } else {
                 return <NoMatch />
               }
+            }}
+          />
+          <Route
+            exact path="/history"
+            render={() => {
+              return (
+                <>
+                  <History
+                    history={ history }
+                    storeArticle={ storeArticle }
+                    updateUserSentiment={ updateUserSentiment }
+                  />
+                  { error && <h2>{error}</h2> }
+                </>
+              )
             }}
           />
           <Route path="*" component={NoMatch} />
