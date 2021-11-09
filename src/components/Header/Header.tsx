@@ -14,7 +14,9 @@ const Header = (): JSX.Element => {
         <h1 className="header-txt cy-header-txt">
           Well<span className="header-text-2">News</span>
         </h1>
-        <button className="history-btn">History</button>
+        <Link to='/history'>
+          <button className="history-btn">History</button>
+        </Link>
         <Link to='/search-topic'>
           <button className="list-btn" aria-label="Browse by Topic"></button>
         </Link>
