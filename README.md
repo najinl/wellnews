@@ -9,8 +9,6 @@ A novel news application that seeks to help news consumers feel emotionally bala
 
 ## Snapshot of Application
 
-![]()
-
 When the user visits the app, they will be asked to select an emoji representing their current generalized emotional affect: strongly negative, negative, neutral, positive, or strongly positive.
 
 In the background, all of the articles’ titles and abstracts are processed by Dandelion’s Sentiment Analysis API and each given a sentiment score (from 0 (strongly negative) to 10 (strongly positive)). Based on the user's mood, they will see articles pulled from the NYT’s Top Stories API, sorted by sentiment.
@@ -70,6 +68,20 @@ The app keeps track of and updates the session’s affect score based on the aff
 - Fetching news data from multiple news sources and allowing the user to choose between them.
 - Further modularizing components
 - Accessing the full articles so the user can read it in our application
+
+## Project Demo
+
+**Sorting by Sentiment**
+
+![Home Screen](https://user-images.githubusercontent.com/82003147/140839607-727971ca-9fe1-4982-bc1e-e24a9be417b3.gif)
+
+**Changing Sentiment**
+
+![Changing Sentiment](https://user-images.githubusercontent.com/82003147/140839713-79fc49d6-721f-48d9-89f2-f1a008fbe672.gif)
+
+**Sorting by Topic**
+
+![Sorting by Topic](https://user-images.githubusercontent.com/82003147/140839761-3af43274-1cb0-4609-9e0d-8d1ec323582e.gif)
 
 ## Contributors
 
