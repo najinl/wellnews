@@ -5,6 +5,7 @@ import { CleanedArticle } from '../../Models';
 import Form from '../Form/Form';
 import Feed from '../Feed/Feed';
 import Article from '../Article/Article';
+import Header from '../Header/Header';
 import TopicForm from '../TopicForm/TopicForm';
 import TopicFeed from '../TopicFeed/TopicFeed'
 import NoMatch from '../NoMatch/NoMatch';
@@ -211,6 +212,7 @@ const App = (): JSX.Element => {
             render={() => {
               return (
                 <>
+                  <Header />
                   <History
                     history={ history }
                     storeArticle={ storeArticle }

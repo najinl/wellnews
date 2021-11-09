@@ -32,9 +32,6 @@ const History = ({ history, storeArticle, updateUserSentiment }: HistoryProps): 
 
   return (
     <div className="articles-container">
-      <Link to='/history'>
-        <button className='history-btn'>History</button>
-      </Link>
       <Link to='/'>
         <button className='retake-btn'>Retake Questionnaire</button>
       </Link>

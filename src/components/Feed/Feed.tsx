@@ -35,24 +35,15 @@ const Feed = ({ unreadArticles, updateUserSentiment, storeArticle }: FeedProps):
     <>
       <Header />
       <div className="articles-container">
-        <Link to='/history'>
-          <button className='history-btn'>History</button>
-        </Link>
-        <Link to='/'>
-          <button className='retake-btn'>Retake Questionnaire</button>
-        </Link>
-        <Link to='/search-topic'>
-          <button className='search-topics-btn'>Search Topics</button>
-        </Link>
-          <section className="articles-display">
-            { articleCards.length > 1 ? articleCards :
-              <Link to="/search-topic">
-                <button className='find-more-btn'>Find more articles by topic</button>
-              </Link> }
-          </section>
-        </div>
-      </>
-    );
+        <section className="articles-display">
+          { articleCards.length > 1 ? articleCards :
+            <Link to="/search-topic">
+              <button className='find-more-btn'>Find more articles by topic</button>
+            </Link> }
+        </section>
+      </div>
+    </>
+  );
 };
 
 export default Feed;
