@@ -13,7 +13,7 @@ When the user visits the app, they will be asked to select an emoji representing
 
 In the background, all of the articles’ titles and abstracts are processed by Dandelion’s Sentiment Analysis API and each given a sentiment score (from 0 (strongly negative) to 10 (strongly positive)). Based on the user's mood, they will see articles pulled from the NYT’s Top Stories API, sorted by sentiment.
 
-The app keeps track of and updates the session’s affect score based on the affect of the articles that the user subsequently reads. The articles will be continually sorted and nudge the user toward sentimentally balance. We don't filter the feed. If the user prefers not to indicate their mood, they can press 'skip' and we'll sort based only on the articles read.
+The app keeps track of and updates the session’s affect score based on the affect of the articles that the user subsequently reads. The articles will be continually sorted and nudge the user toward sentimental balance. We don't filter the feed. If the user prefers not to indicate their mood, they can press 'skip' and the app will sort based only on the articles read.
 
 
 ## Technologies
@@ -47,12 +47,12 @@ The app keeps track of and updates the session’s affect score based on the aff
 
 ## Wins
 
-- Learning TypeScript in a short amount of time and successfully implementing it
+- Learning and implementing TypeScript in a short amount of time
 - Integrating data from two different APIs using fetch and asynchronous JS.
 - Working asynchronously to tackle various parts of the project and resolving merge conflicts as they arose
-- Creating appropriate error handling and displaying error and loading messages to the user
+- Implementing appropriate error handling and displaying error and loading messages to the user
 - Making our application meet accessibility principles
-- Utilizing resources such as web documents and mentors to expand knowledge base and maximize application display and performance
+- Utilizing resources such as web documents and mentors to expand knowledge base and maximize application performance
 - Implementing features beyond our MVP, such as viewing articles by topic
 
 ## Challenges
@@ -60,14 +60,13 @@ The app keeps track of and updates the session’s affect score based on the aff
 - Applying TypeScript in a group project while learning it through different learning styles
 - Keeping up with timely code reviews and merging
 - Creating modular reusable components while implementing a multi-page website
-- Implementing styling for a mobile first application
-
+- Implementing styling for a mobile-first application
 
 ## Future Features
 
 - Fetching news data from multiple news sources and allowing the user to choose between them.
 - Further modularizing components
-- Accessing the full articles so the user can read it in our application
+- Accessing full articles so that the user can read them within the application
 
 ## Project Demo
 
