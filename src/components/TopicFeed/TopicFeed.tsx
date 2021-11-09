@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { CleanedArticle } from '../../Models';
 import TopicCard from '../TopicCard/TopicCard';
-import '../Feed/Feed.css';
+import Header from '../Header/Header';
 
 interface TopicFeed {
   unreadArticles: CleanedArticle[] | undefined;
@@ -17,7 +17,6 @@ const TopicFeed = ({ unreadArticles, updateUserSentiment, selectedTopic, storeAr
   if (unreadArticles) {
     articleCards = unreadArticles.map(article => {
       return (
-
         <TopicCard
           title={ article.title }
           image={ article.multimedia.url }
@@ -34,6 +33,7 @@ const TopicFeed = ({ unreadArticles, updateUserSentiment, selectedTopic, storeAr
 
     return (
       <>
+        <Header />
         <div className="articles-container">
           <Link to='/'>
             <button className='retake-btn'>Retake Questionnaire</button>
@@ -42,7 +42,7 @@ const TopicFeed = ({ unreadArticles, updateUserSentiment, selectedTopic, storeAr
             <button className='search-topics-btn'>Search Topics</button>
           </Link>
             <section className="articles-display">
-              { articleCards.length > 1 ? articleCards :
+              { articleCards.length > 0 ? articleCards :
                 <Link to="/search-topic">
                   <button className='find-more-btn'>Find more articles by topic</button>
                 </Link> }

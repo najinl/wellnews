@@ -8,24 +8,15 @@ html {
   text-align: center;
 }
 
-.header-text {
-  font-size: 2.5rem;
-}
-
-.header-text-2 {
-  color: #9eeeff;
-}
-
-.App-header {
-  font-size: calc(10px + 2vmin);
-  color: white;
-  display: flex;
-}
-
 .app-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   height: 100vh;
+}
+
+.loading-text {
+  margin-top: 1rem;
+  color: white;
 }

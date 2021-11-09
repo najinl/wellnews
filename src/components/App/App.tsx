@@ -26,7 +26,7 @@ const App = (): JSX.Element => {
         getSentimentScores(cleanedArticles)
           .then((response: number[]) => {
             const scoredArticles = cleanedArticles.map((article, i) => {
-               article.sentiment = response[i];
+               article.sentiment = Math.round((response[i] + 1) * 5);
                return article;
             });
             setArticles(scoredArticles);
@@ -95,7 +95,7 @@ const App = (): JSX.Element => {
           .then((response: number[]) => {
 
             const scoredArticles = cleanedArticles.map((article, i) => {
-               article.sentiment = (response[i] + 1) * 5;
+               article.sentiment = Math.round((response[i] + 1) * 5);
                return article;
             });
             setArticles(scoredArticles);
@@ -119,11 +119,6 @@ const App = (): JSX.Element => {
 
   return (
     <div className="app-container">
-      <header className="App-header">
-        <h1 className="header-text cy-header-text">
-          Well<span className="header-text-2">News</span>
-        </h1>
-      </header>
       <Router>
         <Switch>
           <Route exact path="/">
@@ -139,7 +134,9 @@ const App = (): JSX.Element => {
                     updateUserSentiment={ updateUserSentiment }
                     storeArticle={ storeArticle }
                   />
-                  { articles.length < 1 && <h2>Loading.. </h2>}
+                  { articles.length === 0 &&
+                    <h2 className="loading-text">Loading... </h2>
+                  }
                   { error && <h2>{error}</h2> }
                 </>
               )

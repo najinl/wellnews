@@ -22,6 +22,7 @@ const History = ({ history, storeArticle, updateUserSentiment }: HistoryProps): 
           key={ article.title }
           sentiment={ article.sentiment }
           id={ article.id }
+          topic= { article.topic }
           storeArticle={ storeArticle }
           updateUserSentiment={ updateUserSentiment }
         />
