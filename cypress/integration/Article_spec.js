@@ -5,7 +5,7 @@ describe('Article', () => {
       .intercept('https://api.dandelion.eu/datatxt/sent/v1/?lang=en&text=The magazines Ethicist columnist on responding to infidelity&token=beb0091844524790b7672a69bac06a2a', {fixture: 'affair-sentiment.json'})
 
     cy.visit('/')
-      .get('.cy-sad-btn').click()
+      .get('.cy-negative-btn').click()
       .url().should('include', '/feed')
       .get('.cy-article-link').first().click()
   })
@@ -27,12 +27,6 @@ describe('Article', () => {
   it('Should display placeholder text', () => {
     cy.get('p').eq(1).contains('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.')
   })
-
-  it('Should have Back link to return to the feed', () => {
-    cy.get('.cy-back-link').click()
-      .url().should('eq', 'http://localhost:3000/feed')
-  })
-
 
 })
 
