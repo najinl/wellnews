@@ -11,7 +11,11 @@ const availableTopics = ['arts', 'automobiles', 'books', 'business', 'fashion', 
 
 const sectionTopics = availableTopics.map(topic => {
     return (
-      <Link className="topic" to={`/feed/${topic}`} onClick={() => assignTopic(topic)}>
+      <Link
+        className="topic"
+        to={`/feed/${topic}`}
+        key={ topic } 
+        onClick={() => assignTopic(topic)}>
         {topic}
       </Link>
     )

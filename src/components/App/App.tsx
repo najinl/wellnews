@@ -5,6 +5,7 @@ import { CleanedArticle } from '../../Models';
 import Form from '../Form/Form';
 import Feed from '../Feed/Feed';
 import Article from '../Article/Article';
+import Header from '../Header/Header';
 import TopicForm from '../TopicForm/TopicForm';
 import TopicFeed from '../TopicFeed/TopicFeed'
 import NoMatch from '../NoMatch/NoMatch';
@@ -13,7 +14,8 @@ import History from '../History/History'
 
 const App = (): JSX.Element => {
   const [articles, setArticles] = useState<CleanedArticle[]>([]);
-  const [history, setHistory] = useState<string[]>([])
+  const [unreadArticles, setUnreadArticles] = useState<CleanedArticle[] | undefined>([])
+  const [history, setHistory] = useState<CleanedArticle[]>([]);
   const [error, setError] = useState('');
   const [userSentiment, setUserSentiment] = useState<number | null>(null);
   const [selectedArticles, setSelectedArticles] = useState<CleanedArticle[]>([]);
@@ -24,17 +26,50 @@ const App = (): JSX.Element => {
       .then((cleanedArticles: CleanedArticle[]): void => {
         getSentimentScores(cleanedArticles)
           .then((response: number[]) => {
-
             const scoredArticles = cleanedArticles.map((article, i) => {
                article.sentiment = Math.round((response[i] + 1) * 5);
                return article;
             });
-
             setArticles(scoredArticles);
           });
       })
       .catch(error => setError(error.message));
   }, []);
+
+  useEffect((): void => {
+    const sortedArticles = getSortedArticles();
+    setArticles(sortedArticles);
+  }, [userSentiment])
+
+  useEffect((): void => {
+    const unreadArticles = getUnreadArticles();
+    setUnreadArticles(unreadArticles);
+  }, [articles, history])
+
+  const getSortedArticles = (): CleanedArticle[] => {
+    let sortedArticles;
+    if (userSentiment! >= 0 && userSentiment! <= 3) {
+      sortedArticles = articles.slice().sort((articleA, articleB) => {
+        return articleB.sentiment - articleA.sentiment;
+      })
+    } else if (userSentiment! <= 10 && userSentiment! >= 7) {
+      sortedArticles = articles.slice().sort((articleA, articleB) => {
+        return articleA.sentiment - articleB.sentiment;
+      })
+    } else {
+      sortedArticles = articles.slice().sort((articleA, articleB) => 0.5 - Math.random());
+    }
+    return sortedArticles;
+  }
+
+  const getUnreadArticles = (): CleanedArticle[] | undefined => {
+    if (history.length) {
+      return articles.filter(article => {
+        return !history.find(historyArticle => historyArticle.id === article.id)
+      })
+    }
+    return articles;
+  }
 
   const getSentimentScores = (cleanedArticles: CleanedArticle[]): Promise<number[]> => {
     return Promise.all(
@@ -45,15 +80,10 @@ const App = (): JSX.Element => {
   };
 
   const updateUserSentiment = (newUserSentiment: number) => {
-    let averageSentiment;
-    if (userSentiment) {
-      averageSentiment = (userSentiment + newUserSentiment) / 2;
+    if (userSentiment === null) {
+      return setUserSentiment(newUserSentiment)
     }
-    setUserSentiment(averageSentiment || newUserSentiment)
-  }
-
-  const updateHistory = (localHistory: string[]): void => {
-    setHistory(localHistory);
+    setUserSentiment((userSentiment + newUserSentiment) / 2);
   }
 
   const assignTopic = (selectedTopic: string): void => {
@@ -67,23 +97,22 @@ const App = (): JSX.Element => {
                article.sentiment = Math.round((response[i] + 1) * 5);
                return article;
             });
-            setSelectedArticles(scoredArticles);
+            setArticles(scoredArticles);
           });
       })
       .catch(error => setError(error.message));
   }
 
   const storeArticle = (id: string): void => {
-    let localHistory = JSON.parse(localStorage.getItem('wellnewsHistory')!);
+    const matchingArticle = articles.find(article => article.id === id);
+    const localHistory = JSON.parse(localStorage.getItem('wellnewsHistory')!);
     if (!localHistory) {
-      localHistory = [id];
       localStorage.setItem('wellnewsHistory', JSON.stringify([id]));
-      updateHistory(localHistory)
+      return setHistory([matchingArticle!]);
     } else if (!localHistory.includes(id)) {
       localHistory.push(id)
       localStorage.setItem('wellnewsHistory', JSON.stringify(localHistory))
-      console.log('localHistory: ', localHistory)
-      updateHistory(localHistory)
+      setHistory([...history, matchingArticle!]);
     }
   }
 
@@ -100,13 +129,13 @@ const App = (): JSX.Element => {
               return (
                 <>
                   <Feed
-                    userSentiment={ userSentiment }
-                    articles={ articles }
+                    unreadArticles={ unreadArticles }
                     updateUserSentiment={ updateUserSentiment }
-                    history={ history }
                     storeArticle={ storeArticle }
                   />
-                  { !articles.length && <h2 className="loading-text">Loading.. </h2>}
+                  { articles.length === 0 &&
+                    <h2 className="loading-text">Loading... </h2>
+                  }
                   { error && <h2>{error}</h2> }
                 </>
               )
@@ -118,8 +147,7 @@ const App = (): JSX.Element => {
               return (
                 <>
                   <TopicFeed
-                    userSentiment={ userSentiment }
-                    selectedArticles={ selectedArticles }
+                    unreadArticles={ unreadArticles }
                     updateUserSentiment={ updateUserSentiment }
                     selectedTopic = { selectedTopic }
                     storeArticle={ storeArticle }
@@ -159,7 +187,7 @@ const App = (): JSX.Element => {
             exact path={`/feed/${selectedTopic}/:id`}
             render={({ match }) => {
               const id = match.params.id
-              const singleArticle = selectedArticles.find(article => article.id === id)
+              const singleArticle = articles.find(article => article.id === id)
 
               if (singleArticle) {
                 return (
@@ -182,6 +210,7 @@ const App = (): JSX.Element => {
             render={() => {
               return (
                 <>
+                  <Header />
                   <History
                     history={ history }
                     storeArticle={ storeArticle }

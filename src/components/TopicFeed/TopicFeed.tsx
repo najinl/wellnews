@@ -4,31 +4,19 @@ import TopicCard from '../TopicCard/TopicCard';
 import Header from '../Header/Header';
 
 interface TopicFeed {
-  userSentiment: number | null;
-  selectedArticles: CleanedArticle[];
+  unreadArticles: CleanedArticle[] | undefined;
   selectedTopic: string
   updateUserSentiment: (userSentiment: number) => void;
   storeArticle?: (id: string) => void
 }
 
-const TopicFeed = ({ userSentiment, selectedArticles, updateUserSentiment, selectedTopic, storeArticle }: TopicFeed): JSX.Element => {
+const TopicFeed = ({ unreadArticles, updateUserSentiment, selectedTopic, storeArticle }: TopicFeed): JSX.Element => {
 
-  let sortedArticles : CleanedArticle[];
+  let articleCards: JSX.Element[] = [];
 
-  if (userSentiment && userSentiment >= -1 && userSentiment <= -0.3) {
-    sortedArticles = selectedArticles.sort((articleA, articleB) => {
-      return articleB.sentiment - articleA.sentiment;
-    })
-  } else if (userSentiment && userSentiment <= 1 && userSentiment >= 0.3) {
-    sortedArticles = selectedArticles.sort((articleA, articleB) => {
-      return articleA.sentiment - articleB.sentiment;
-    })
-  } else {
-    sortedArticles = selectedArticles.sort((articleA, articleB) => 0.5 - Math.random());
-  }
-
-  const articleCards = sortedArticles.map(article => {
-    return (
+  if (unreadArticles) {
+    articleCards = unreadArticles.map(article => {
+      return (
         <TopicCard
           title={ article.title }
           image={ article.multimedia.url }
@@ -37,17 +25,22 @@ const TopicFeed = ({ userSentiment, selectedArticles, updateUserSentiment, selec
           updateUserSentiment={ updateUserSentiment }
           storeArticle={ storeArticle! }
           selectedTopic = { selectedTopic }
+          topic={ article.topic}
           key={ article.title }
         />
       )
     })
+  }
 
     return (
       <>
         <Header />
         <div className="articles-container">
           <section className="articles-display">
-            { articleCards }
+            { articleCards.length > 0 ? articleCards :
+              <Link to="/search-topic">
+                <button className='find-more-btn'>Find more articles by topic</button>
+              </Link> }
           </section>
         </div>
       </>

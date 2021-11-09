@@ -34,7 +34,7 @@ const Form = ({ updateUserSentiment }: FormProps): JSX.Element => {
           className="sentiment-btn cy-strongly-negative-btn"
           aria-label="strongly negative"
           title="strongly negative"
-          onClick={() => submitUserSentiment(-1)}
+          onClick={() => submitUserSentiment(0)}
         >
           ☹️
         </button>
@@ -42,7 +42,7 @@ const Form = ({ updateUserSentiment }: FormProps): JSX.Element => {
           className="sentiment-btn cy-negative-btn"
           aria-label="negative"
           title="negative"
-          onClick={() => submitUserSentiment(-0.5)}
+          onClick={() => submitUserSentiment(2)}
         >
           🙁
         </button>
@@ -50,7 +50,7 @@ const Form = ({ updateUserSentiment }: FormProps): JSX.Element => {
           className="sentiment-btn cy-neutral-btn"
           aria-label="neutral"
           title="neutral"
-          onClick={() => submitUserSentiment(0)}
+          onClick={() => submitUserSentiment(5)}
         >
           😶
         </button>
@@ -58,7 +58,7 @@ const Form = ({ updateUserSentiment }: FormProps): JSX.Element => {
           className="sentiment-btn cy-positive-btn"
           aria-label="positive"
           title="positive"
-          onClick={() => submitUserSentiment(0.5)}
+          onClick={() => submitUserSentiment(8)}
         >
           🙂
         </button>
@@ -66,20 +66,18 @@ const Form = ({ updateUserSentiment }: FormProps): JSX.Element => {
           className="sentiment-btn cy-strongly-positive-btn"
           aria-label="strongly positive"
           title="strongly positive"
-          onClick={() => submitUserSentiment(1)}
+          onClick={() => submitUserSentiment(10)}
         >
           😁
         </button>
       </div>
-      <button className='skip-btn' onClick={ () => submitUserSentiment(0) }>
+      <button className='skip-btn' onClick={ () => submitUserSentiment(5) }>
           Skip
       </button>
       <button className="view-synopsis-button cy-view-synopsis-button" name="viewSynopsisButton" onClick={ showSynopsis }>Why we ask? ▽</button>
       <article className="hidden wellnews-synopsis cy-wellnews-synopsis" id="synopsisInfo">
-        <p>WellNews uses your mood to curate a list of articles with your mental health in mind.</p>
-        <p>A negative mood will prioritize positive articles. <br/>A positive mood will result in a mix of positive, neutral, and negative news.</p>
-        <p>If you are unsure, select a neutral mood for a mix of articles that lean towards the positive.</p>
-        <p>You can change your mood preference at any time.</p>
+        <p>Based on your mood and the articles you read, we dynamically sort your feed and nudge you toward sentimental balance. We don't filter your feed.</p>
+        <p>If you prefer, skip the questionnare and we'll sort your feed based only on the articles you read.</p>
       </article>
     </section>
   );

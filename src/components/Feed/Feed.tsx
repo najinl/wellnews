@@ -5,60 +5,45 @@ import Header from '../Header/Header';
 import './Feed.css';
 
 interface FeedProps {
-  userSentiment: number | null;
-  articles: CleanedArticle[];
+  unreadArticles: CleanedArticle[] | undefined;
   updateUserSentiment: (userSentiment: number) => void;
-  history: string[]
-  storeArticle: (id: string) => void
+  storeArticle: (id: string) => void;
 }
 
-const Feed = ({ userSentiment, articles, history, updateUserSentiment, storeArticle }: FeedProps): JSX.Element => {
+const Feed = ({ unreadArticles, updateUserSentiment, storeArticle }: FeedProps): JSX.Element => {
 
-  const unreadArticles = articles.filter(article => {
-    return !history.includes(article.id)
-  })
+  let articleCards: JSX.Element[] = [];
 
-  let sortedArticles : CleanedArticle[];
-
-  if (userSentiment && userSentiment >= -1 && userSentiment <= -0.3) {
-    sortedArticles = unreadArticles.sort((articleA, articleB) => {
-      return articleB.sentiment - articleA.sentiment;
+  if (unreadArticles) {
+    articleCards = unreadArticles.map(article => {
+      return  (
+        <Card
+          title={ article.title }
+          image={ article.multimedia.url }
+          id={ article.id }
+          sentiment={ article.sentiment }
+          topic={ article.topic}
+          updateUserSentiment={ updateUserSentiment }
+          storeArticle={ storeArticle }
+          key={ article.title }
+        />
+      )
     })
-  } else if (userSentiment && userSentiment <= 1 && userSentiment >= 0.3) {
-    sortedArticles = unreadArticles.sort((articleA, articleB) => {
-      return articleA.sentiment - articleB.sentiment;
-    })
-  } else {
-    sortedArticles = unreadArticles.sort((articleA, articleB) => 0.5 - Math.random());
   }
 
-  const articleCards = sortedArticles.map(article => {
-    return  (
-      <Card
-        title={ article.title }
-        image={ article.multimedia.url }
-        id={ article.id }
-        sentiment={ article.sentiment }
-        topic={ article.topic }
-        updateUserSentiment={ updateUserSentiment }
-        storeArticle={ storeArticle }
-        key={ article.title }
-      />
-    )
-  })
-    return (
-      <>
-        <Header />
-        <div className="articles-container">
-          <section className="articles-display">
-            { articleCards.length ? articleCards :
-              <Link to="/search-topic">
-                <button className='find-more-btn'>Find more articles by topic</button>
-              </Link> }
-          </section>
-        </div>
-      </>
-    );
+  return (
+    <>
+      <Header />
+      <div className="articles-container">
+        <section className="articles-display">
+          { articleCards.length ? articleCards :
+            <Link to="/search-topic">
+              <button className='find-more-btn'>Find more articles by topic</button>
+            </Link> }
+        </section>
+      </div>
+    </>
+  );
 };
 
 export default Feed;
