@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/wellnews/static/css/main.95c6e75d.chunk.css",
+    "main.js": "/wellnews/static/js/main.83cff70e.chunk.js",
+    "main.js.map": "/wellnews/static/js/main.83cff70e.chunk.js.map",
+    "runtime-main.js": "/wellnews/static/js/runtime-main.5cce0304.js",
+    "runtime-main.js.map": "/wellnews/static/js/runtime-main.5cce0304.js.map",
+    "static/js/2.9fc67ca6.chunk.js": "/wellnews/static/js/2.9fc67ca6.chunk.js",
+    "static/js/2.9fc67ca6.chunk.js.map": "/wellnews/static/js/2.9fc67ca6.chunk.js.map",
+    "index.html": "/wellnews/index.html",
+    "static/css/main.95c6e75d.chunk.css.map": "/wellnews/static/css/main.95c6e75d.chunk.css.map",
+    "static/js/2.9fc67ca6.chunk.js.LICENSE.txt": "/wellnews/static/js/2.9fc67ca6.chunk.js.LICENSE.txt",
+    "static/media/Header.css": "/wellnews/static/media/list-btn.f80525ba.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5cce0304.js",
+    "static/js/2.9fc67ca6.chunk.js",
+    "static/css/main.95c6e75d.chunk.css",
+    "static/js/main.83cff70e.chunk.js"
+  ]
+}
