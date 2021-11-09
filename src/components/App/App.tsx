@@ -37,6 +37,7 @@ const App = (): JSX.Element => {
   }, []);
 
   useEffect((): void => {
+    console.log(userSentiment)
     const sortedArticles = getSortedArticles();
     setArticles(sortedArticles);
   }, [userSentiment])
@@ -80,11 +81,10 @@ const App = (): JSX.Element => {
   };
 
   const updateUserSentiment = (newUserSentiment: number) => {
-    let averageSentiment;
-    if (userSentiment! >= 0) {
-      averageSentiment = (userSentiment! + newUserSentiment) / 2;
+    if (userSentiment === null) {
+      return setUserSentiment(newUserSentiment)
     }
-    setUserSentiment(averageSentiment || newUserSentiment);
+    setUserSentiment((userSentiment + newUserSentiment) / 2);
   }
 
   const assignTopic = (selectedTopic: string): void => {

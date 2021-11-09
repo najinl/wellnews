@@ -32,12 +32,6 @@ const History = ({ history, storeArticle, updateUserSentiment }: HistoryProps): 
 
   return (
     <div className="articles-container">
-      <Link to='/'>
-        <button className='retake-btn'>Retake Questionnaire</button>
-      </Link>
-      <Link to='/search-topic'>
-        <button className='search-topics-btn'>Search Topics</button>
-      </Link>
         <section className="articles-display">
           { articleCards.length ? articleCards : <h3>No history</h3> }
         </section>

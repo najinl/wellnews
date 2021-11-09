@@ -36,7 +36,7 @@ const Feed = ({ unreadArticles, updateUserSentiment, storeArticle }: FeedProps):
       <Header />
       <div className="articles-container">
         <section className="articles-display">
-          { articleCards.length > 1 ? articleCards :
+          { articleCards.length ? articleCards :
             <Link to="/search-topic">
               <button className='find-more-btn'>Find more articles by topic</button>
             </Link> }
