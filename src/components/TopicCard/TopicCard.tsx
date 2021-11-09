@@ -13,7 +13,7 @@ interface TopicCard {
 }
 
 const TopicCard = ({ title, image, id, sentiment, topic, updateUserSentiment, selectedTopic, storeArticle }: TopicCard): JSX.Element => {
-  console.log(sentiment);
+  
   const handleClick = () => {
     updateUserSentiment!(sentiment)
     storeArticle(id)
