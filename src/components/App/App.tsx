@@ -37,7 +37,6 @@ const App = (): JSX.Element => {
   }, []);
 
   useEffect((): void => {
-    console.log(userSentiment)
     const sortedArticles = getSortedArticles();
     setArticles(sortedArticles);
   }, [userSentiment])
