@@ -18,3 +18,11 @@
   width: 33%;
   line-height: 1.8rem;
 }
+
+@media (max-width: 630px) {
+  .cy-topic-selection {
+    font-size: .8rem;
+    width: 90%;
+    height: 60%;
+  }
+}
