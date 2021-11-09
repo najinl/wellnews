@@ -19,13 +19,6 @@ const Article = ({ title, image, abstract, caption, selectedTopic }: ArticleProp
       <h1 className="header-txt cy-header-txt">
         Well<span className="header-text-2">News</span>
       </h1>
-      <div className="back-button-container">
-        {!selectedTopic ? <Link to="/feed" className="cy-back-link">
-          ⇦ BACK
-        </Link> : <Link to={`/feed/${selectedTopic}`} className="cy-back-link">
-          ⇦ BACK
-        </Link>}
-      </div>
       <figure>
         <img src={image} alt={caption} className="single-article-image cy-single-article-image"/>
         <figcaption className="single-article-caption cy-single-article-caption">{caption}</figcaption>

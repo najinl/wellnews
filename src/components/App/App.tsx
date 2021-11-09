@@ -43,22 +43,21 @@ const App = (): JSX.Element => {
 
   useEffect((): void => {
     const unreadArticles = getUnreadArticles();
-    console.log('unreadArticles: ', unreadArticles)
     setUnreadArticles(unreadArticles);
   }, [articles, history])
 
   const getSortedArticles = (): CleanedArticle[] => {
     let sortedArticles;
-    if (userSentiment && userSentiment >= -1 && userSentiment <= -0.3) {
-      sortedArticles = articles.sort((articleA, articleB) => {
+    if (userSentiment! >= 0 && userSentiment! <= 3) {
+      sortedArticles = articles.slice().sort((articleA, articleB) => {
         return articleB.sentiment - articleA.sentiment;
       })
-    } else if (userSentiment && userSentiment <= 1 && userSentiment >= 0.3) {
-      sortedArticles = articles.sort((articleA, articleB) => {
+    } else if (userSentiment! <= 10 && userSentiment! >= 7) {
+      sortedArticles = articles.slice().sort((articleA, articleB) => {
         return articleA.sentiment - articleB.sentiment;
       })
     } else {
-      sortedArticles = articles.sort((articleA, articleB) => 0.5 - Math.random());
+      sortedArticles = articles.slice().sort((articleA, articleB) => 0.5 - Math.random());
     }
     return sortedArticles;
   }
@@ -82,8 +81,8 @@ const App = (): JSX.Element => {
 
   const updateUserSentiment = (newUserSentiment: number) => {
     let averageSentiment;
-    if (userSentiment && userSentiment >= 0) {
-      averageSentiment = (userSentiment + newUserSentiment) / 2;
+    if (userSentiment! >= 0) {
+      averageSentiment = (userSentiment! + newUserSentiment) / 2;
     }
     setUserSentiment(averageSentiment || newUserSentiment);
   }

@@ -34,7 +34,7 @@ const Form = ({ updateUserSentiment }: FormProps): JSX.Element => {
           className="sentiment-btn cy-strongly-negative-btn"
           aria-label="strongly negative"
           title="strongly negative"
-          onClick={() => submitUserSentiment(-1)}
+          onClick={() => submitUserSentiment(0)}
         >
           ☹️
         </button>
@@ -42,7 +42,7 @@ const Form = ({ updateUserSentiment }: FormProps): JSX.Element => {
           className="sentiment-btn cy-negative-btn"
           aria-label="negative"
           title="negative"
-          onClick={() => submitUserSentiment(-0.5)}
+          onClick={() => submitUserSentiment(2)}
         >
           🙁
         </button>
@@ -50,7 +50,7 @@ const Form = ({ updateUserSentiment }: FormProps): JSX.Element => {
           className="sentiment-btn cy-neutral-btn"
           aria-label="neutral"
           title="neutral"
-          onClick={() => submitUserSentiment(0)}
+          onClick={() => submitUserSentiment(5)}
         >
           😶
         </button>
@@ -58,7 +58,7 @@ const Form = ({ updateUserSentiment }: FormProps): JSX.Element => {
           className="sentiment-btn cy-positive-btn"
           aria-label="positive"
           title="positive"
-          onClick={() => submitUserSentiment(0.5)}
+          onClick={() => submitUserSentiment(8)}
         >
           🙂
         </button>
@@ -66,12 +66,12 @@ const Form = ({ updateUserSentiment }: FormProps): JSX.Element => {
           className="sentiment-btn cy-strongly-positive-btn"
           aria-label="strongly positive"
           title="strongly positive"
-          onClick={() => submitUserSentiment(1)}
+          onClick={() => submitUserSentiment(10)}
         >
           😁
         </button>
       </div>
-      <button className='skip-btn' onClick={ () => submitUserSentiment(0) }>
+      <button className='skip-btn' onClick={ () => submitUserSentiment(5) }>
           Skip
       </button>
       <button className="view-synopsis-button cy-view-synopsis-button" name="viewSynopsisButton" onClick={ showSynopsis }>Why we ask? ▽</button>
