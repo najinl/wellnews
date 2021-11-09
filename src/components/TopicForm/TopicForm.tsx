@@ -14,7 +14,7 @@ const sectionTopics = availableTopics.map(topic => {
       <Link
         className="topic"
         to={`/feed/${topic}`}
-        key={ topic } 
+        key={ topic }
         onClick={() => assignTopic(topic)}>
         {topic}
       </Link>
@@ -26,7 +26,7 @@ const sectionTopics = availableTopics.map(topic => {
       <Header />
       <h3 className="browse-topics">Browse articles by topic:</h3>
       <form className="cy-topic-selection">
-      { sectionTopics }
+        { sectionTopics }
       </form>
     </>
   )
