@@ -25,6 +25,7 @@ const TopicFeed = ({ unreadArticles, updateUserSentiment, selectedTopic, storeAr
           updateUserSentiment={ updateUserSentiment }
           storeArticle={ storeArticle! }
           selectedTopic = { selectedTopic }
+          topic={ article.topic}
           key={ article.title }
         />
       )
@@ -35,18 +36,12 @@ const TopicFeed = ({ unreadArticles, updateUserSentiment, selectedTopic, storeAr
       <>
         <Header />
         <div className="articles-container">
-          <Link to='/'>
-            <button className='retake-btn'>Retake Questionnaire</button>
-          </Link>
-          <Link to='/search-topic'>
-            <button className='search-topics-btn'>Search Topics</button>
-          </Link>
-            <section className="articles-display">
-              { articleCards.length > 0 ? articleCards :
-                <Link to="/search-topic">
-                  <button className='find-more-btn'>Find more articles by topic</button>
-                </Link> }
-            </section>
+          <section className="articles-display">
+            { articleCards.length > 0 ? articleCards :
+              <Link to="/search-topic">
+                <button className='find-more-btn'>Find more articles by topic</button>
+              </Link> }
+          </section>
         </div>
       </>
     );
