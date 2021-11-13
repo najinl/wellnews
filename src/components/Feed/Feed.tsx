@@ -8,9 +8,10 @@ interface FeedProps {
   unreadArticles: CleanedArticle[] | undefined;
   updateUserSentiment: (userSentiment: number) => void;
   storeArticle: (id: string) => void;
+  selectedTopic?: string;
 }
 
-const Feed = ({ unreadArticles, updateUserSentiment, storeArticle }: FeedProps): JSX.Element => {
+const Feed = ({ unreadArticles, updateUserSentiment, storeArticle, selectedTopic }: FeedProps): JSX.Element => {
 
   let articleCards: JSX.Element[] = [];
 
@@ -23,6 +24,7 @@ const Feed = ({ unreadArticles, updateUserSentiment, storeArticle }: FeedProps):
           id={ article.id }
           sentiment={ article.sentiment }
           topic={ article.topic}
+          selectedTopic={ selectedTopic}
           updateUserSentiment={ updateUserSentiment }
           storeArticle={ storeArticle }
           key={ article.title }
@@ -36,7 +38,7 @@ const Feed = ({ unreadArticles, updateUserSentiment, storeArticle }: FeedProps):
       <Header />
       <div className="articles-container">
         <section className="articles-display">
-          { articleCards.length ? articleCards :
+          { articleCards.length > 0 ? articleCards :
             <Link to="/search-topic">
               <button className='find-more-btn'>Find more articles by topic</button>
             </Link> }

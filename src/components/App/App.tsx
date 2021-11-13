@@ -7,7 +7,6 @@ import Feed from '../Feed/Feed';
 import Article from '../Article/Article';
 import Header from '../Header/Header';
 import TopicForm from '../TopicForm/TopicForm';
-import TopicFeed from '../TopicFeed/TopicFeed'
 import NoMatch from '../NoMatch/NoMatch';
 import './App.css';
 import History from '../History/History'
@@ -124,16 +123,19 @@ const App = (): JSX.Element => {
             <Form updateUserSentiment={ updateUserSentiment } />
           </Route>
           <Route
-            exact path="/feed"
+            exact path={
+              selectedTopic === 'home' ? '/feed' : `/feed/${selectedTopic}`
+            }
             render={() => {
               return (
                 <>
                   <Feed
                     unreadArticles={ unreadArticles }
+                    selectedTopic={ selectedTopic }
                     updateUserSentiment={ updateUserSentiment }
                     storeArticle={ storeArticle }
                   />
-                  { articles.length === 0 &&
+                  { !articles.length &&
                     <h2 className="loading-text">Loading... </h2>
                   }
                   { error && <h2>{error}</h2> }
@@ -149,7 +151,7 @@ const App = (): JSX.Element => {
                   <TopicFeed
                     unreadArticles={ unreadArticles }
                     updateUserSentiment={ updateUserSentiment }
-                    selectedTopic = { selectedTopic }
+
                     storeArticle={ storeArticle }
                   />
                   { !articles.length && <h2>Loading.. </h2>}
