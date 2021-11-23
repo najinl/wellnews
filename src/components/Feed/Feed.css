@@ -1,6 +1,6 @@
 .articles-container {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: center;
   align-items: center;
 }
@@ -12,7 +12,7 @@
   width: 90%;
   background-color: #edf1f7;
   padding-top: 2.4rem;
-  box-shadow: 4px 4px 4px black;
+  /* box-shadow: 4px 4px 4px black; */
 }
 
 .feed-button-container {
@@ -56,6 +56,13 @@
   text-decoration: none;
 }
 
+.arrow-button {
+  color: white;
+  background-color: #4B658B;
+  border: none;
+  cursor: pointer;
+  font-size: 2em;
+}
 
 @media (max-width: 1150px) {
   .header-elements-container {

@@ -7,12 +7,13 @@ interface Card {
   title: string
   image: string
   sentiment: number
+  abstract: string
   updateUserSentiment: (userSentiment: number) => void
   storeArticle: (id: string) => void
   topic: string
 }
 
-const Card = ({ title, image, id, shortUrl, sentiment, topic, updateUserSentiment, storeArticle }: Card): JSX.Element => {
+const Card = ({ title, image, id, shortUrl, sentiment, topic, updateUserSentiment, storeArticle, abstract }: Card): JSX.Element => {
 
   const handleClick = () => {
     updateUserSentiment(sentiment)
@@ -41,6 +42,7 @@ const Card = ({ title, image, id, shortUrl, sentiment, topic, updateUserSentimen
         </div>
         <h2 className="article-title cy-article-title">{title}</h2>
         </a>
+        <p className="abstract-text"> {abstract} </p>
         <div className="divider"></div>
       </article>
     </div>
