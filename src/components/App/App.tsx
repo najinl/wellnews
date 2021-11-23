@@ -44,6 +44,7 @@ const App = (): JSX.Element => {
 
   useEffect((): void => {
     console.log('useEffect articles')
+    updateHistory();
     const unreadArticles = getUnreadArticles();
     setUnreadArticles(unreadArticles);
   }, [articles])
@@ -107,6 +108,16 @@ const App = (): JSX.Element => {
 
   const getLocalHistory = (): string[] => {
     return JSON.parse(localStorage.getItem('wellnewsHistory')!);
+  }
+
+  const updateHistory = (): void => {
+    const localHistory = getLocalHistory();
+    if (localHistory && localHistory.length) {
+      const newHistory = articles.filter((article) => {
+        return localHistory.includes(article.id)
+      })
+      setHistory(newHistory)
+    }
   }
 
   const storeArticle = (id: string): void => {
