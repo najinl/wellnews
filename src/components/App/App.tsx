@@ -43,10 +43,10 @@ const App = (): JSX.Element => {
   }, [userSentiment])
 
   useEffect((): void => {
-    console.log('useEffect articles, history')
+    console.log('useEffect articles')
     const unreadArticles = getUnreadArticles();
     setUnreadArticles(unreadArticles);
-  }, [articles, history])
+  }, [articles])
 
   const getSortedArticles = (): CleanedArticle[] => {
     let sortedArticles;
@@ -105,9 +105,13 @@ const App = (): JSX.Element => {
       .catch(error => setError(error.message));
   }
 
+  const getLocalHistory = (): string[] => {
+    return JSON.parse(localStorage.getItem('wellnewsHistory')!);
+  }
+
   const storeArticle = (id: string): void => {
     const matchingArticle = articles.find(article => article.id === id);
-    const localHistory = JSON.parse(localStorage.getItem('wellnewsHistory')!);
+    const localHistory = getLocalHistory();
     if (!localHistory) {
       localStorage.setItem('wellnewsHistory', JSON.stringify([id]));
       return setHistory([matchingArticle!]);
