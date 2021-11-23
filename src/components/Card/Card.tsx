@@ -12,7 +12,7 @@ interface Card {
   selectedTopic?: string
 }
 
-const Card = ({ title, image, id, sentiment, topic, updateUserSentiment, selectedTopic, storeArticle }: TopicCard): JSX.Element => {
+const Card = ({ title, image, id, sentiment, topic, updateUserSentiment, selectedTopic, storeArticle }: Card): JSX.Element => {
 
   const handleClick = () => {
     updateUserSentiment(sentiment)

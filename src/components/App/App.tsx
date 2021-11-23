@@ -56,7 +56,7 @@ const App = (): JSX.Element => {
         return articleA.sentiment - articleB.sentiment;
       })
     } else {
-      sortedArticles = articles.slice().sort((articleA, articleB) => 0.5 - Math.random());
+      sortedArticles = articles.slice().sort(() => 0.5 - Math.random());
     }
     return sortedArticles;
   }
@@ -115,6 +115,8 @@ const App = (): JSX.Element => {
     }
   }
 
+  const path = selectedArticles.length > 1 ? `/feed/${selectedTopic}` : '/feed';
+
   return (
     <div className="app-container">
       <Router>
@@ -123,9 +125,7 @@ const App = (): JSX.Element => {
             <Form updateUserSentiment={ updateUserSentiment } />
           </Route>
           <Route
-            exact path={
-              selectedTopic === 'home' ? '/feed' : `/feed/${selectedTopic}`
-            }
+            path={path}
             render={() => {
               return (
                 <>
@@ -135,26 +135,9 @@ const App = (): JSX.Element => {
                     updateUserSentiment={ updateUserSentiment }
                     storeArticle={ storeArticle }
                   />
-                  { !articles.length &&
+                  { !articles.length || !selectedArticles.length &&
                     <h2 className="loading-text">Loading... </h2>
                   }
-                  { error && <h2>{error}</h2> }
-                </>
-              )
-            }}
-          />
-          <Route
-            exact path={`/feed/${selectedTopic}`}
-            render={() => {
-              return (
-                <>
-                  <TopicFeed
-                    unreadArticles={ unreadArticles }
-                    updateUserSentiment={ updateUserSentiment }
-
-                    storeArticle={ storeArticle }
-                  />
-                  { !articles.length && <h2>Loading.. </h2>}
                   { error && <h2>{error}</h2> }
                 </>
               )
