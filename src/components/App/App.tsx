@@ -21,7 +21,6 @@ const App = (): JSX.Element => {
   const [error, setError] = useState('');
 
   useEffect((): void => {
-    console.log('useEffect onLoad')
     getArticles()
       .then((cleanedArticles: CleanedArticle[]): void => {
         getSentimentScores(cleanedArticles)
@@ -37,13 +36,11 @@ const App = (): JSX.Element => {
   }, []);
 
   useEffect((): void => {
-    console.log('useEffect userSentiment')
     const sortedArticles = getSortedArticles();
     setArticles(sortedArticles);
   }, [userSentiment])
 
   useEffect((): void => {
-    console.log('useEffect articles')
     updateHistory();
     const unreadArticles = getUnreadArticles();
     setUnreadArticles(unreadArticles);
