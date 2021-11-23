@@ -18,6 +18,22 @@ const Card = ({ title, image, id, sentiment, topic, updateUserSentiment, storeAr
     updateUserSentiment(sentiment)
   }
 
+  const displayEmoji = (): string => {
+    if (sentiment >= 9) {
+      return "😁"
+    } else if (sentiment >= 7) {
+      return "🙂"
+    } else if (sentiment >= 4) {
+      return "😶"
+    } else if (sentiment >= 2) {
+      return "🙁"
+    } else {
+      return "☹️"
+    }
+  }
+
+  const emoji = displayEmoji()
+
   return (
     <div className="article-boundary">
       <div className="card-container">
@@ -27,18 +43,16 @@ const Card = ({ title, image, id, sentiment, topic, updateUserSentiment, storeAr
             onClick={ handleClick }
             className="cy-article-link"
           >
-          <div className="article-image-container">
-            {sentiment >= 7 && <h3 className="article-sentiment green">{sentiment}</h3>}
-            {sentiment <= 3 && <h3 className="article-sentiment red">{sentiment}</h3>}
-            {(sentiment >= 4 && sentiment <= 6) && <h3 className="article-sentiment blue">{sentiment}</h3>}
-            <img className="article-image cy-article-image" src={image} alt={title} />
-          </div>
-          <div className="topic-container">
-            <p className="topic-text">
-              {topic}
-            </p>
-          </div>
-          <h2 className="article-title cy-article-title">{title}</h2>
+            <div className="article-image-container">
+              <img className="article-image cy-article-image" src={image} alt={title} />
+            </div>
+            <div className="topic-container">
+              <p className="topic-text">
+                {topic}
+              </p>
+              <h3 className="article-sentiment">{`${emoji} ${sentiment}`}</h3>
+            </div>
+            <h2 className="article-title cy-article-title">{title}</h2>
           </Link>
           <div className="divider"></div>
         </article>
