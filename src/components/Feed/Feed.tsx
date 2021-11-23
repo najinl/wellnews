@@ -25,7 +25,6 @@ const Feed = ({ unreadArticles, updateUserSentiment, storeArticle, selectedTopic
           image={ article.multimedia.url }
           sentiment={ article.sentiment }
           topic={ article.topic}
-          selectedTopic={ selectedTopic}
           updateUserSentiment={ updateUserSentiment }
           storeArticle={ storeArticle }
           key={ article.title }

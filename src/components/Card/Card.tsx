@@ -8,27 +8,25 @@ interface Card {
   image: string
   sentiment: number
   updateUserSentiment: (userSentiment: number) => void
-  topic: string
   storeArticle: (id: string) => void
-  selectedTopic?: string
+  topic: string
 }
 
-const Card = ({ title, image, id, shortUrl, sentiment, topic, updateUserSentiment, selectedTopic, storeArticle }: Card): JSX.Element => {
+const Card = ({ title, image, id, shortUrl, sentiment, topic, updateUserSentiment, storeArticle }: Card): JSX.Element => {
 
   const handleClick = () => {
     updateUserSentiment(sentiment)
     storeArticle(id)
   }
 
-  const path = selectedTopic || 'home';
-
   return (
     <div className="card-container">
       <article className="news-card cy-article-card">
-        <Link
-          to={path}
+        <a
           onClick={ handleClick }
           className="cy-article-link"
+          href={ shortUrl }
+          target='_blank'
         >
         <div className="article-image-container">
           {sentiment >= 7 && <h3 className="article-sentiment green">{sentiment}</h3>}
@@ -42,7 +40,7 @@ const Card = ({ title, image, id, shortUrl, sentiment, topic, updateUserSentimen
           </p>
         </div>
         <h2 className="article-title cy-article-title">{title}</h2>
-        </Link>
+        </a>
         <div className="divider"></div>
       </article>
     </div>

@@ -1,5 +1,5 @@
 import { useHistory } from 'react-router-dom';
-import './Form.css';
+import './SentimentForm.css';
 
 interface FormProps {
   updateUserSentiment: (userSentiment: number) => void;

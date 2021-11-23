@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { getArticles, getSentiment } from '../../apiCalls';
 import { CleanedArticle } from '../../Models';
-import Form from '../Form/Form';
 import Feed from '../Feed/Feed';
 import Header from '../Header/Header';
-import TopicForm from '../TopicForm/TopicForm';
-import NoMatch from '../NoMatch/NoMatch';
 import History from '../History/History'
+import NoMatch from '../NoMatch/NoMatch';
+import SentimentForm from '../SentimentForm/SentimentForm';
+import TopicForm from '../TopicForm/TopicForm';
 import './App.css';
 
 const App = (): JSX.Element => {
@@ -21,6 +21,7 @@ const App = (): JSX.Element => {
   const [error, setError] = useState('');
 
   useEffect((): void => {
+    console.log('useEffect onLoad')
     getArticles()
       .then((cleanedArticles: CleanedArticle[]): void => {
         getSentimentScores(cleanedArticles)
@@ -36,11 +37,13 @@ const App = (): JSX.Element => {
   }, []);
 
   useEffect((): void => {
+    console.log('useEffect userSentiment')
     const sortedArticles = getSortedArticles();
     setArticles(sortedArticles);
   }, [userSentiment])
 
   useEffect((): void => {
+    console.log('useEffect articles, history')
     const unreadArticles = getUnreadArticles();
     setUnreadArticles(unreadArticles);
   }, [articles, history])
@@ -122,7 +125,7 @@ const App = (): JSX.Element => {
       <Router>
         <Switch>
           <Route exact path="/">
-            <Form updateUserSentiment={ updateUserSentiment } />
+            <SentimentForm updateUserSentiment={ updateUserSentiment } />
           </Route>
           <Route
             path={path}
