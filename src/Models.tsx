@@ -2,7 +2,7 @@ export interface CleanedArticle {
   topic: string
   title: string
   abstract: string
-  short_url: string
+  shortUrl: string
   multimedia: Multimedia
   sentiment: number
   id: string

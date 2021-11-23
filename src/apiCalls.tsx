@@ -44,7 +44,7 @@ const cleanArticles = (articles: OriginalArticle[]): CleanedArticle[] => {
       topic: section,
       title,
       abstract,
-      short_url,
+      shortUrl: short_url,
       sentiment: 0,
       multimedia: multimedia[0],
       id: url.slice(24, -5).replace(/\//g, '-')

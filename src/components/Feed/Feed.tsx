@@ -19,9 +19,10 @@ const Feed = ({ unreadArticles, updateUserSentiment, storeArticle, selectedTopic
     articleCards = unreadArticles.map(article => {
       return  (
         <Card
+          id={ article.id }
+          shortUrl={ article.shortUrl }
           title={ article.title }
           image={ article.multimedia.url }
-          id={ article.id }
           sentiment={ article.sentiment }
           topic={ article.topic}
           selectedTopic={ selectedTopic}

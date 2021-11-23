@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import { getArticles, getSentiment } from '../../apiCalls';
 import { CleanedArticle } from '../../Models';
 import Form from '../Form/Form';
 import Feed from '../Feed/Feed';
-import Article from '../Article/Article';
 import Header from '../Header/Header';
 import TopicForm from '../TopicForm/TopicForm';
 import NoMatch from '../NoMatch/NoMatch';
-import './App.css';
 import History from '../History/History'
+import './App.css';
 
 const App = (): JSX.Element => {
   const [articles, setArticles] = useState<CleanedArticle[]>([]);
-  const [unreadArticles, setUnreadArticles] = useState<CleanedArticle[] | undefined>([])
+  const [unreadArticles, setUnreadArticles] = useState<
+    CleanedArticle[] | undefined
+  >([]);
   const [history, setHistory] = useState<CleanedArticle[]>([]);
-  const [error, setError] = useState('');
   const [userSentiment, setUserSentiment] = useState<number | null>(null);
-  const [selectedArticles, setSelectedArticles] = useState<CleanedArticle[]>([]);
   const [selectedTopic, setSelectedTopic] = useState<string>('');
+  const [error, setError] = useState('');
 
   useEffect((): void => {
     getArticles()
@@ -115,7 +115,7 @@ const App = (): JSX.Element => {
     }
   }
 
-  const path = selectedArticles.length > 1 ? `/feed/${selectedTopic}` : '/feed';
+  const path = `/feed/${selectedTopic}`
 
   return (
     <div className="app-container">
@@ -135,7 +135,7 @@ const App = (): JSX.Element => {
                     updateUserSentiment={ updateUserSentiment }
                     storeArticle={ storeArticle }
                   />
-                  { !articles.length || !selectedArticles.length &&
+                  { !articles.length &&
                     <h2 className="loading-text">Loading... </h2>
                   }
                   { error && <h2>{error}</h2> }
@@ -146,50 +146,6 @@ const App = (): JSX.Element => {
           <Route exact path="/search-topic">
             <TopicForm assignTopic={ assignTopic } />
           </Route>
-          <Route
-            exact path="/feed/:id"
-            render={({ match }) => {
-              const id = match.params.id;
-              const singleArticle = articles.find(article => article.id === id)
-
-              if (singleArticle) {
-                return (
-                  <Article
-                    title={ singleArticle.title }
-                    image={ singleArticle.multimedia.url }
-                    caption={ singleArticle.multimedia.caption }
-                    abstract={ singleArticle.abstract }
-                    selectedTopic={ selectedTopic }
-                    key={ singleArticle.title }
-                  />
-                )
-              } else {
-                return <NoMatch />
-              }
-            }}
-          />
-          <Route
-            exact path={`/feed/${selectedTopic}/:id`}
-            render={({ match }) => {
-              const id = match.params.id
-              const singleArticle = articles.find(article => article.id === id)
-
-              if (singleArticle) {
-                return (
-                  <Article
-                    title={ singleArticle.title }
-                    image={ singleArticle.multimedia.url }
-                    caption={ singleArticle.multimedia.caption }
-                    abstract={ singleArticle.abstract }
-                    selectedTopic= { selectedTopic }
-                    key={ singleArticle.title }
-                  />
-                )
-              } else {
-                return <NoMatch />
-              }
-            }}
-          />
           <Route
             exact path="/history"
             render={() => {

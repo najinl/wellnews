@@ -2,9 +2,10 @@ import { Link } from 'react-router-dom';
 import '../Card/Card.css';
 
 interface Card {
+  id: string
+  shortUrl: string
   title: string
   image: string
-  id: string
   sentiment: number
   updateUserSentiment: (userSentiment: number) => void
   topic: string
@@ -12,20 +13,20 @@ interface Card {
   selectedTopic?: string
 }
 
-const Card = ({ title, image, id, sentiment, topic, updateUserSentiment, selectedTopic, storeArticle }: Card): JSX.Element => {
+const Card = ({ title, image, id, shortUrl, sentiment, topic, updateUserSentiment, selectedTopic, storeArticle }: Card): JSX.Element => {
 
   const handleClick = () => {
     updateUserSentiment(sentiment)
     storeArticle(id)
   }
 
+  const path = selectedTopic || 'home';
+
   return (
     <div className="card-container">
       <article className="news-card cy-article-card">
         <Link
-          to={`/feed/${
-            selectedTopic ? selectedTopic + '/' + id : id
-          }`}
+          to={path}
           onClick={ handleClick }
           className="cy-article-link"
         >
