@@ -17,7 +17,7 @@ const App = (): JSX.Element => {
   >([]);
   const [history, setHistory] = useState<CleanedArticle[]>([]);
   const [userSentiment, setUserSentiment] = useState<number | null>(null);
-  const [selectedTopic, setSelectedTopic] = useState<string>('');
+  const [selectedTopic, setSelectedTopic] = useState<string>('home');
   const [error, setError] = useState('');
 
   useEffect((): void => {
