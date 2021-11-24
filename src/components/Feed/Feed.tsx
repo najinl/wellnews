@@ -15,13 +15,6 @@ interface FeedProps {
 const Feed = ({ unreadArticles, updateUserSentiment, storeArticle, selectedTopic }: FeedProps): JSX.Element => {
   const [articleNumber, setArticleNumber] = useState<number>(0)
   let articleCards: JSX.Element[] = [];
-  const showArrowStyle: React.CSSProperties = {
-    display: 'inline'
-  };
-
-  const hideArrowStyle: React.CSSProperties = {
-    display: 'none'
-  };
 
   if (unreadArticles) {
     articleCards = unreadArticles.map(article => {
@@ -49,32 +42,35 @@ const Feed = ({ unreadArticles, updateUserSentiment, storeArticle, selectedTopic
       <Header />
       <h2>{topic}</h2>
       <section className="articles-container">
-        <button
-          className="backward-arrow-btn"
-          style={ articleNumber ? showArrowStyle : hideArrowStyle }
-          onClick={() => setArticleNumber(articleNumber - 1)}
-          aria-label="Previoius article"
-        >
-          <span className="material-icons">
-            arrow_back_ios
-          </span>
-        </button>
+        { !!articleNumber &&
+          <button
+            className="backward-arrow-btn"
+            onClick={() => setArticleNumber(articleNumber - 1)}
+            aria-label="Previoius article"
+          >
+            <span className="material-icons">
+              arrow_back_ios
+            </span>
+          </button>
+        }
 
-        { articleCards.length > 0 ? articleCards[articleNumber] :
-          <Link to="/search-topic">
-            <button className='find-more-btn'>Find more articles by topic</button>
+        { articleCards.length > 0 ?
+          articleCards[articleNumber] :
+          <Link to="/search-topic" className="find-more-btn">
+            Find more articles by topic
           </Link> }
 
-        <button
-          style={ articleNumber < articleCards.length - 1 ? showArrowStyle : hideArrowStyle }
+        { articleNumber < articleCards.length - 1 &&
+          <button
           className="forward-arrow-btn"
           onClick={() => setArticleNumber(articleNumber + 1)}
           aria-label="Next article"
-        >
-          <span className="material-icons">
-            arrow_forward_ios
-          </span>
-        </button>
+          >
+            <span className="material-icons">
+              arrow_forward_ios
+            </span>
+          </button>
+        }
       </section>
     </>
   );
