@@ -9,7 +9,7 @@ interface FeedProps {
   unreadArticles: CleanedArticle[] | undefined;
   updateUserSentiment: (userSentiment: number) => void;
   storeArticle: (id: string) => void;
-  selectedTopic?: string;
+  selectedTopic: string;
 }
 
 const Feed = ({ unreadArticles, updateUserSentiment, storeArticle, selectedTopic }: FeedProps): JSX.Element => {
@@ -35,10 +35,13 @@ const Feed = ({ unreadArticles, updateUserSentiment, storeArticle, selectedTopic
     })
   }
 
+  const topic = selectedTopic === 'home' ? 'Top News' : selectedTopic.charAt(0).toUpperCase() + selectedTopic.slice(1)
+
   return (
     <>
       <Header />
-      <div className="articles-container">
+      <h2>{topic}</h2>
+      <section className="articles-container">
         <button
           className="arrow-button"
           disabled={ articleNumber ? false : true }
@@ -46,15 +49,15 @@ const Feed = ({ unreadArticles, updateUserSentiment, storeArticle, selectedTopic
           aria-label="Previoius article"
         >
           <span className="material-icons">
-            ⬅
+            arrow_back_ios
           </span>
         </button>
-        <section className="articles-display">
-          { articleCards.length >= 0 ? articleCards[articleNumber] :
-            <Link to="/search-topic">
-              <button className='find-more-btn'>Find more articles by topic</button>
-            </Link> }
-        </section>
+
+        { articleCards.length > 0 ? articleCards[articleNumber] :
+          <Link to="/search-topic">
+            <button className='find-more-btn'>Find more articles by topic</button>
+          </Link> }
+
         <button
           disabled={ articleNumber < articleCards.length - 1 ? false : true }
           className="arrow-button"
@@ -62,10 +65,10 @@ const Feed = ({ unreadArticles, updateUserSentiment, storeArticle, selectedTopic
           aria-label="Next article"
         >
           <span className="material-icons">
-            ⮕
+            arrow_forward_ios
           </span>
         </button>
-      </div>
+      </section>
     </>
   );
 };
