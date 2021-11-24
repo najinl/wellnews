@@ -56,12 +56,13 @@
   text-decoration: none;
 }
 
-.arrow-button {
+.backward-arrow-btn, .forward-arrow-btn {
   color: white;
   background-color: #4B658B;
   border: none;
   cursor: pointer;
   font-size: 2em;
+  display: inline;
 }
 
 @media (max-width: 1150px) {
