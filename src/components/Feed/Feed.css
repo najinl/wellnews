@@ -4,22 +4,6 @@
   align-items: center;
 }
 
-.articles-display {
-  margin-top: 1rem;
-  flex-direction: column;
-  justify-content: center;
-  width: 90%;
-  background-color: #edf1f7;
-  padding-top: 2.4rem;
-}
-
-.feed-button-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 50%;
-}
-
 .retake-btn,
 .search-topics-btn {
   font-family: 'Comfortaa';
@@ -54,9 +38,9 @@
   text-decoration: none;
 }
 
-.arrow-button {
+.backward-arrow-btn, .forward-arrow-btn {
   color: white;
-  background-color: transparent;
+  background: transparent;
   border: none;
   cursor: pointer;
   font-size: 2rem;

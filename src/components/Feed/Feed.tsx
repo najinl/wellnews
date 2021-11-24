@@ -15,6 +15,13 @@ interface FeedProps {
 const Feed = ({ unreadArticles, updateUserSentiment, storeArticle, selectedTopic }: FeedProps): JSX.Element => {
   const [articleNumber, setArticleNumber] = useState<number>(0)
   let articleCards: JSX.Element[] = [];
+  const showArrowStyle: React.CSSProperties = {
+    display: 'inline'
+  };
+
+  const hideArrowStyle: React.CSSProperties = {
+    display: 'none'
+  };
 
   if (unreadArticles) {
     articleCards = unreadArticles.map(article => {
@@ -43,8 +50,8 @@ const Feed = ({ unreadArticles, updateUserSentiment, storeArticle, selectedTopic
       <h2>{topic}</h2>
       <section className="articles-container">
         <button
-          className="arrow-button"
-          disabled={ articleNumber ? false : true }
+          className="backward-arrow-btn"
+          style={ articleNumber ? showArrowStyle : hideArrowStyle }
           onClick={() => setArticleNumber(articleNumber - 1)}
           aria-label="Previoius article"
         >
@@ -59,8 +66,8 @@ const Feed = ({ unreadArticles, updateUserSentiment, storeArticle, selectedTopic
           </Link> }
 
         <button
-          disabled={ articleNumber < articleCards.length - 1 ? false : true }
-          className="arrow-button"
+          style={ articleNumber < articleCards.length - 1 ? showArrowStyle : hideArrowStyle }
+          className="forward-arrow-btn"
           onClick={() => setArticleNumber(articleNumber + 1)}
           aria-label="Next article"
         >
