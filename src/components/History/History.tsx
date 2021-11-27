@@ -6,9 +6,10 @@ interface HistoryProps {
   history: CleanedArticle[];
   updateUserSentiment: (userSentiment: number) => void
   storeArticle: (id: string) => void
+  toggleSaved: (id: string) => void
 }
 
-const History = ({ history, storeArticle, updateUserSentiment }: HistoryProps): JSX.Element => {
+const History = ({ history, storeArticle, updateUserSentiment, toggleSaved }: HistoryProps): JSX.Element => {
 
   let articleCards: JSX.Element[] = [];
 
@@ -26,6 +27,7 @@ const History = ({ history, storeArticle, updateUserSentiment }: HistoryProps): 
           abstract= { article.abstract }
           storeArticle={ storeArticle }
           updateUserSentiment={ updateUserSentiment }
+          toggleSaved={ toggleSaved }
         />
       )
     })

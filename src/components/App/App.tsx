@@ -132,7 +132,7 @@ const App = (): JSX.Element => {
     }
   }
 
-  const saveArticle = (id: string): void => {
+  const toggleSaved = (id: string): void => {
     const newSavedArticle = articles.find(article => {
       return article.id === id;
     })
@@ -158,7 +158,7 @@ const App = (): JSX.Element => {
                     selectedTopic={ selectedTopic }
                     updateUserSentiment={ updateUserSentiment }
                     storeArticle={ storeArticle }
-                    saveArticle={ saveArticle }
+                    toggleSaved={ toggleSaved }
                   />
                   { !articles.length &&
                     <h2 className="loading-text">Loading... </h2>
@@ -176,6 +176,7 @@ const App = (): JSX.Element => {
               savedArticles={ savedArticles }
               storeArticle={ storeArticle }
               updateUserSentiment={ updateUserSentiment }
+              toggleSaved={ toggleSaved }
             />
           </Route>
           <Route
@@ -188,6 +189,7 @@ const App = (): JSX.Element => {
                     history={ history }
                     storeArticle={ storeArticle }
                     updateUserSentiment={ updateUserSentiment }
+                    toggleSaved={ toggleSaved }
                   />
                   { error && <h2>{error}</h2> }
                 </>
