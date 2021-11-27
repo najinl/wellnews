@@ -133,10 +133,20 @@ const App = (): JSX.Element => {
   }
 
   const toggleSaved = (id: string): void => {
-    const newSavedArticle = articles.find(article => {
-      return article.id === id;
+    const isSaved = savedArticles.find(savedArticle => {
+      return savedArticle.id === id;
     })
-    setSavedArticles([...savedArticles, newSavedArticle!])
+    if (!isSaved) {
+      const newSavedArticle = articles.find(article => {
+        return article.id === id;
+      })
+      setSavedArticles([...savedArticles, newSavedArticle!])
+    } else {
+      const newSavedArticles = savedArticles.filter(savedArticle => {
+        savedArticle.id !== id;
+      })
+      setSavedArticles(newSavedArticles);
+    }
   }
 
   const path = `/feed/${selectedTopic}`
