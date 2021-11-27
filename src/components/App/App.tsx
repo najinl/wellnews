@@ -18,6 +18,7 @@ const App = (): JSX.Element => {
   const [history, setHistory] = useState<CleanedArticle[]>([]);
   const [userSentiment, setUserSentiment] = useState<number | null>(null);
   const [selectedTopic, setSelectedTopic] = useState<string>('home');
+  const [savedArticles, setSavedArticles] = useState<CleanedArticle[]>([]);
   const [error, setError] = useState('');
 
   useEffect((): void => {
@@ -131,7 +132,10 @@ const App = (): JSX.Element => {
   }
 
   const saveArticle = (id: string): void => {
-
+    const newSavedArticle = articles.find(article => {
+      return article.id === id;
+    })
+    setSavedArticles([...savedArticles, newSavedArticle!])
   }
 
   const path = `/feed/${selectedTopic}`
