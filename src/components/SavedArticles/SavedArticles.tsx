@@ -15,6 +15,13 @@ const SavedArticles = ({ savedArticles, storeArticle, updateUserSentiment, toggl
 
   if (savedArticles) {
     articleCards = savedArticles.map((article: CleanedArticle) => {
+      let isSaved = false;
+      if (savedArticles.find(savedArticle => savedArticle.id === article.id)) {
+        isSaved = true;
+      } else {
+        isSaved = false;
+      }
+
       return (
         <Card
           title={ article.title }
@@ -28,6 +35,7 @@ const SavedArticles = ({ savedArticles, storeArticle, updateUserSentiment, toggl
           storeArticle={ storeArticle }
           toggleSaved={ toggleSaved }
           updateUserSentiment={ updateUserSentiment }
+          isSaved={ isSaved }
         />
       )
     })

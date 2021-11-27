@@ -11,9 +11,10 @@ interface Card {
   storeArticle: (id: string) => void
   topic: string
   toggleSaved: (id: string) => void
+  isSaved: boolean
 }
 
-const Card = ({ title, image, id, shortUrl, sentiment, topic, updateUserSentiment, storeArticle, abstract, toggleSaved }: Card): JSX.Element => {
+const Card = ({ title, image, id, shortUrl, sentiment, topic, updateUserSentiment, storeArticle, abstract, toggleSaved, isSaved }: Card): JSX.Element => {
 
   const handleClick = () => {
     updateUserSentiment(sentiment)
@@ -33,9 +34,22 @@ const Card = ({ title, image, id, shortUrl, sentiment, topic, updateUserSentimen
         <img className="article-image cy-article-image" src={image} alt={title} />
       </a>
       <p className="abstract-text"> {abstract} </p>
-      <button onClick={ () => toggleSaved(id) } type="button">
-        Save Article
-      </button>
+      { isSaved &&
+        <button
+          className="saved"
+          onClick={ () => toggleSaved(id) }
+          type="button"
+        >
+        </button>
+      }
+      { !isSaved &&
+        <button
+          className="not-saved"
+          onClick={ () => toggleSaved(id) }
+          type="button"
+        >
+        </button>
+      }
     </article>
   )
 }

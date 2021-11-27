@@ -11,14 +11,22 @@ interface FeedProps {
   storeArticle: (id: string) => void;
   selectedTopic: string;
   toggleSaved: (id: string) => void;
+  savedArticles: CleanedArticle[];
 }
 
-const Feed = ({ unreadArticles, updateUserSentiment, storeArticle, selectedTopic, toggleSaved }: FeedProps): JSX.Element => {
+const Feed = ({ unreadArticles, updateUserSentiment, storeArticle, selectedTopic, toggleSaved, savedArticles }: FeedProps): JSX.Element => {
   const [articleNumber, setArticleNumber] = useState<number>(0)
   let articleCards: JSX.Element[] = [];
 
   if (unreadArticles) {
     articleCards = unreadArticles.map(article => {
+      let isSaved;
+      if (savedArticles.find(savedArticle => savedArticle.id === article.id)) {
+        isSaved = true;
+      } else {
+        isSaved = false;
+      }
+
       return  (
         <Card
           id={ article.id }
@@ -31,6 +39,7 @@ const Feed = ({ unreadArticles, updateUserSentiment, storeArticle, selectedTopic
           updateUserSentiment={ updateUserSentiment }
           storeArticle={ storeArticle }
           toggleSaved={ toggleSaved }
+          isSaved={ isSaved }
           key={ article.title }
         />
       )

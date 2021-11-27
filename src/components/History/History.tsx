@@ -7,14 +7,22 @@ interface HistoryProps {
   updateUserSentiment: (userSentiment: number) => void
   storeArticle: (id: string) => void
   toggleSaved: (id: string) => void
+  savedArticles: CleanedArticle[]
 }
 
-const History = ({ history, storeArticle, updateUserSentiment, toggleSaved }: HistoryProps): JSX.Element => {
+const History = ({ history, storeArticle, updateUserSentiment, toggleSaved, savedArticles }: HistoryProps): JSX.Element => {
 
   let articleCards: JSX.Element[] = [];
 
   if (history) {
     articleCards = history.map((article: CleanedArticle) => {
+      let isSaved;
+      if (savedArticles.find(savedArticle => savedArticle.id === article.id)) {
+        isSaved = true;
+      } else {
+        isSaved = false;
+      }
+
       return (
         <Card
           title={ article.title }
@@ -28,6 +36,7 @@ const History = ({ history, storeArticle, updateUserSentiment, toggleSaved }: Hi
           storeArticle={ storeArticle }
           updateUserSentiment={ updateUserSentiment }
           toggleSaved={ toggleSaved }
+          isSaved={ isSaved }
         />
       )
     })

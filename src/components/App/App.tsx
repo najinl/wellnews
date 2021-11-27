@@ -169,6 +169,7 @@ const App = (): JSX.Element => {
                     updateUserSentiment={ updateUserSentiment }
                     storeArticle={ storeArticle }
                     toggleSaved={ toggleSaved }
+                    savedArticles={ savedArticles}
                   />
                   { !articles.length &&
                     <h2 className="loading-text">Loading... </h2>
@@ -200,6 +201,7 @@ const App = (): JSX.Element => {
                     storeArticle={ storeArticle }
                     updateUserSentiment={ updateUserSentiment }
                     toggleSaved={ toggleSaved }
+                    savedArticles={ savedArticles }
                   />
                   { error && <h2>{error}</h2> }
                 </>
