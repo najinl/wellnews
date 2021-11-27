@@ -1,6 +1,7 @@
 import Card from '../Card/Card';
 import { CleanedArticle } from '../../Models';
-import '../Feed/Feed.css'
+import Header from '../Header/Header';
+import '../Feed/Feed.css';
 
 interface SavedArticlesProps {
   savedArticles: CleanedArticle[];
@@ -33,11 +34,16 @@ const SavedArticles = ({ savedArticles, storeArticle, updateUserSentiment, toggl
   }
 
   return (
-    <div className="articles-container">
-        <section className="articles-display">
-          { articleCards.length ? articleCards : <h3>No history</h3> }
-        </section>
-    </div>
+    <>
+      <Header />
+      <div className="articles-container">
+          <section className="articles-display">
+            { articleCards.length ? articleCards
+              : <h3 className="no-match-message">Saved articles will appear here</h3>
+            }
+          </section>
+      </div>
+    </>
   )
 }
 

@@ -181,7 +181,7 @@ const App = (): JSX.Element => {
           <Route exact path="/search-topic">
             <TopicForm assignTopic={ assignTopic } />
           </Route>
-          <Route path="saved-articles">
+          <Route path="/saved">
             <SavedArticles
               savedArticles={ savedArticles }
               storeArticle={ storeArticle }

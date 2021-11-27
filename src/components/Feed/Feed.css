@@ -240,3 +240,7 @@
     width: 85%;
   }
 }
+
+.no-match-message {
+  color: white;
+}

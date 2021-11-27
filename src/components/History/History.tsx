@@ -36,7 +36,8 @@ const History = ({ history, storeArticle, updateUserSentiment, toggleSaved }: Hi
   return (
     <div className="articles-container">
         <section className="articles-display">
-          { articleCards.length ? articleCards : <h3>No history</h3> }
+          { articleCards.length ? articleCards
+            : <h3 className="no-match-message">Articles you've read will appear here</h3> }
         </section>
     </div>
   )
