@@ -1,25 +1,7 @@
 .articles-container {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.articles-display {
-  margin-top: 1rem;
-  flex-direction: column;
-  justify-content: center;
-  width: 90%;
-  background-color: #edf1f7;
-  padding-top: 2.4rem;
-  box-shadow: 4px 4px 4px black;
-}
-
-.feed-button-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 50%;
 }
 
 .retake-btn,
@@ -56,6 +38,17 @@
   text-decoration: none;
 }
 
+.backward-arrow-btn, .forward-arrow-btn {
+  color: white;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 2rem;
+}
+
+.material-icons {
+  font-size: 32px;
+}
 
 @media (max-width: 1150px) {
   .header-elements-container {
@@ -158,7 +151,6 @@
 
   .topic-text {
     font-size: .8rem;
-    margin-top: 0rem;
   }
 }
 

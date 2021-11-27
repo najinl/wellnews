@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import Card from '../Card/Card';
 import { CleanedArticle } from '../../Models';
 import '../Feed/Feed.css'
@@ -21,8 +20,10 @@ const History = ({ history, storeArticle, updateUserSentiment }: HistoryProps): 
           image={ article.multimedia.url }
           key={ article.title }
           sentiment={ article.sentiment }
+          shortUrl={ article.shortUrl }
           id={ article.id }
           topic= { article.topic }
+          abstract= { article.abstract }
           storeArticle={ storeArticle }
           updateUserSentiment={ updateUserSentiment }
         />

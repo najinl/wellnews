@@ -1,25 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { getArticles, getSentiment } from '../../apiCalls';
 import { CleanedArticle } from '../../Models';
-import Form from '../Form/Form';
 import Feed from '../Feed/Feed';
-import Article from '../Article/Article';
 import Header from '../Header/Header';
-import TopicForm from '../TopicForm/TopicForm';
-import TopicFeed from '../TopicFeed/TopicFeed'
-import NoMatch from '../NoMatch/NoMatch';
-import './App.css';
 import History from '../History/History'
+import NoMatch from '../NoMatch/NoMatch';
+import SentimentForm from '../SentimentForm/SentimentForm';
+import TopicForm from '../TopicForm/TopicForm';
+import './App.css';
 
 const App = (): JSX.Element => {
   const [articles, setArticles] = useState<CleanedArticle[]>([]);
-  const [unreadArticles, setUnreadArticles] = useState<CleanedArticle[] | undefined>([])
+  const [unreadArticles, setUnreadArticles] = useState<
+    CleanedArticle[] | undefined
+  >([]);
   const [history, setHistory] = useState<CleanedArticle[]>([]);
-  const [error, setError] = useState('');
   const [userSentiment, setUserSentiment] = useState<number | null>(null);
-  const [selectedArticles, setSelectedArticles] = useState<CleanedArticle[]>([]);
-  const [selectedTopic, setSelectedTopic] = useState<string>('');
+  const [selectedTopic, setSelectedTopic] = useState<string>('home');
+  const [error, setError] = useState('');
 
   useEffect((): void => {
     getArticles()
@@ -42,9 +41,10 @@ const App = (): JSX.Element => {
   }, [userSentiment])
 
   useEffect((): void => {
+    updateHistory();
     const unreadArticles = getUnreadArticles();
     setUnreadArticles(unreadArticles);
-  }, [articles, history])
+  }, [articles])
 
   const getSortedArticles = (): CleanedArticle[] => {
     let sortedArticles;
@@ -57,7 +57,7 @@ const App = (): JSX.Element => {
         return articleA.sentiment - articleB.sentiment;
       })
     } else {
-      sortedArticles = articles.slice().sort((articleA, articleB) => 0.5 - Math.random());
+      sortedArticles = articles.slice().sort(() => 0.5 - Math.random());
     }
     return sortedArticles;
   }
@@ -103,9 +103,23 @@ const App = (): JSX.Element => {
       .catch(error => setError(error.message));
   }
 
+  const getLocalHistory = (): string[] => {
+    return JSON.parse(localStorage.getItem('wellnewsHistory')!);
+  }
+
+  const updateHistory = (): void => {
+    const localHistory = getLocalHistory();
+    if (localHistory && localHistory.length) {
+      const newHistory = articles.filter((article) => {
+        return localHistory.includes(article.id)
+      })
+      setHistory(newHistory)
+    }
+  }
+
   const storeArticle = (id: string): void => {
     const matchingArticle = articles.find(article => article.id === id);
-    const localHistory = JSON.parse(localStorage.getItem('wellnewsHistory')!);
+    const localHistory = getLocalHistory();
     if (!localHistory) {
       localStorage.setItem('wellnewsHistory', JSON.stringify([id]));
       return setHistory([matchingArticle!]);
@@ -116,43 +130,29 @@ const App = (): JSX.Element => {
     }
   }
 
+  const path = `/feed/${selectedTopic}`
+
   return (
     <div className="app-container">
       <Router>
         <Switch>
           <Route exact path="/">
-            <Form updateUserSentiment={ updateUserSentiment } />
+            <SentimentForm updateUserSentiment={ updateUserSentiment } />
           </Route>
           <Route
-            exact path="/feed"
+            path={path}
             render={() => {
               return (
                 <>
                   <Feed
                     unreadArticles={ unreadArticles }
+                    selectedTopic={ selectedTopic }
                     updateUserSentiment={ updateUserSentiment }
                     storeArticle={ storeArticle }
                   />
-                  { articles.length === 0 &&
+                  { !articles.length &&
                     <h2 className="loading-text">Loading... </h2>
                   }
-                  { error && <h2>{error}</h2> }
-                </>
-              )
-            }}
-          />
-          <Route
-            exact path={`/feed/${selectedTopic}`}
-            render={() => {
-              return (
-                <>
-                  <TopicFeed
-                    unreadArticles={ unreadArticles }
-                    updateUserSentiment={ updateUserSentiment }
-                    selectedTopic = { selectedTopic }
-                    storeArticle={ storeArticle }
-                  />
-                  { !articles.length && <h2>Loading.. </h2>}
                   { error && <h2>{error}</h2> }
                 </>
               )
@@ -161,50 +161,6 @@ const App = (): JSX.Element => {
           <Route exact path="/search-topic">
             <TopicForm assignTopic={ assignTopic } />
           </Route>
-          <Route
-            exact path="/feed/:id"
-            render={({ match }) => {
-              const id = match.params.id;
-              const singleArticle = articles.find(article => article.id === id)
-
-              if (singleArticle) {
-                return (
-                  <Article
-                    title={ singleArticle.title }
-                    image={ singleArticle.multimedia.url }
-                    caption={ singleArticle.multimedia.caption }
-                    abstract={ singleArticle.abstract }
-                    selectedTopic={ selectedTopic }
-                    key={ singleArticle.title }
-                  />
-                )
-              } else {
-                return <NoMatch />
-              }
-            }}
-          />
-          <Route
-            exact path={`/feed/${selectedTopic}/:id`}
-            render={({ match }) => {
-              const id = match.params.id
-              const singleArticle = articles.find(article => article.id === id)
-
-              if (singleArticle) {
-                return (
-                  <Article
-                    title={ singleArticle.title }
-                    image={ singleArticle.multimedia.url }
-                    caption={ singleArticle.multimedia.caption }
-                    abstract={ singleArticle.abstract }
-                    selectedTopic= { selectedTopic }
-                    key={ singleArticle.title }
-                  />
-                )
-              } else {
-                return <NoMatch />
-              }
-            }}
-          />
           <Route
             exact path="/history"
             render={() => {
