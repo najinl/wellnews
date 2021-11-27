@@ -10,9 +10,10 @@ interface FeedProps {
   updateUserSentiment: (userSentiment: number) => void;
   storeArticle: (id: string) => void;
   selectedTopic: string;
+  saveArticle: (id: string) => void;
 }
 
-const Feed = ({ unreadArticles, updateUserSentiment, storeArticle, selectedTopic }: FeedProps): JSX.Element => {
+const Feed = ({ unreadArticles, updateUserSentiment, storeArticle, selectedTopic, saveArticle }: FeedProps): JSX.Element => {
   const [articleNumber, setArticleNumber] = useState<number>(0)
   let articleCards: JSX.Element[] = [];
 
@@ -29,6 +30,7 @@ const Feed = ({ unreadArticles, updateUserSentiment, storeArticle, selectedTopic
           abstract={ article.abstract }
           updateUserSentiment={ updateUserSentiment }
           storeArticle={ storeArticle }
+          saveArticle={ saveArticle }
           key={ article.title }
         />
       )

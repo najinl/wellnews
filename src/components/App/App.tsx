@@ -130,6 +130,10 @@ const App = (): JSX.Element => {
     }
   }
 
+  const saveArticle = (id: string): void => {
+
+  }
+
   const path = `/feed/${selectedTopic}`
 
   return (
@@ -149,6 +153,7 @@ const App = (): JSX.Element => {
                     selectedTopic={ selectedTopic }
                     updateUserSentiment={ updateUserSentiment }
                     storeArticle={ storeArticle }
+                    saveArticle={ saveArticle }
                   />
                   { !articles.length &&
                     <h2 className="loading-text">Loading... </h2>
