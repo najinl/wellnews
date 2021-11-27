@@ -8,6 +8,7 @@ import History from '../History/History'
 import NoMatch from '../NoMatch/NoMatch';
 import SentimentForm from '../SentimentForm/SentimentForm';
 import TopicForm from '../TopicForm/TopicForm';
+import SavedArticles from '../SavedArticles/SavedArticles';
 import './App.css';
 
 const App = (): JSX.Element => {
@@ -169,6 +170,13 @@ const App = (): JSX.Element => {
           />
           <Route exact path="/search-topic">
             <TopicForm assignTopic={ assignTopic } />
+          </Route>
+          <Route path="saved-articles">
+            <SavedArticles
+              savedArticles={ savedArticles }
+              storeArticle={ storeArticle }
+              updateUserSentiment={ updateUserSentiment }
+            />
           </Route>
           <Route
             exact path="/history"

@@ -10,7 +10,7 @@ interface Card {
   updateUserSentiment: (userSentiment: number) => void
   storeArticle: (id: string) => void
   topic: string
-  saveArticle: (id: string) => void
+  saveArticle?: (id: string) => void
 }
 
 const Card = ({ title, image, id, shortUrl, sentiment, topic, updateUserSentiment, storeArticle, abstract, saveArticle }: Card): JSX.Element => {
@@ -33,7 +33,11 @@ const Card = ({ title, image, id, shortUrl, sentiment, topic, updateUserSentimen
         <img className="article-image cy-article-image" src={image} alt={title} />
       </a>
       <p className="abstract-text"> {abstract} </p>
-      <button onClick={ () => saveArticle(id) } type="button">Save Article</button>
+      { saveArticle &&
+        <button onClick={ () => saveArticle(id) } type="button">
+          Save Article
+        </button>
+      }
     </article>
   )
 }
