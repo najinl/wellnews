@@ -126,12 +126,6 @@
     left: -25%;
   }
 
-  .history-btn {
-    height: 1.7rem;
-    top: 15%;
-    right: -7%;
-  }
-
   .list-btn {
     height: 2.4rem;
     top: 13%;
@@ -181,13 +175,6 @@
     font-size: .8rem;
   }
 
-  .history-btn {
-    height: 1.7rem;
-    top: 15%;
-    right: -7%;
-    font-size: .8rem;
-  }
-
   .list-btn {
     height: 1.95rem;
     top: 18%;
@@ -220,13 +207,6 @@
 
   .check-in-text {
     display: none;
-  }
-
-  .history-btn {
-    height: 1.6rem;
-    top: 12%;
-    right: -10%;
-    font-size: .8rem;
   }
 
   .list-btn {
