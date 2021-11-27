@@ -16,7 +16,7 @@ const sectionTopics = availableTopics.map(topic => {
         to={`/feed/${topic}`}
         key={ topic }
         onClick={() => assignTopic(topic)}>
-        {topic}
+        {topic.charAt(0).toUpperCase() + topic.slice(1)}
       </Link>
     )
 })

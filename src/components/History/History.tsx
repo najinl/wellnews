@@ -23,6 +23,7 @@ const History = ({ history, storeArticle, updateUserSentiment }: HistoryProps): 
           shortUrl={ article.shortUrl }
           id={ article.id }
           topic= { article.topic }
+          abstract= { article.abstract }
           storeArticle={ storeArticle }
           updateUserSentiment={ updateUserSentiment }
         />
