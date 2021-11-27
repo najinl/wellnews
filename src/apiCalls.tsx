@@ -32,7 +32,7 @@ const checkResponse = (response: Response) => {
 
 export const getSentiment = (title: string, abstract: string): Promise<number> => {
   const text = title + ' ' + abstract;
-  return fetch(`https://api.dandelion.eu/datatxt/sent/v1/?lang=en&text=${text}&token=8e05e6c7e8c24d05bb09b53e7f472df2`)
+  return fetch(`https://api.dandelion.eu/datatxt/sent/v1/?lang=en&text=${text}&token=295d5b1d94bb4af5a2d229cf261a449e`)
     .then(response => checkResponse(response))
     .then(data => data.sentiment.score)
     .catch(err => console.log('error: ', err))
