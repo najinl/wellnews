@@ -27,6 +27,9 @@ const sectionTopics = availableTopics.map(topic => {
       <Link to="/saved">
         <button type="button">Saved Articles</button>
       </Link>
+      <Link to='/history'>
+        <button className="button">History</button>
+      </Link>
       <h3 className="browse-topics">Browse articles by topic:</h3>
       <form className="cy-topic-selection">
         { sectionTopics }
