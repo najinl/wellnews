@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import Header from '../Header/Header';
-import './TopicForm.css'
+import './TopicForm.css';
+
 interface TopicFormProps {
   assignTopic: (selectedTopic: string) => void
 }
@@ -23,14 +24,23 @@ const sectionTopics = availableTopics.map(topic => {
 
   return (
     <>
-      <Header />
+      <Header assignTopic={ assignTopic }/>
       <Link to="/saved">
-        <button className="saved-btn" type="button">Saved Articles</button>
+        <button className="saved-btn" type="button">
+          <span className="material-icons">
+            bookmark
+          </span>
+          Saved Articles
+        </button>
       </Link>
       <Link to='/history'>
-        <button className="history-btn" type="button">History</button>
+        <button className="history-btn" type="button">
+        <span className="material-icons">
+          history
+        </span>
+          History
+        </button>
       </Link>
-      <h3 className="browse-topics">Browse articles by topic:</h3>
       <form className="cy-topic-selection">
         { sectionTopics }
       </form>

@@ -1,4 +1,5 @@
 import Card from '../Card/Card';
+import Header from '../Header/Header'
 import { CleanedArticle } from '../../Models';
 import '../Feed/Feed.css'
 
@@ -8,9 +9,10 @@ interface HistoryProps {
   storeArticle: (id: string) => void
   toggleSaved: (id: string) => void
   savedArticles: CleanedArticle[]
+  assignTopic: (topic: string) => void
 }
 
-const History = ({ history, storeArticle, updateUserSentiment, toggleSaved, savedArticles }: HistoryProps): JSX.Element => {
+const History = ({ history, storeArticle, updateUserSentiment, toggleSaved, savedArticles, assignTopic }: HistoryProps): JSX.Element => {
 
   let articleCards: JSX.Element[] = [];
 
@@ -44,6 +46,7 @@ const History = ({ history, storeArticle, updateUserSentiment, toggleSaved, save
 
   return (
     <>
+      <Header assignTopic={ assignTopic }/>
       <h2>History</h2>
       <section className="articles-container">
         { articleCards.length ? articleCards

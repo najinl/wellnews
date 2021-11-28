@@ -2,17 +2,24 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 
-const Header = (): JSX.Element => {
+interface Header {
+  assignTopic: (topic: string) => void
+}
+
+const Header = ({ assignTopic }: Header): JSX.Element => {
   return (
     <header className="header">
       <Link to='/'>
-        <button className="check-in-btn">
-          <span className="check-in-text">Check In</span>
+        <button className="check-in-btn" aria-label="Return to check in question">
         </button>
       </Link>
-      <h1 className="header-txt cy-header-txt">
-        Well<span className="header-text-2">News</span>
-      </h1>
+      <Link
+        to={'/feed/home'}
+        onClick={() => assignTopic('home')}>
+        <h1 className="header-txt cy-header-txt">
+          Well<span className="header-text-2">News</span>
+        </h1>
+      </Link>
       <Link to='/search-topic'>
         <button className="list-btn" aria-label="Browse by Topic"></button>
       </Link>

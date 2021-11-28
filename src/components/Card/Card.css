@@ -55,6 +55,6 @@ a {
   flex-direction: column;
 }
 
-a:hover {
+.article-title:hover {
   text-decoration: underline;
 }

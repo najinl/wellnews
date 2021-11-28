@@ -10,7 +10,7 @@
 .header-txt {
   font-size: 3rem;
   color: white;
-  cursor: default;
+  cursor: pointer;
 }
 
 .list-btn {
@@ -29,14 +29,13 @@
 }
 
 .check-in-btn {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  background-color: #4B658B;
-  padding-left: .3rem;
-  margin-left: .5%;
-  margin-top: 1%;
+  background-image: url(../../assets/check-in-icon.png);
+  background-repeat: no-repeat;
+  background-size: contain;
   border: 0;
+  background-color: transparent;
+  height: 2.5rem;
+  width: 2.5rem;
 }
 
 .check-in-text {

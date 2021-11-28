@@ -12,9 +12,10 @@ interface FeedProps {
   selectedTopic: string;
   toggleSaved: (id: string) => void;
   savedArticles: CleanedArticle[];
+  assignTopic: (topic: string) => void
 }
 
-const Feed = ({ unreadArticles, updateUserSentiment, storeArticle, selectedTopic, toggleSaved, savedArticles }: FeedProps): JSX.Element => {
+const Feed = ({ unreadArticles, updateUserSentiment, storeArticle, selectedTopic, toggleSaved, savedArticles, assignTopic }: FeedProps): JSX.Element => {
   const [articleNumber, setArticleNumber] = useState<number>(0)
   let articleCards: JSX.Element[] = [];
 
@@ -50,7 +51,7 @@ const Feed = ({ unreadArticles, updateUserSentiment, storeArticle, selectedTopic
 
   return (
     <>
-      <Header />
+      <Header assignTopic={ assignTopic }/>
       <h2>{topic}</h2>
       <section className="articles-container">
         { articleCards.length > 0 ?
