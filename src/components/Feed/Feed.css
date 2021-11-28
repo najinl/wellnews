@@ -1,21 +1,16 @@
 .articles-container {
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
-.retake-btn,
-.search-topics-btn {
-  font-family: 'Comfortaa';
-  font-size: 1rem;
+.menu-btn {
   color: white;
   background-color: #132841;
-  border: 1px solid #132841;
-  height: 2rem;
+  border: 0;
+  margin: 10px;
 }
 
-.retake-btn:hover,
-.search-topics-btn:hover {
+.menu-btn:hover {
   border: 1px solid #132841;
   color: black;
   background-color: white;
@@ -56,7 +51,7 @@
   }
 }
 
-@media (max-width: 1000px) {
+/* @media (max-width: 1000px) {
   .header-elements-container {
     margin-top: 2%;
   }
@@ -91,7 +86,7 @@
     left: -10%;
   }
 
-  .list-btn {
+  .menu-btn {
     height: 2.4rem;
     top: 13%;
     right: -20%;
@@ -126,7 +121,7 @@
     left: -25%;
   }
 
-  .list-btn {
+  .menu-btn {
     height: 2.4rem;
     top: 13%;
     right: -28%;
@@ -175,7 +170,7 @@
     font-size: .8rem;
   }
 
-  .list-btn {
+  .menu-btn {
     height: 1.95rem;
     top: 18%;
     right: -30%;
@@ -209,7 +204,7 @@
     display: none;
   }
 
-  .list-btn {
+  .menu-btn {
     height: 1.8rem;
     top: 14%;
     right: -35%;
@@ -219,7 +214,7 @@
     font-size: .8rem;
     width: 85%;
   }
-}
+} */
 
 .no-match-message {
   color: white;
