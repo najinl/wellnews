@@ -30,6 +30,7 @@ const Card = ({ title, image, id, shortUrl, sentiment, topic, updateUserSentimen
             className="save-button"
             onClick={ () => toggleSaved(id) }
             type="button"
+            aria-label="Remove article from saved articles"
           >
             <span className="material-icons">
               bookmark
@@ -40,6 +41,7 @@ const Card = ({ title, image, id, shortUrl, sentiment, topic, updateUserSentimen
             className="save-button"
             onClick={ () => toggleSaved(id) }
             type="button"
+            aria-label="Save article"
           >
             <span className="material-icons">
               bookmark_border

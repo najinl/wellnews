@@ -26,7 +26,7 @@ const sectionTopics = availableTopics.map(topic => {
     <>
       <Header assignTopic={ assignTopic }/>
       <Link to="/saved">
-        <button className="saved-btn" type="button">
+        <button className="saved-btn" type="button" aria-label="Saved articles">
           <span className="material-icons">
             bookmark
           </span>
@@ -34,7 +34,7 @@ const sectionTopics = availableTopics.map(topic => {
         </button>
       </Link>
       <Link to='/history'>
-        <button className="history-btn" type="button">
+        <button className="history-btn" type="button" aria-label="History">
         <span className="material-icons">
           history
         </span>
