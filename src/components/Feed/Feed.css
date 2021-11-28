@@ -244,3 +244,8 @@
   border: 0;
   background-color: transparent;
 }
+
+.arrow-container {
+  display: flex;
+  justify-content: center;
+}

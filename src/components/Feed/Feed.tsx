@@ -53,6 +53,14 @@ const Feed = ({ unreadArticles, updateUserSentiment, storeArticle, selectedTopic
       <Header />
       <h2>{topic}</h2>
       <section className="articles-container">
+        { articleCards.length > 0 ?
+          articleCards[articleNumber] :
+          <Link to="/search-topic" className="find-more-btn">
+            Find more articles by topic
+          </Link>
+        }
+      </section>
+      <div className="arrow-container">
         { !!articleNumber &&
           <button
             className="backward-arrow-btn"
@@ -64,13 +72,6 @@ const Feed = ({ unreadArticles, updateUserSentiment, storeArticle, selectedTopic
             </span>
           </button>
         }
-
-        { articleCards.length > 0 ?
-          articleCards[articleNumber] :
-          <Link to="/search-topic" className="find-more-btn">
-            Find more articles by topic
-          </Link> }
-
         { articleNumber < articleCards.length - 1 &&
           <button
           className="forward-arrow-btn"
@@ -82,7 +83,7 @@ const Feed = ({ unreadArticles, updateUserSentiment, storeArticle, selectedTopic
             </span>
           </button>
         }
-      </section>
+      </div>
     </>
   );
 };
