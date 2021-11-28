@@ -8,12 +8,10 @@
 
 .browse-topics {
   margin: 2rem 0rem 2rem 0rem;
-  color: white;
 }
 
 .topic {
   text-decoration: none;
-  color: white;
   font-weight:600;
   width: 33%;
   line-height: 1.8rem;
