@@ -143,7 +143,7 @@ const App = (): JSX.Element => {
       setSavedArticles([...savedArticles, newSavedArticle!])
     } else {
       const newSavedArticles = savedArticles.filter(savedArticle => {
-        savedArticle.id !== id;
+        return savedArticle.id !== id;
       })
       setSavedArticles(newSavedArticles);
     }
