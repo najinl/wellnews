@@ -20,6 +20,7 @@ const App = (): JSX.Element => {
   const [userSentiment, setUserSentiment] = useState<number | null>(null);
   const [selectedTopic, setSelectedTopic] = useState<string>('home');
   const [savedArticles, setSavedArticles] = useState<CleanedArticle[]>([]);
+  const [topics, setTopics] = useState<string[]>([]);
   const [error, setError] = useState('');
 
   useEffect((): void => {
@@ -31,24 +32,37 @@ const App = (): JSX.Element => {
                article.sentiment = Math.round((response[i] + 1) * 5);
                return article;
             });
-            setArticles(scoredArticles);
-          });
+            setArticles(scoredArticles)
+          })
       })
       .catch(error => setError(error.message));
   }, []);
 
   useEffect((): void => {
-    const sortedArticles = getSortedArticles();
-    setArticles(sortedArticles);
+    updateTopics();
+    updateHistory();
+  }, [articles])
+
+  useEffect((): void => {
+    updateArticles();
   }, [userSentiment])
 
   useEffect((): void => {
-    updateHistory();
-    const unreadArticles = getUnreadArticles();
-    setUnreadArticles(unreadArticles);
-  }, [articles])
+    updateUnreadArticles();
+  }, [history])
 
-  const getSortedArticles = (): CleanedArticle[] => {
+  const updateTopics = (): void => {
+    const topics = articles.reduce((acc: string[], article: CleanedArticle) => {
+      if (!acc.includes(article.topic)) {
+        acc.push(article.topic);
+      }
+      return acc;
+    }, [])
+    setTopics(topics);
+    console.log(topics)
+  }
+
+  const updateArticles = (): void => {
     let sortedArticles;
     if (userSentiment! >= 0 && userSentiment! <= 3) {
       sortedArticles = articles.slice().sort((articleA, articleB) => {
@@ -61,16 +75,17 @@ const App = (): JSX.Element => {
     } else {
       sortedArticles = articles.slice().sort(() => 0.5 - Math.random());
     }
-    return sortedArticles;
+    setArticles(sortedArticles);
   }
 
-  const getUnreadArticles = (): CleanedArticle[] | undefined => {
+  const updateUnreadArticles = (): void => {
     if (history.length) {
-      return articles.filter(article => {
+      const unreadArticles = articles.filter(article => {
         return !history.find(historyArticle => historyArticle.id === article.id)
       })
+      setUnreadArticles(unreadArticles);
     }
-    return articles;
+    setUnreadArticles(articles);
   }
 
   const getSentimentScores = (cleanedArticles: CleanedArticle[]): Promise<number[]> => {

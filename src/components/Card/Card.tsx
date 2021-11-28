@@ -17,8 +17,8 @@ interface Card {
 const Card = ({ title, image, id, shortUrl, sentiment, topic, updateUserSentiment, storeArticle, abstract, toggleSaved, isSaved }: Card): JSX.Element => {
 
   const handleClick = () => {
-    updateUserSentiment(sentiment)
-    storeArticle(id)
+    updateUserSentiment(sentiment);
+    storeArticle(id);
   }
 
   return (
