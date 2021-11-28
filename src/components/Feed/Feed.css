@@ -126,12 +126,6 @@
     left: -25%;
   }
 
-  .history-btn {
-    height: 1.7rem;
-    top: 15%;
-    right: -7%;
-  }
-
   .list-btn {
     height: 2.4rem;
     top: 13%;
@@ -181,13 +175,6 @@
     font-size: .8rem;
   }
 
-  .history-btn {
-    height: 1.7rem;
-    top: 15%;
-    right: -7%;
-    font-size: .8rem;
-  }
-
   .list-btn {
     height: 1.95rem;
     top: 18%;
@@ -222,13 +209,6 @@
     display: none;
   }
 
-  .history-btn {
-    height: 1.6rem;
-    top: 12%;
-    right: -10%;
-    font-size: .8rem;
-  }
-
   .list-btn {
     height: 1.8rem;
     top: 14%;
@@ -239,4 +219,28 @@
     font-size: .8rem;
     width: 85%;
   }
+}
+
+.no-match-message {
+  color: white;
+}
+
+.saved {
+  background-image: url(../../assets/icon-saved.png);
+  /* background-size: 50px 50px; */
+  height: 50px;
+  width: 50px;
+  align-self: center;
+  border: 0;
+  background-color: transparent;
+}
+
+.not-saved {
+  background-image: url(../../assets/icon-not-saved.png);
+  /* background-size: 50px 50px; */
+  height: 50px;
+  width: 50px;
+  align-self: center;
+  border: 0;
+  background-color: transparent;
 }
