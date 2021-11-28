@@ -1,6 +1,7 @@
 .articles-container {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .menu-btn {
@@ -45,199 +46,13 @@
   font-size: 32px;
 }
 
-@media (max-width: 1150px) {
+@media (min-width: 500px) {
   .header-elements-container {
     margin-top: 1.5%;
   }
-}
-
-/* @media (max-width: 1000px) {
-  .header-elements-container {
-    margin-top: 2%;
-  }
-
-  .articles-display {
-    margin-top: 1rem;
-  }
-}
-
-@media (max-width: 900px) {
-  .header-elements-container {
-    margin-top: 1%;
-    margin-bottom: 10%;
-  }
-
-  .articles-display {
-    margin-top: 1rem;
-  }
-
-  .header {
-    height: 10%;
-  }
-
-  .header-txt,
-  .header-txt-2 {
-    font-size: 2rem;
-  }
-
-  .check-in-btn {
-    height: 2rem;
-    top: 10%;
-    left: -10%;
-  }
-
-  .menu-btn {
-    height: 2.4rem;
-    top: 13%;
-    right: -20%;
-  }
-
-  .article-title {
-    font-size: 1.3rem;
-  }
-}
-
-@media (max-width: 630px) {
-  .header-elements-container {
-    margin-top: 0px;
-  }
-
-  .articles-display {
-    margin-top: 1rem;
-  }
-
-  .header {
-    height: 3.2rem;
-  }
-
-  .header-txt,
-  .header-text-2 {
-    font-size: 2rem;
-  }
-
-  .check-in-btn {
-    height: 1.7rem;
-    top: 15%;
-    left: -25%;
-  }
-
-  .menu-btn {
-    height: 2.4rem;
-    top: 13%;
-    right: -28%;
-  }
-
-  .article-title {
-    font-size: 1rem;
-    width: 70%;
-  }
-
-  .article-sentiment {
-    height: 1.1rem;
-    width: 1rem;
-    font-size: 1rem;
-  }
-
-  .topic-text {
-    font-size: .8rem;
-  }
-}
-
-@media (max-width: 500px) {
-  .articles-display {
-    margin-top: 1rem;
-  }
-
-  .header {
-    height: 2.8rem;
-  }
-
-  .header-txt,
-  .header-text-2 {
-    font-size: 1.7rem;
-    margin-top: .5rem;
-  }
-
-  .check-in-btn {
-    height: 1.7rem;
-    width: 6rem;
-    top: 15%;
-    left: -25%;
-  }
-
-  .check-in-text {
-    padding-left: 1rem;
-    font-size: .8rem;
-  }
-
-  .menu-btn {
-    height: 1.95rem;
-    top: 18%;
-    right: -30%;
-  }
-}
-
-@media (max-width: 400px) {
-  .articles-display {
-    margin-top: 1rem;
-  }
-
-  .header {
-    height: 2.5rem;
-  }
-
-  .header-text,
-  .header-text-2 {
-    font-size: 1.5rem;
-    margin-top: .45rem;
-  }
-
-  .check-in-btn {
-    height: 1.6rem;
-    width: 1.8rem;
-    top: 12%;
-    left: -26%;
-    padding: 0px;
-  }
-
-  .check-in-text {
-    display: none;
-  }
-
-  .menu-btn {
-    height: 1.8rem;
-    top: 14%;
-    right: -35%;
-  }
-
-  .article-title {
-    font-size: .8rem;
-    width: 85%;
-  }
-} */
 
 .no-match-message {
   color: white;
-}
-
-.saved {
-  background-image: url(../../assets/icon-saved.png);
-  /* background-size: 50px 50px; */
-  height: 50px;
-  width: 50px;
-  align-self: center;
-  border: 0;
-  background-color: transparent;
-}
-
-.not-saved {
-  background-image: url(../../assets/icon-not-saved.png);
-  /* background-size: 50px 50px; */
-  height: 50px;
-  width: 50px;
-  align-self: center;
-  border: 0;
-  background-color: transparent;
 }
 
 .arrow-container {
