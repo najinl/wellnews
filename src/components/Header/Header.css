@@ -74,24 +74,3 @@
 .check-in-btn:hover > .check-in-text {
   color: #9EEEFF;
 }
-
-.history-btn {
-  position: absolute;
-  flex: .5;
-  color: white;
-  font-size: 1.1em;
-  background-color: #4B658B;
-  border: 0px;
-  padding: 0rem .5rem 0rem .5rem;
-  margin-right: 1%;
-  margin-top: 1%;
-  height: 50%;
-  top: 14%;
-  right: 10%;
-  width: auto;
-  box-shadow: 2px 2px 2px black;
-}
-
-.history-btn:hover {
-  color: #9EEEFF;
-}

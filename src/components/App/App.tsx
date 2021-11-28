@@ -8,6 +8,7 @@ import History from '../History/History'
 import NoMatch from '../NoMatch/NoMatch';
 import SentimentForm from '../SentimentForm/SentimentForm';
 import TopicForm from '../TopicForm/TopicForm';
+import SavedArticles from '../SavedArticles/SavedArticles';
 import './App.css';
 
 const App = (): JSX.Element => {
@@ -18,6 +19,7 @@ const App = (): JSX.Element => {
   const [history, setHistory] = useState<CleanedArticle[]>([]);
   const [userSentiment, setUserSentiment] = useState<number | null>(null);
   const [selectedTopic, setSelectedTopic] = useState<string>('home');
+  const [savedArticles, setSavedArticles] = useState<CleanedArticle[]>([]);
   const [error, setError] = useState('');
 
   useEffect((): void => {
@@ -130,6 +132,23 @@ const App = (): JSX.Element => {
     }
   }
 
+  const toggleSaved = (id: string): void => {
+    const isSaved = savedArticles.find(savedArticle => {
+      return savedArticle.id === id;
+    })
+    if (!isSaved) {
+      const newSavedArticle = articles.find(article => {
+        return article.id === id;
+      })
+      setSavedArticles([...savedArticles, newSavedArticle!])
+    } else {
+      const newSavedArticles = savedArticles.filter(savedArticle => {
+        savedArticle.id !== id;
+      })
+      setSavedArticles(newSavedArticles);
+    }
+  }
+
   const path = `/feed/${selectedTopic}`
 
   return (
@@ -149,6 +168,8 @@ const App = (): JSX.Element => {
                     selectedTopic={ selectedTopic }
                     updateUserSentiment={ updateUserSentiment }
                     storeArticle={ storeArticle }
+                    toggleSaved={ toggleSaved }
+                    savedArticles={ savedArticles}
                   />
                   { !articles.length &&
                     <h2 className="loading-text">Loading... </h2>
@@ -161,6 +182,14 @@ const App = (): JSX.Element => {
           <Route exact path="/search-topic">
             <TopicForm assignTopic={ assignTopic } />
           </Route>
+          <Route path="/saved">
+            <SavedArticles
+              savedArticles={ savedArticles }
+              storeArticle={ storeArticle }
+              updateUserSentiment={ updateUserSentiment }
+              toggleSaved={ toggleSaved }
+            />
+          </Route>
           <Route
             exact path="/history"
             render={() => {
@@ -171,6 +200,8 @@ const App = (): JSX.Element => {
                     history={ history }
                     storeArticle={ storeArticle }
                     updateUserSentiment={ updateUserSentiment }
+                    toggleSaved={ toggleSaved }
+                    savedArticles={ savedArticles }
                   />
                   { error && <h2>{error}</h2> }
                 </>
