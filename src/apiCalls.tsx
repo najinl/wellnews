@@ -19,7 +19,7 @@ export const getArticles = (topic = 'home'): Promise<CleanedArticle[]> => {
   return (
     fetch(`https://api.nytimes.com/svc/topstories/v2/${topic}.json?api-key=GKUzDD1VY9ssjZ1AGusX3ci6AeoXCaSr`)
     .then(response => checkResponse(response))
-    .then(data => cleanArticles(data.results.slice(0,10)))
+    .then(data => cleanArticles(data.results.slice(0,3)))
   );
 };
 
