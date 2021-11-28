@@ -3,27 +3,17 @@
   width: 100%;
   background-color: #132741;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-.header-elements-container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 58%;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .header-txt {
-  flex: 2;
-  margin-top: 2%;
   font-size: 3rem;
   color: white;
   cursor: default;
 }
 
 .list-btn {
-  position: absolute;
   background-image: url('../../assets/list-btn.svg');
   background-repeat: no-repeat;
   background-size: contain;
@@ -32,8 +22,6 @@
   height: 3rem;
   width: 3rem;
   padding: .3rem;
-  right: 0%;
-  top: 20%;
 }
 
 .list-btn:hover {
@@ -41,10 +29,9 @@
 }
 
 .check-in-btn {
-  position: absolute;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
+  align-items: center;
   background-image: url('../../assets/back-arrow.svg');
   background-repeat: no-repeat;
   background-size: contain;
@@ -52,17 +39,12 @@
   padding-left: .3rem;
   margin-left: .5%;
   margin-top: 1%;
-  border: 5px solid #4B658B;
+  border: 0;
   height: 2.5rem;
   width: 7rem;
-  left: 0%;
-  top: 14%;
-  box-shadow: 2px 2px 2px black;
 }
 
 .check-in-text {
-  position: absolute;
-  right: 7%;
   font-size: 1.2em;
   color: white;
 }
