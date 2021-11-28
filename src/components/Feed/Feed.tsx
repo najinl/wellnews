@@ -55,7 +55,7 @@ const Feed = ({ unreadArticles, updateUserSentiment, storeArticle, selectedTopic
       <section className="articles-container">
         { articleCards.length > 0 ?
           articleCards[articleNumber] :
-          <Link to="/search-topic" className="find-more-btn">
+          <Link to="/topics" className="find-more-btn">
             Find more articles by topic
           </Link>
         }
