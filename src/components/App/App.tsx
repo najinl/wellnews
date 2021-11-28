@@ -143,7 +143,7 @@ const App = (): JSX.Element => {
       setSavedArticles([...savedArticles, newSavedArticle!])
     } else {
       const newSavedArticles = savedArticles.filter(savedArticle => {
-        savedArticle.id !== id;
+        return savedArticle.id !== id;
       })
       setSavedArticles(newSavedArticles);
     }
@@ -170,6 +170,7 @@ const App = (): JSX.Element => {
                     storeArticle={ storeArticle }
                     toggleSaved={ toggleSaved }
                     savedArticles={ savedArticles}
+                    assignTopic={ assignTopic }
                   />
                   { !articles.length &&
                     <h2 className="loading-text">Loading... </h2>
@@ -188,6 +189,7 @@ const App = (): JSX.Element => {
               storeArticle={ storeArticle }
               updateUserSentiment={ updateUserSentiment }
               toggleSaved={ toggleSaved }
+              assignTopic={ assignTopic }
             />
           </Route>
           <Route
@@ -195,13 +197,13 @@ const App = (): JSX.Element => {
             render={() => {
               return (
                 <>
-                  <Header />
                   <History
                     history={ history }
                     storeArticle={ storeArticle }
                     updateUserSentiment={ updateUserSentiment }
                     toggleSaved={ toggleSaved }
                     savedArticles={ savedArticles }
+                    assignTopic={ assignTopic }
                   />
                   { error && <h2>{error}</h2> }
                 </>

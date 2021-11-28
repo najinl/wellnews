@@ -23,33 +23,42 @@ const Card = ({ title, image, id, shortUrl, sentiment, topic, updateUserSentimen
 
   return (
     <article className="news-card cy-article-card">
+      <div className="card-header">
+        <p className="topic-text">{topic.toUpperCase()}</p>
+        { isSaved ?
+          <button
+            className="save-button"
+            onClick={ () => toggleSaved(id) }
+            type="button"
+            aria-label="Remove article from saved articles"
+          >
+            <span className="material-icons">
+              bookmark
+            </span>
+          </button>
+
+        : <button
+            className="save-button"
+            onClick={ () => toggleSaved(id) }
+            type="button"
+            aria-label="Save article"
+          >
+            <span className="material-icons">
+              bookmark_border
+            </span>
+          </button>
+        }
+      </div>
       <a
         onClick={ handleClick }
         className="cy-article-link"
         href={ shortUrl }
         target='_blank'
       >
-        <p className="topic-text">{topic.toUpperCase()}</p>
         <h2 className="article-title cy-article-title">{title}</h2>
         <img className="article-image cy-article-image" src={image} alt={title} />
       </a>
       <p className="abstract-text"> {abstract} </p>
-      { isSaved &&
-        <button
-          className="saved"
-          onClick={ () => toggleSaved(id) }
-          type="button"
-        >
-        </button>
-      }
-      { !isSaved &&
-        <button
-          className="not-saved"
-          onClick={ () => toggleSaved(id) }
-          type="button"
-        >
-        </button>
-      }
     </article>
   )
 }

@@ -2,11 +2,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   background-color: #4B658B;
   color: white;
-  margin: 10vw;
   width: 100%;
+  height: 100%;
 }
 
 .blue-stripe {
@@ -32,9 +31,8 @@
 }
 
 h2 {
-  margin-top: 1rem;
+  margin: 1rem 0 0;
   font-size: 2rem;
-  color: white;
 }
 
 .sentiments-container {

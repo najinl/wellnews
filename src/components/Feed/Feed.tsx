@@ -12,9 +12,10 @@ interface FeedProps {
   selectedTopic: string;
   toggleSaved: (id: string) => void;
   savedArticles: CleanedArticle[];
+  assignTopic: (topic: string) => void
 }
 
-const Feed = ({ unreadArticles, updateUserSentiment, storeArticle, selectedTopic, toggleSaved, savedArticles }: FeedProps): JSX.Element => {
+const Feed = ({ unreadArticles, updateUserSentiment, storeArticle, selectedTopic, toggleSaved, savedArticles, assignTopic }: FeedProps): JSX.Element => {
   const [articleNumber, setArticleNumber] = useState<number>(0)
   let articleCards: JSX.Element[] = [];
 
@@ -50,9 +51,17 @@ const Feed = ({ unreadArticles, updateUserSentiment, storeArticle, selectedTopic
 
   return (
     <>
-      <Header />
+      <Header assignTopic={ assignTopic }/>
       <h2>{topic}</h2>
       <section className="articles-container">
+        { articleCards.length > 0 ?
+          articleCards[articleNumber] :
+          <Link to="/topics" className="find-more-btn">
+            Find more articles by topic
+          </Link>
+        }
+      </section>
+      <div className="arrow-container">
         { !!articleNumber &&
           <button
             className="backward-arrow-btn"
@@ -64,13 +73,6 @@ const Feed = ({ unreadArticles, updateUserSentiment, storeArticle, selectedTopic
             </span>
           </button>
         }
-
-        { articleCards.length > 0 ?
-          articleCards[articleNumber] :
-          <Link to="/search-topic" className="find-more-btn">
-            Find more articles by topic
-          </Link> }
-
         { articleNumber < articleCards.length - 1 &&
           <button
           className="forward-arrow-btn"
@@ -82,7 +84,7 @@ const Feed = ({ unreadArticles, updateUserSentiment, storeArticle, selectedTopic
             </span>
           </button>
         }
-      </section>
+      </div>
     </>
   );
 };

@@ -1,35 +1,15 @@
-html {
-  background-color: #4B658B;
-  height: 100%;
-  font-family: 'Open Sans';
-}
-
 body {
   margin: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-a,
-a:active {
-  text-decoration: none;
-}
-
-a:hover {
-  color: #9EEEFF;
-}
-
-@media (max-width: 900px) {
-  body {
-    overflow-x: hidden;
-  }
+  font-family: 'Open Sans';
+  background-color: #f6f8fa;
 }
 
 button {
   cursor: pointer;
+}
+
+a,
+a:visited {
+  color: black;
+  text-decoration: none;
 }

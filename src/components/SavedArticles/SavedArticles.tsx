@@ -8,9 +8,10 @@ interface SavedArticlesProps {
   updateUserSentiment: (userSentiment: number) => void;
   storeArticle: (id: string) => void;
   toggleSaved: (id: string) => void;
+  assignTopic: (topic: string) => void
 }
 
-const SavedArticles = ({ savedArticles, storeArticle, updateUserSentiment, toggleSaved }: SavedArticlesProps): JSX.Element => {
+const SavedArticles = ({ savedArticles, storeArticle, updateUserSentiment, toggleSaved, assignTopic }: SavedArticlesProps): JSX.Element => {
   let articleCards: JSX.Element[] = [];
 
   if (savedArticles) {
@@ -43,14 +44,13 @@ const SavedArticles = ({ savedArticles, storeArticle, updateUserSentiment, toggl
 
   return (
     <>
-      <Header />
-      <div className="articles-container">
-          <section className="articles-display">
-            { articleCards.length ? articleCards
-              : <h3 className="no-match-message">Saved articles will appear here</h3>
-            }
-          </section>
-      </div>
+      <Header assignTopic={ assignTopic }/>
+      <h2>Saved Articles</h2>
+      <section className="articles-container">
+        { articleCards.length ? articleCards
+          : <h3 className="no-match-message">Saved articles will appear here</h3>
+        }
+      </section>
     </>
   )
 }

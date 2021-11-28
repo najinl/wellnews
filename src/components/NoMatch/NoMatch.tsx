@@ -1,5 +1,4 @@
-import { Link, useLocation } from 'react-router-dom'
-import './NoMatch.css'
+import { Link, useLocation } from 'react-router-dom';
 
 const NoMatch = (): JSX.Element => {
   const location = useLocation();
@@ -8,7 +7,7 @@ const NoMatch = (): JSX.Element => {
       <h3 className="cy-error-message">
         No match for <code>{location.pathname}</code>
       </h3>
-      <Link to="/feed" className="cy-feed-link">
+      <Link to="/feed/home" className="cy-feed-link">
         Back to Feed
       </Link>
     </div>
