@@ -26,3 +26,11 @@
     height: 60%;
   }
 }
+
+.saved-btn {
+  margin-top: 10px;
+}
+
+.history-btn {
+  margin: 10px;
+}
