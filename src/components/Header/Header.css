@@ -19,8 +19,8 @@
   background-size: contain;
   background-color: #132741;
   border: 0px;
-  height: 3rem;
-  width: 3rem;
+  height: 2rem;
+  width: 2rem;
   padding: .3rem;
 }
 
@@ -32,27 +32,14 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  background-image: url('../../assets/back-arrow.svg');
-  background-repeat: no-repeat;
-  background-size: contain;
   background-color: #4B658B;
   padding-left: .3rem;
   margin-left: .5%;
   margin-top: 1%;
   border: 0;
-  height: 2.5rem;
-  width: 7rem;
 }
 
 .check-in-text {
   font-size: 1.2em;
   color: white;
-}
-
-.check-in-btn:hover {
-  background-image: url('../../assets/back-arrow-active.svg');
-}
-
-.check-in-btn:hover > .check-in-text {
-  color: #9EEEFF;
 }
