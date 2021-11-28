@@ -54,6 +54,31 @@
   .header-elements-container {
     margin-top: 1.5%;
   }
+
+  .check-in-btn {
+    height: 3rem;
+    width: 3rem;
+    top: -5%;
+  }
+
+  .history-btn {
+    height: 3rem;
+    width: 3rem;
+    padding: .5rem .5rem .5rem .5rem;
+    margin-top: -.6%;
+  }
+
+  .list-btn {
+    top: -2%;
+    height: 3rem;
+    width: 3rem;
+    margin-right: -5%;
+  }
+
+  .header-txt,
+  .header-text-2 {
+    margin-top: 0%;
+  }
 }
 
 @media (max-width: 1000px) {
@@ -68,7 +93,7 @@
 
 @media (max-width: 900px) {
   .header-elements-container {
-    margin-top: 1%;
+    margin-top: 2%;
     margin-bottom: 10%;
   }
 
@@ -81,24 +106,40 @@
   }
 
   .header-txt,
-  .header-txt-2 {
-    font-size: 2rem;
+  .header-text-2 {
+    margin-top: 2%;
+    font-size: 2.5rem;
   }
 
   .check-in-btn {
-    height: 2rem;
-    top: 10%;
+    height: 3rem;
+    width: 3rem;
+    margin-top: 1%;
     left: -10%;
   }
 
   .list-btn {
-    height: 2.4rem;
-    top: 13%;
-    right: -20%;
+    height: 2.8rem;
+    width: 2.8rem;
+    margin-top: 1%;
+    right: -10%;
+  }
+
+  .history-btn {
+    height: 3rem;
+    width: 3rem;
+    margin-top: 1%;
+    margin-right: -5%;
   }
 
   .article-title {
     font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .history-btn {
+    margin-right: -5%;
   }
 }
 
@@ -126,16 +167,24 @@
     left: -25%;
   }
 
-  .history-btn {
-    height: 1.7rem;
-    top: 15%;
-    right: -7%;
+  .check-in-btn {
+    height: 2.3rem;
+    width: 2.3rem;
+    margin-top: 2%;
+    left: -10%;
   }
 
   .list-btn {
-    height: 2.4rem;
-    top: 13%;
-    right: -28%;
+    height: 2.2rem;
+    width: 2.2rem;
+    margin-top: 2.5%;
+    right: -10%;
+  }
+
+  .history-btn {
+    height: 2.3rem;
+    width: 2.3rem;
+    margin-top: 2%;
   }
 
   .article-title {
@@ -170,28 +219,23 @@
   }
 
   .check-in-btn {
-    height: 1.7rem;
-    width: 6rem;
-    top: 15%;
-    left: -25%;
-  }
-
-  .check-in-text {
-    padding-left: 1rem;
-    font-size: .8rem;
-  }
-
-  .history-btn {
-    height: 1.7rem;
-    top: 15%;
-    right: -7%;
-    font-size: .8rem;
+    height: 2rem;
+    width: 2rem;
+    margin-top: 3%;
+    left: -10%;
   }
 
   .list-btn {
-    height: 1.95rem;
-    top: 18%;
-    right: -30%;
+    height: 2rem;
+    width: 2rem;
+    margin-top: 2.5%;
+    right: -10%;
+  }
+
+  .history-btn {
+    height: 2rem;
+    width: 2rem;
+    margin-top: 3%;
   }
 }
 
@@ -204,35 +248,35 @@
     height: 2.5rem;
   }
 
-  .header-text,
+  .header-txt {
+    font-size: 1.5rem;
+    margin-top: .45rem;
+  }
+
   .header-text-2 {
     font-size: 1.5rem;
     margin-top: .45rem;
   }
 
   .check-in-btn {
-    height: 1.6rem;
-    width: 1.8rem;
-    top: 12%;
-    left: -26%;
-    padding: 0px;
-  }
-
-  .check-in-text {
-    display: none;
-  }
-
-  .history-btn {
-    height: 1.6rem;
-    top: 12%;
-    right: -10%;
-    font-size: .8rem;
+    height: .5rem;
+    width: .5rem;
+    margin-top: 1.5%;
+    left: -10%;
   }
 
   .list-btn {
     height: 1.8rem;
-    top: 14%;
-    right: -35%;
+    width: 2rem;
+    margin-top: 2.5%;
+    right: -10%;
+  }
+
+  .history-btn {
+    height: 1.8rem;
+    width: 1.8rem;
+    margin-top: 3%;
+    margin-right: -7%;
   }
 
   .article-title {

@@ -8,14 +8,14 @@ const Header = (): JSX.Element => {
       <div className="header-elements-container">
         <Link to='/'>
           <button className="check-in-btn">
-            <span className="check-in-text">Check In</span>
+            <span className="check-in-text"></span>
           </button>
         </Link>
         <h1 className="header-txt cy-header-txt">
-          Well<span className="header-text-2">News</span>
+          <span className="header-txt-1">Well</span><span className="header-text-2">News</span>
         </h1>
         <Link to='/history'>
-          <button className="history-btn">History</button>
+          <button className="history-btn"></button>
         </Link>
         <Link to='/search-topic'>
           <button className="list-btn" aria-label="Browse by Topic"></button>

@@ -11,7 +11,9 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  align-items: baseline;
   width: 58%;
+  margin-top: .5%;
 }
 
 .header-txt {
@@ -20,20 +22,22 @@
   font-size: 3rem;
   color: white;
   cursor: default;
+  font-family: 'Comfortaa';
+  align-self: center;
 }
 
 .list-btn {
   position: absolute;
   background-image: url('../../assets/list-btn.svg');
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   background-color: #132741;
   border: 0px;
-  height: 3rem;
-  width: 3rem;
+  height: 3.5rem;
+  width: 3.5rem;
   padding: .3rem;
-  right: 0%;
-  top: 20%;
+  right: -2%;
+  top: 15%;
 }
 
 .list-btn:hover {
@@ -45,18 +49,19 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-image: url('../../assets/back-arrow.svg');
+  background-image: url('../../assets/emoji-icon-cropped.png');
   background-repeat: no-repeat;
   background-size: contain;
-  background-color: #4B658B;
-  padding-left: .3rem;
+  background-color: white;
+  padding: 1rem;
   margin-left: .5%;
-  margin-top: 1%;
-  border: 5px solid #4B658B;
-  height: 2.5rem;
-  width: 7rem;
+  margin-top: 0%;
+  border: 0px;
+  border-radius: .5rem;
+  height: 3.8rem;
+  width: 3.8rem;
   left: 0%;
-  top: 14%;
+  top: 12%;
   box-shadow: 2px 2px 2px black;
 }
 
@@ -79,19 +84,24 @@
   position: absolute;
   flex: .5;
   color: white;
-  font-size: 1.1em;
-  background-color: #4B658B;
+  width: 3.5rem;
+  height: 3.5rem;
+  background-color: white;
+  background-image: url('../../assets/icons8-time-machine-96.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   border: 0px;
-  padding: 0rem .5rem 0rem .5rem;
+  border-radius: .5rem;
+  padding: .5rem 2rem .5rem 2rem;
   margin-right: 1%;
   margin-top: 1%;
-  height: 50%;
-  top: 14%;
+  top: 5%;
   right: 10%;
   width: auto;
   box-shadow: 2px 2px 2px black;
 }
 
 .history-btn:hover {
-  color: #9EEEFF;
+  background-color: #bcf3ff;
 }
