@@ -43,10 +43,13 @@ const History = ({ history, storeArticle, updateUserSentiment, toggleSaved, save
   }
 
   return (
-    <section className="articles-container">
-      { articleCards.length ? articleCards
-        : <h3 className="no-match-message">Articles you've read will appear here</h3> }
-    </section>
+    <>
+      <h2>History</h2>
+      <section className="articles-container">
+        { articleCards.length ? articleCards
+          : <h3 className="no-match-message">Articles you've read will appear here</h3> }
+      </section>
+    </>
   )
 }
 

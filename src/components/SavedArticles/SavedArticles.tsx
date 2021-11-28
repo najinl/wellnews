@@ -44,13 +44,12 @@ const SavedArticles = ({ savedArticles, storeArticle, updateUserSentiment, toggl
   return (
     <>
       <Header />
-      <div className="articles-container">
-          <section className="articles-display">
-            { articleCards.length ? articleCards
-              : <h3 className="no-match-message">Saved articles will appear here</h3>
-            }
-          </section>
-      </div>
+      <h2>Saved Articles</h2>
+      <section className="articles-container">
+        { articleCards.length ? articleCards
+          : <h3 className="no-match-message">Saved articles will appear here</h3>
+        }
+      </section>
     </>
   )
 }
