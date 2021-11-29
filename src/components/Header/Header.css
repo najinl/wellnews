@@ -1,16 +1,18 @@
 .header {
-  height: 10%;
+  height: 9%;
   width: 100%;
   background-color: #132741;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  padding: 0px;
 }
 
 .header-txt {
   font-size: 3rem;
   color: white;
   cursor: pointer;
+  font-family: 'Comfortaa';
 }
 
 .list-btn {
@@ -19,8 +21,8 @@
   background-size: contain;
   background-color: #132741;
   border: 0px;
-  height: 2rem;
-  width: 2rem;
+  height: 3rem;
+  width: 3rem;
   padding: .3rem;
 }
 
@@ -29,13 +31,14 @@
 }
 
 .check-in-btn {
-  background-image: url(../../assets/check-in-icon.png);
+  background-image: url(../../assets/multi-emoji.png);
   background-repeat: no-repeat;
   background-size: contain;
   border: 0;
   background-color: transparent;
-  height: 2.5rem;
-  width: 2.5rem;
+  margin-top: .4rem;
+  height: 3.4rem;
+  width: 3.4rem;
 }
 
 .check-in-text {

@@ -52,7 +52,7 @@ const Form = ({ updateUserSentiment }: FormProps): JSX.Element => {
           title="neutral"
           onClick={() => submitUserSentiment(5)}
         >
-          😶
+          😐
         </button>
          <button
           className="sentiment-btn cy-positive-btn"

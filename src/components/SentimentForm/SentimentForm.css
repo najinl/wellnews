@@ -2,20 +2,27 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #4B658B;
-  color: white;
+  background-color: #F6F8FA;
   width: 100%;
   height: 100%;
 }
 
+.sentiments-container {
+  margin: 1rem;
+}
+
 .blue-stripe {
   width: 100%;
+  height: 54.5%;
   background-color: #132741;
   margin-bottom: 5%;
 }
 
 .header-text {
-  font-size: 2.5rem;
+  font-family: 'Comfortaa';
+  font-size: 3rem;
+  margin-top: .45rem;
+  margin-left: .4rem;
 }
 
 .header-text-2 {
@@ -24,10 +31,10 @@
 
 .questionnaire-header {
   font-size: calc(10px + 2vmin);
-  color: white;
   display: flex;
   justify-content: center;
   width: 100%;
+  color: white;
 }
 
 h2 {
@@ -52,6 +59,11 @@ h2 {
 
 .sentiment-btn:hover {
   transform: scale(1.5);
+}
+
+.cy-sentiment-question {
+  color: #132741;
+  font-size: 1.6rem;
 }
 
 .view-synopsis-button,
