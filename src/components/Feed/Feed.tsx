@@ -61,6 +61,7 @@ const Feed = ({ unreadArticles, updateUserSentiment, storeArticle, selectedTopic
           </Link>
         }
       </section>
+      <div className="buffer"></div>
       <div className="arrow-container">
         { !!articleNumber &&
           <button
