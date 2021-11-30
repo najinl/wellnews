@@ -20,7 +20,7 @@ const Header = ({ assignTopic }: Header): JSX.Element => {
           Well<span className="header-text-2">News</span>
         </h1>
       </Link>
-      <Link to='/wellnews/search-topic'>
+      <Link to='/wellnews/topics'>
         <button className="list-btn" aria-label="Browse by Topic"></button>
       </Link>
     </header>

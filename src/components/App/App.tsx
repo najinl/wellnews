@@ -21,6 +21,7 @@ const App = (): JSX.Element => {
   const [selectedTopic, setSelectedTopic] = useState<string>('home');
   const [savedArticles, setSavedArticles] = useState<CleanedArticle[]>([]);
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(true);
 
   useEffect((): void => {
     getArticles('home')
@@ -32,6 +33,7 @@ const App = (): JSX.Element => {
                return article;
             });
             setArticles(scoredArticles);
+            setLoading(false);
             setError('')
           });
       })
@@ -90,6 +92,8 @@ const App = (): JSX.Element => {
   }
 
   const assignTopic = (selectedTopic: string): void => {
+    setArticles([])
+    setLoading(true)
     setSelectedTopic(selectedTopic);
     getArticles(selectedTopic)
       .then((cleanedArticles: CleanedArticle[]): void => {
@@ -100,7 +104,8 @@ const App = (): JSX.Element => {
                article.sentiment = Math.round((response[i] + 1) * 5);
                return article;
             });
-            setArticles(scoredArticles);
+            setArticles(scoredArticles)
+            setLoading(false);
             setError('');
           });
       })
@@ -173,8 +178,9 @@ const App = (): JSX.Element => {
                     toggleSaved={ toggleSaved }
                     savedArticles={ savedArticles}
                     assignTopic={ assignTopic }
+                    loading={ loading }
                   />
-                  { !articles.length &&
+                  { loading &&
                     <h2 className="loading-text">Loading... </h2>
                   }
                   { error && <h2>{error}</h2> }
@@ -182,7 +188,7 @@ const App = (): JSX.Element => {
               )
             }}
           />
-          <Route exact path="/wellnews/search-topic">
+          <Route exact path="/wellnews/topics">
             <TopicForm assignTopic={ assignTopic } />
           </Route>
           <Route path="/wellnews/saved">

@@ -13,9 +13,10 @@ interface FeedProps {
   toggleSaved: (id: string) => void;
   savedArticles: CleanedArticle[];
   assignTopic: (topic: string) => void
+  loading: boolean
 }
 
-const Feed = ({ unreadArticles, updateUserSentiment, storeArticle, selectedTopic, toggleSaved, savedArticles, assignTopic }: FeedProps): JSX.Element => {
+const Feed = ({ unreadArticles, updateUserSentiment, storeArticle, selectedTopic, toggleSaved, savedArticles, assignTopic, loading }: FeedProps): JSX.Element => {
   const [articleNumber, setArticleNumber] = useState<number>(0)
   let articleCards: JSX.Element[] = [];
 
@@ -54,9 +55,11 @@ const Feed = ({ unreadArticles, updateUserSentiment, storeArticle, selectedTopic
       <Header assignTopic={ assignTopic }/>
       <h2>{topic}</h2>
       <section className="articles-container">
-        { articleCards.length > 0 ?
-          articleCards[articleNumber] :
-          <Link to="/topics" className="find-more-btn">
+        { articleCards.length > 0 &&
+          articleCards[articleNumber]
+        }
+        { articleCards.length === 0 && !loading &&
+          <Link to="/wellnews/topics" className="find-more-btn">
             Find more articles by topic
           </Link>
         }
