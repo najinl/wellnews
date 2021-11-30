@@ -10,7 +10,7 @@ const Form = ({ updateUserSentiment }: FormProps): JSX.Element => {
 
   const submitUserSentiment = (userSentiment: number) => {
       updateUserSentiment(userSentiment);
-      history.push('/feed/home');
+      history.push('/wellnews/feed/home');
   }
 
   const showSynopsis = (event: React.MouseEvent<HTMLButtonElement>) => {

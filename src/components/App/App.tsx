@@ -21,9 +21,10 @@ const App = (): JSX.Element => {
   const [selectedTopic, setSelectedTopic] = useState<string>('home');
   const [savedArticles, setSavedArticles] = useState<CleanedArticle[]>([]);
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(true);
 
   useEffect((): void => {
-    getArticles()
+    getArticles('home')
       .then((cleanedArticles: CleanedArticle[]): void => {
         getSentimentScores(cleanedArticles)
           .then((response: number[]) => {
@@ -32,6 +33,8 @@ const App = (): JSX.Element => {
                return article;
             });
             setArticles(scoredArticles);
+            setLoading(false);
+            setError('')
           });
       })
       .catch(error => setError(error.message));
@@ -89,6 +92,8 @@ const App = (): JSX.Element => {
   }
 
   const assignTopic = (selectedTopic: string): void => {
+    setArticles([])
+    setLoading(true)
     setSelectedTopic(selectedTopic);
     getArticles(selectedTopic)
       .then((cleanedArticles: CleanedArticle[]): void => {
@@ -99,7 +104,9 @@ const App = (): JSX.Element => {
                article.sentiment = Math.round((response[i] + 1) * 5);
                return article;
             });
-            setArticles(scoredArticles);
+            setArticles(scoredArticles)
+            setLoading(false);
+            setError('');
           });
       })
       .catch(error => setError(error.message));
@@ -149,13 +156,13 @@ const App = (): JSX.Element => {
     }
   }
 
-  const path = `/feed/${selectedTopic}`
+  const path = `/wellnews/feed/${selectedTopic}`
 
   return (
     <div className="app-container">
       <Router>
         <Switch>
-          <Route exact path="/">
+          <Route exact path="/wellnews/">
             <SentimentForm updateUserSentiment={ updateUserSentiment } />
           </Route>
           <Route
@@ -171,8 +178,9 @@ const App = (): JSX.Element => {
                     toggleSaved={ toggleSaved }
                     savedArticles={ savedArticles}
                     assignTopic={ assignTopic }
+                    loading={ loading }
                   />
-                  { !articles.length &&
+                  { loading &&
                     <h2 className="loading-text">Loading... </h2>
                   }
                   { error && <h2>{error}</h2> }
@@ -180,10 +188,10 @@ const App = (): JSX.Element => {
               )
             }}
           />
-          <Route exact path="/search-topic">
+          <Route exact path="/wellnews/topics">
             <TopicForm assignTopic={ assignTopic } />
           </Route>
-          <Route path="/saved">
+          <Route path="/wellnews/saved">
             <SavedArticles
               savedArticles={ savedArticles }
               storeArticle={ storeArticle }
@@ -193,7 +201,7 @@ const App = (): JSX.Element => {
             />
           </Route>
           <Route
-            exact path="/history"
+            exact path="/wellnews/history"
             render={() => {
               return (
                 <>
