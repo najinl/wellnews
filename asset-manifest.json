@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/wellnews/static/css/main.a0170027.chunk.css",
-    "main.js": "/wellnews/static/js/main.e4656a71.chunk.js",
-    "main.js.map": "/wellnews/static/js/main.e4656a71.chunk.js.map",
+    "main.css": "/wellnews/static/css/main.f0753d7f.chunk.css",
+    "main.js": "/wellnews/static/js/main.5e546ddd.chunk.js",
+    "main.js.map": "/wellnews/static/js/main.5e546ddd.chunk.js.map",
     "runtime-main.js": "/wellnews/static/js/runtime-main.5cce0304.js",
     "runtime-main.js.map": "/wellnews/static/js/runtime-main.5cce0304.js.map",
     "static/js/2.5765f230.chunk.js": "/wellnews/static/js/2.5765f230.chunk.js",
     "static/js/2.5765f230.chunk.js.map": "/wellnews/static/js/2.5765f230.chunk.js.map",
     "index.html": "/wellnews/index.html",
-    "static/css/main.a0170027.chunk.css.map": "/wellnews/static/css/main.a0170027.chunk.css.map",
+    "static/css/main.f0753d7f.chunk.css.map": "/wellnews/static/css/main.f0753d7f.chunk.css.map",
     "static/js/2.5765f230.chunk.js.LICENSE.txt": "/wellnews/static/js/2.5765f230.chunk.js.LICENSE.txt",
     "static/media/Header.css": "/wellnews/static/media/multi-emoji.ea9ea75e.png"
   },
   "entrypoints": [
     "static/js/runtime-main.5cce0304.js",
     "static/js/2.5765f230.chunk.js",
-    "static/css/main.a0170027.chunk.css",
-    "static/js/main.e4656a71.chunk.js"
+    "static/css/main.f0753d7f.chunk.css",
+    "static/js/main.5e546ddd.chunk.js"
   ]
 }
