@@ -195,7 +195,7 @@ const App = (): JSX.Element => {
             />
           </Route>
           <Route
-            exact path="wellnews/history"
+            exact path="/wellnews/history"
             render={() => {
               return (
                 <>
