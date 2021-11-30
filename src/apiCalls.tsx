@@ -15,12 +15,13 @@ interface Response {
   json: any
 }
 
-export const getArticles = (topic = 'home'): Promise<CleanedArticle[]> => {
+export const getArticles = (topic: string): Promise<CleanedArticle[]> => {
   return (
     fetch(`https://api.nytimes.com/svc/topstories/v2/${topic}.json?api-key=GKUzDD1VY9ssjZ1AGusX3ci6AeoXCaSr`)
     .then(response => checkResponse(response))
-    .then(data => cleanArticles(data.results.slice(0,10)))
-  );
+    .then(data => {
+      return cleanArticles(data.results.slice(0, 10))})
+  )
 };
 
 const checkResponse = (response: Response) => {
@@ -39,15 +40,19 @@ export const getSentiment = (title: string, abstract: string): Promise<number> =
 };
 
 const cleanArticles = (articles: OriginalArticle[]): CleanedArticle[] => {
-  return articles.map(({ section, title, abstract, short_url, multimedia, url }: OriginalArticle) => {
-    return ({
-      topic: section,
-      title,
-      abstract,
-      shortUrl: short_url,
-      sentiment: 0,
-      multimedia: multimedia[0],
-      id: url.slice(24, -5).replace(/\//g, '-')
-    });
+  const cleanedArticles = articles.filter(({multimedia}: OriginalArticle) => {
+    return Array.isArray(multimedia)
+  })
+  .map(({ section, title, abstract, short_url, multimedia, url }: OriginalArticle) => {
+      return ({
+        topic: section,
+        title,
+        abstract,
+        shortUrl: short_url,
+        sentiment: 0,
+        multimedia: multimedia[0],
+        id: url.slice(24, -5).replace(/\//g, '-')
+      });
   });
+  return cleanedArticles;
 };
