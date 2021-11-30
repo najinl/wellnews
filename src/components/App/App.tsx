@@ -23,7 +23,7 @@ const App = (): JSX.Element => {
   const [error, setError] = useState('');
 
   useEffect((): void => {
-    getArticles()
+    getArticles('home')
       .then((cleanedArticles: CleanedArticle[]): void => {
         getSentimentScores(cleanedArticles)
           .then((response: number[]) => {
@@ -32,6 +32,7 @@ const App = (): JSX.Element => {
                return article;
             });
             setArticles(scoredArticles);
+            setError('')
           });
       })
       .catch(error => setError(error.message));
@@ -100,6 +101,7 @@ const App = (): JSX.Element => {
                return article;
             });
             setArticles(scoredArticles);
+            setError('');
           });
       })
       .catch(error => setError(error.message));
@@ -149,13 +151,13 @@ const App = (): JSX.Element => {
     }
   }
 
-  const path = `/feed/${selectedTopic}`
+  const path = `/wellnews/feed/${selectedTopic}`
 
   return (
     <div className="app-container">
       <Router>
         <Switch>
-          <Route exact path="/">
+          <Route exact path="/wellnews/">
             <SentimentForm updateUserSentiment={ updateUserSentiment } />
           </Route>
           <Route
@@ -180,10 +182,10 @@ const App = (): JSX.Element => {
               )
             }}
           />
-          <Route exact path="/search-topic">
+          <Route exact path="/wellnews/search-topic">
             <TopicForm assignTopic={ assignTopic } />
           </Route>
-          <Route path="/saved">
+          <Route path="/wellnews/saved">
             <SavedArticles
               savedArticles={ savedArticles }
               storeArticle={ storeArticle }
@@ -193,7 +195,7 @@ const App = (): JSX.Element => {
             />
           </Route>
           <Route
-            exact path="/history"
+            exact path="wellnews/history"
             render={() => {
               return (
                 <>

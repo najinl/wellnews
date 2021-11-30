@@ -14,7 +14,7 @@ const sectionTopics = availableTopics.map(topic => {
     return (
       <Link
         className="topic"
-        to={`/feed/${topic}`}
+        to={`/wellnews/feed/${topic}`}
         key={ topic }
         onClick={() => assignTopic(topic)}>
         {topic.charAt(0).toUpperCase() + topic.slice(1)}
@@ -25,7 +25,7 @@ const sectionTopics = availableTopics.map(topic => {
   return (
     <>
       <Header assignTopic={ assignTopic }/>
-      <Link to="/saved">
+      <Link to="/wellnews/saved">
         <button className="saved-btn" type="button" aria-label="Saved articles">
           <span className="material-icons">
             bookmark
@@ -33,7 +33,7 @@ const sectionTopics = availableTopics.map(topic => {
           Saved Articles
         </button>
       </Link>
-      <Link to='/history'>
+      <Link to='/wellnews/history'>
         <button className="history-btn" type="button" aria-label="History">
         <span className="material-icons">
           history
