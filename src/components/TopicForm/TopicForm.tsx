@@ -4,9 +4,10 @@ import './TopicForm.css';
 
 interface TopicFormProps {
   assignTopic: (selectedTopic: string) => void
+  selectedTopic: string;
 }
 
-const TopicForm = ({ assignTopic }: TopicFormProps): JSX.Element => {
+const TopicForm = ({ assignTopic, selectedTopic }: TopicFormProps): JSX.Element => {
 
 const availableTopics = ['arts', 'automobiles', 'books', 'business', 'fashion', 'food', 'health', 'home', 'insider', 'magazine', 'movies', 'nyregion', 'obituaries', 'opinion', 'politics', 'realestate', 'science', 'sports', 'sundayreview', 'technology', 'theater', 't-magazine', 'travel', 'upshot', 'us', 'world'];
 
@@ -24,7 +25,7 @@ const sectionTopics = availableTopics.map(topic => {
 
   return (
     <>
-      <Header assignTopic={ assignTopic }/>
+      <Header assignTopic={ assignTopic } selectedTopic={ selectedTopic } />
       <Link to="/wellnews/saved">
         <button className="saved-btn" type="button" aria-label="Saved articles">
           <span className="material-icons">

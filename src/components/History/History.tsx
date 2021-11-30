@@ -10,9 +10,10 @@ interface HistoryProps {
   toggleSaved: (id: string) => void
   savedArticles: CleanedArticle[]
   assignTopic: (topic: string) => void
+  selectedTopic: string;
 }
 
-const History = ({ history, storeArticle, updateUserSentiment, toggleSaved, savedArticles, assignTopic }: HistoryProps): JSX.Element => {
+const History = ({ history, storeArticle, updateUserSentiment, toggleSaved, savedArticles, assignTopic, selectedTopic }: HistoryProps): JSX.Element => {
 
   let articleCards: JSX.Element[] = [];
 
@@ -46,7 +47,7 @@ const History = ({ history, storeArticle, updateUserSentiment, toggleSaved, save
 
   return (
     <>
-      <Header assignTopic={ assignTopic }/>
+      <Header assignTopic={ assignTopic } selectedTopic={ selectedTopic } />
       <h2>History</h2>
       <section className="articles-container">
         { articleCards.length ? articleCards

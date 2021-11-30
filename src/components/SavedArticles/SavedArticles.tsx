@@ -9,9 +9,10 @@ interface SavedArticlesProps {
   storeArticle: (id: string) => void;
   toggleSaved: (id: string) => void;
   assignTopic: (topic: string) => void
+  selectedTopic: string;
 }
 
-const SavedArticles = ({ savedArticles, storeArticle, updateUserSentiment, toggleSaved, assignTopic }: SavedArticlesProps): JSX.Element => {
+const SavedArticles = ({ savedArticles, storeArticle, updateUserSentiment, toggleSaved, assignTopic, selectedTopic }: SavedArticlesProps): JSX.Element => {
   let articleCards: JSX.Element[] = [];
 
   if (savedArticles) {
@@ -44,7 +45,7 @@ const SavedArticles = ({ savedArticles, storeArticle, updateUserSentiment, toggl
 
   return (
     <>
-      <Header assignTopic={ assignTopic }/>
+      <Header assignTopic={ assignTopic } selectedTopic={ selectedTopic } />
       <h2>Saved Articles</h2>
       <section className="articles-container">
         { articleCards.length ? articleCards
