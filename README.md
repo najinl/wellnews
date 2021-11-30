@@ -69,6 +69,9 @@ The app keeps track of and updates the session’s affect score based on the aff
 
 ## Project Demo
 
+[![Screen Shot 2021-11-30 at 12 24 31 PM](https://user-images.githubusercontent.com/72999840/144122500-0e4cf8d4-fbec-45fe-87e4-289dda19a7ba.png)](https://www.youtube.com/watch?v=3nanaC37vsE)
+
+
 **Sorting by Sentiment**
 
 ![Home Screen](https://user-images.githubusercontent.com/82003147/140839607-727971ca-9fe1-4982-bc1e-e24a9be417b3.gif)
