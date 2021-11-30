@@ -92,7 +92,6 @@ const App = (): JSX.Element => {
   }
 
   const assignTopic = (selectedTopic: string): void => {
-    setArticles([])
     setLoading(true)
     setSelectedTopic(selectedTopic);
     getArticles(selectedTopic)
@@ -180,16 +179,16 @@ const App = (): JSX.Element => {
                     assignTopic={ assignTopic }
                     loading={ loading }
                   />
-                  { loading &&
-                    <h2 className="loading-text">Loading... </h2>
-                  }
                   { error && <h2>{error}</h2> }
                 </>
               )
             }}
           />
           <Route exact path="/wellnews/topics">
-            <TopicForm assignTopic={ assignTopic } />
+            <TopicForm
+              assignTopic={ assignTopic }
+              selectedTopic={ selectedTopic }
+            />
           </Route>
           <Route path="/wellnews/saved">
             <SavedArticles
@@ -198,6 +197,7 @@ const App = (): JSX.Element => {
               updateUserSentiment={ updateUserSentiment }
               toggleSaved={ toggleSaved }
               assignTopic={ assignTopic }
+              selectedTopic={ selectedTopic }
             />
           </Route>
           <Route
@@ -212,6 +212,7 @@ const App = (): JSX.Element => {
                     toggleSaved={ toggleSaved }
                     savedArticles={ savedArticles }
                     assignTopic={ assignTopic }
+                    selectedTopic={ selectedTopic }
                   />
                   { error && <h2>{error}</h2> }
                 </>

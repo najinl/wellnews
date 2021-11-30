@@ -52,11 +52,12 @@ const Feed = ({ unreadArticles, updateUserSentiment, storeArticle, selectedTopic
 
   return (
     <>
-      <Header assignTopic={ assignTopic }/>
+      <Header assignTopic={ assignTopic } selectedTopic={ selectedTopic } />
       <h2>{topic}</h2>
       <section className="articles-container">
-        { articleCards.length > 0 &&
-          articleCards[articleNumber]
+        { loading ?
+          <h2 className="loading-text">Loading... </h2>
+          : articleCards[articleNumber]
         }
         { articleCards.length === 0 && !loading &&
           <Link to="/wellnews/topics" className="find-more-btn">
