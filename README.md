@@ -84,6 +84,9 @@ The app keeps track of and updates the session’s affect score based on the aff
 
 ![Sorting by Topic](https://user-images.githubusercontent.com/82003147/140839761-3af43274-1cb0-4609-9e0d-8d1ec323582e.gif)
 
+## Wireframe
+View our <a href="https://www.figma.com/file/Mm6nKvS3rzJeZSBHL6rDDC/WellNews?node-id=201%3A2">wireframe</a> on Figma.
+
 ## Contributors
 
 This project was developed by:
